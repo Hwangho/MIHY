@@ -29,6 +29,8 @@
 		0EDE846F28CDB1AC003B7191 /* ReusableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDE846428CDB1AC003B7191 /* ReusableProtocol.swift */; };
 		0EDE847228CDB20C003B7191 /* TabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDE847128CDB20C003B7191 /* TabbarViewController.swift */; };
 		0EDE847628CDB9E0003B7191 /* SpaceRentalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDE847528CDB9E0003B7191 /* SpaceRentalViewController.swift */; };
+		0EDE847C28CDBB8B003B7191 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 0EDE847B28CDBB8B003B7191 /* .gitignore */; };
+		0EDE847F28CDBC3E003B7191 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDE847E28CDBC3E003B7191 /* APIKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +77,8 @@
 		0EDE846428CDB1AC003B7191 /* ReusableProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableProtocol.swift; sourceTree = "<group>"; };
 		0EDE847128CDB20C003B7191 /* TabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarViewController.swift; sourceTree = "<group>"; };
 		0EDE847528CDB9E0003B7191 /* SpaceRentalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceRentalViewController.swift; sourceTree = "<group>"; };
+		0EDE847B28CDBB8B003B7191 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		0EDE847E28CDBC3E003B7191 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +109,7 @@
 		0EDE841228CDAE27003B7191 = {
 			isa = PBXGroup;
 			children = (
+				0EDE847B28CDBB8B003B7191 /* .gitignore */,
 				0EDE841D28CDAE28003B7191 /* MIHY */,
 				0EDE843428CDAE2B003B7191 /* MIHYTests */,
 				0EDE843E28CDAE2B003B7191 /* MIHYUITests */,
@@ -125,8 +130,8 @@
 		0EDE841D28CDAE28003B7191 /* MIHY */ = {
 			isa = PBXGroup;
 			children = (
-				0EDE844E28CDAE5B003B7191 /* Source */,
 				0EDE844F28CDAE61003B7191 /* Resource */,
+				0EDE844E28CDAE5B003B7191 /* Source */,
 			);
 			path = MIHY;
 			sourceTree = "<group>";
@@ -151,11 +156,8 @@
 		0EDE844E28CDAE5B003B7191 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				0EDE842728CDAE2A003B7191 /* Assets.xcassets */,
-				0EDE847328CDB46C003B7191 /* StoryBoard */,
-				0EDE841E28CDAE28003B7191 /* AppDelegate.swift */,
-				0EDE842028CDAE28003B7191 /* SceneDelegate.swift */,
-				0EDE842C28CDAE2A003B7191 /* Info.plist */,
+				0EDE845028CDAEFC003B7191 /* Present */,
+				0EDE845528CDB1AC003B7191 /* Utility */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -163,8 +165,12 @@
 		0EDE844F28CDAE61003B7191 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				0EDE845028CDAEFC003B7191 /* Present */,
-				0EDE845528CDB1AC003B7191 /* Utility */,
+				0EDE847D28CDBC0E003B7191 /* Key */,
+				0EDE842728CDAE2A003B7191 /* Assets.xcassets */,
+				0EDE847328CDB46C003B7191 /* StoryBoard */,
+				0EDE841E28CDAE28003B7191 /* AppDelegate.swift */,
+				0EDE842028CDAE28003B7191 /* SceneDelegate.swift */,
+				0EDE842C28CDAE2A003B7191 /* Info.plist */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -252,6 +258,14 @@
 				0EDE847528CDB9E0003B7191 /* SpaceRentalViewController.swift */,
 			);
 			path = SpaceRental;
+			sourceTree = "<group>";
+		};
+		0EDE847D28CDBC0E003B7191 /* Key */ = {
+			isa = PBXGroup;
+			children = (
+				0EDE847E28CDBC3E003B7191 /* APIKey.swift */,
+			);
+			path = Key;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -358,6 +372,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EDE847C28CDBB8B003B7191 /* .gitignore in Resources */,
 				0EDE845428CDB0E8003B7191 /* Main.storyboard in Resources */,
 				0EDE842B28CDAE2A003B7191 /* LaunchScreen.storyboard in Resources */,
 				0EDE842828CDAE2A003B7191 /* Assets.xcassets in Resources */,
@@ -401,6 +416,7 @@
 				0EDE846A28CDB1AC003B7191 /* BaseView.swift in Sources */,
 				0EDE846628CDB1AC003B7191 /* Transition+Extension.swift in Sources */,
 				0EDE846728CDB1AC003B7191 /* BaseViewController.swift in Sources */,
+				0EDE847F28CDBC3E003B7191 /* APIKey.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -571,7 +587,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 966AMBK56G;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MIHY/Source/Info.plist;
+				INFOPLIST_FILE = MIHY/Resource/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "MIHY?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -600,7 +616,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 966AMBK56G;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MIHY/Source/Info.plist;
+				INFOPLIST_FILE = MIHY/Resource/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "MIHY?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
