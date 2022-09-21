@@ -12,7 +12,7 @@ import SnapKit
 
 class OnBoardingViewController: BaseViewController {
     
-    // View
+    /// View
     let scrollView = UIScrollView()
     
     let stackView = UIStackView()
@@ -28,13 +28,13 @@ class OnBoardingViewController: BaseViewController {
     }()
     
     
-    // Variable
+    /// Variable
     let onBoardingType: OnBoardingQuestionType
     
     var viewModel: OnBoardingViewModel
     
     
-    // Initialize
+    /// Initialize
     init(type: OnBoardingQuestionType = OnBoardingQuestionType.nickName, viewModel: OnBoardingViewModel = OnBoardingViewModel()) {
         self.onBoardingType = type
         self.viewModel = viewModel
@@ -46,7 +46,7 @@ class OnBoardingViewController: BaseViewController {
     }
     
     
-    // Life Cycle
+    /// Life Cycle
     override func viewWillAppear(_ animated: Bool) {
         addKeyboardNotifications()
     }
@@ -69,7 +69,6 @@ class OnBoardingViewController: BaseViewController {
     }
     
     override func setupLayout() {
-        
         switch onBoardingType {
         case .nickName, .birth:
             view.addSubview(onBoardingTextFieldView)
@@ -108,22 +107,38 @@ class OnBoardingViewController: BaseViewController {
     func tapdoneButton() {
         switch onBoardingType {
         case .nickName, .birth:
-            let value = onBoardingTextFieldView.textField.text
-            viewModel.addData(key: onBoardingType, value: value)
+            let value = onBoardingTextFieldView.viewModel.textFieldText.value
+            self.viewModel.addData(key: self.onBoardingType, value: value)
             
         case .policy:
-            print("policy")
+            let value = onBoardingCollectionView.viewModel.policyDatas
+            viewModel.addData(key: onBoardingType, value: value)
+            
         case .region:
-            print("region")
+            let value = onBoardingCollectionView.viewModel.regionData
+            viewModel.addData(key: onBoardingType, value: value)
+            
         case .myInfo:
-            print("myInfo")
+            let value = onBoardingCollectionView.viewModel.myInfoDatas
+            viewModel.addData(key: onBoardingType, value: value)
         }
         
-        guard let type = onBoardingType.nextOnBoarding else { return }
+        guard let type = onBoardingType.nextOnBoarding else {
+            let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+            let sceneDelegate = windowScene?.delegate as? SceneDelegate
+            
+            let vc = PolicySupportViewController()
+            vc.viewModel.onBoardingData = viewModel.onBoardingData
+            
+            sceneDelegate?.window?.rootViewController = UINavigationController(rootViewController: vc)
+            UIView.transition(with: (sceneDelegate?.window)!, duration: 0.4, options: [.transitionCrossDissolve], animations: nil, completion: nil)
+            sceneDelegate?.window?.makeKeyAndVisible()
+            
+            return
+        }
         let viewController = OnBoardingViewController(type: type, viewModel: viewModel)
         transition(viewController, transitionStyle: .push)
     }
-    
     
 }
 
@@ -131,18 +146,18 @@ class OnBoardingViewController: BaseViewController {
 // MARK: - keyBoard 관련
 extension OnBoardingViewController {
     
-    func addKeyboardNotifications(){
+    func addKeyboardNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification , object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    func removeKeyboardNotifications(){
+    func removeKeyboardNotifications() {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification , object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     @objc
-    func keyboardWillShow(_ noti: NSNotification){
+    func keyboardWillShow(_ noti: NSNotification) {
         if let keyboardFrame: NSValue = noti.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardRectangle.height
@@ -158,7 +173,7 @@ extension OnBoardingViewController {
     }
     
     @objc
-    func keyboardWillHide(_ noti: NSNotification){
+    func keyboardWillHide(_ noti: NSNotification) {
         if let keyboardFrame: NSValue = noti.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardRectangle.height
@@ -168,6 +183,7 @@ extension OnBoardingViewController {
                 self.nextButton.snp.makeConstraints { make in
                     make.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(30)
                 }
+
             } completion: { _ in
                 self.view.layoutIfNeeded()
             }

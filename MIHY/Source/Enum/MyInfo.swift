@@ -13,6 +13,13 @@ import Foundation
 
 enum MyInfo {
     
+    enum caseType {
+        case employmentStatus
+        case education
+        case specialization
+    }
+    
+    
     static var allSection: [[MyInfo]] {
         return[ EmploymentStatus.allCases.map{.employmentStatus($0)},
                 Education.allCases.map{.education($0)},
@@ -34,9 +41,9 @@ enum MyInfo {
     
     var rowTitle: String {
         switch self {
-        case .employmentStatus(let employmentStatus): return employmentStatus.title
-        case .education(let education): return education.title
-        case .specialization(let specialization): return specialization.title
+        case .employmentStatus(let employmentStatus): return employmentStatus.rawValue
+        case .education(let education): return education.rawValue
+        case .specialization(let specialization): return specialization.rawValue
         }
     }
     
@@ -47,9 +54,16 @@ enum MyInfo {
         case .specialization(let specialization): return specialization.rawValue
         }
     }
-
-
-
+    
+    
+    var checkedData: (MyInfo.caseType, String) {
+        switch self {
+        case .employmentStatus(let employmentStatus): return employmentStatus.data
+        case .education(let education): return education.data
+        case .specialization(let specialization): return specialization.data
+        }
+    }
+    
 }
 
 
@@ -66,18 +80,18 @@ enum EmploymentStatus: String, CaseIterable {
     case farmworker = "영농종사자"           // 영농종사자
     case nolimit = "제한 없음"              // 제한 없음
     
-    var title: String {
+    var data: (MyInfo.caseType, String) {
         switch self {
-        case .all: return "취업상태 전체"
-        case .employed: return "재직자"
-        case .unemployed: return "미취업자"
-        case .selfemployed: return "자영업자"
-        case .freelancer: return "프피랜서"
-        case .dailyworker: return "일용근로자"
-        case .prestartup: return "(예비)창업자"
-        case .shorttermworker: return "단기근로자"
-        case .farmworker: return "영농종사자"
-        case .nolimit: return "제한 없음"
+        case .all: return (.employmentStatus, "전체")
+        case .employed: return (.employmentStatus,"재직자")
+        case .unemployed: return (.employmentStatus,"미취업자")
+        case .selfemployed: return (.employmentStatus,"자영업자")
+        case .freelancer: return (.employmentStatus,"프피랜서")
+        case .dailyworker: return(.employmentStatus, "일용근로자")
+        case .prestartup: return (.employmentStatus,"(예비)창업자")
+        case .shorttermworker: return (.employmentStatus,"단기근로자")
+        case .farmworker: return (.employmentStatus,"영농종사자")
+        case .nolimit: return (.employmentStatus,"제한 없음")
         }
     }
 }
@@ -96,18 +110,18 @@ enum Education: String, CaseIterable {
     case master = "석·박사"                  // 석·박사
     case nolimit = "제한없음"                // 제한없음
     
-    var title: String {
+    var data: (MyInfo.caseType, String) {
         switch self {
-        case .all: return "학력 전체"
-        case .lessH: return "고졸미만"
-        case .attendingH: return "고교재학"
-        case .intendedgraduationH: return "고졸예정"
-        case .graduationH: return "고교졸업"
-        case .attendingC: return "대학재학"
-        case .intendedgraduationC: return "대졸예정"
-        case .graduationC: return "대학졸업"
-        case .master: return "석·박사"
-        case .nolimit: return "제한없음"
+        case .all: return (.education, "전체")
+        case .lessH: return (.education,"고졸미만")
+        case .attendingH: return (.education,"고교재학")
+        case .intendedgraduationH: return (.education,"고졸예정")
+        case .graduationH: return (.education,"고교졸업")
+        case .attendingC: return(.education, "대학재학")
+        case .intendedgraduationC: return (.education,"대졸예정")
+        case .graduationC: return (.education,"대학졸업")
+        case .master: return (.education,"석·박사")
+        case .nolimit: return (.education,"제한없음")
         }
     }
 }
@@ -124,17 +138,18 @@ enum Specialization: String, CaseIterable {
     case localtalent = "지역인재"  // 지역인재
     case nolimit = "제한없음"       // 제한없음
     
-    var title: String {
+    var data: (MyInfo.caseType, String) {
         switch self {
-        case .all: return "전체"
-        case .smallbusiness: return "중소기업"
-        case .female: return "여성"
-        case .lowincome: return "저소득층"
-        case .Disabled: return "장애인"
-        case .farmer: return "농업인"
-        case .soldier: return "군인"
-        case .localtalent: return "지역인재"
-        case .nolimit: return "제한없음"
+        case .all: return (.specialization, "전체")
+        case .smallbusiness: return (.specialization,"중소기업")
+        case .female: return (.specialization,"여성")
+        case .lowincome: return (.specialization,"저소득층")
+        case .Disabled: return (.specialization,"장애인")
+        case .farmer: return(.specialization, "농업인")
+        case .soldier: return (.specialization,"군인")
+        case .localtalent: return (.specialization,"지역인재")
+        case .nolimit: return (.specialization,"제한없음")
         }
     }
+    
 }

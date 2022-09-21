@@ -11,6 +11,8 @@ class PolicySupportViewModel {
     
     let service: PolicyRepositoryProtocol
     
+    var onBoardingData: [OnBoardingQuestionType: Any] = [:]
+    
     var data: [PolicySupport] = []
     
     init(service: PolicyRepositoryProtocol = PolicyRepository() ) {

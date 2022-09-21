@@ -23,16 +23,19 @@ class OnBoardingTextFieldView: BaseView {
     
     
     /// Variable
-    let type: OnBoardingQuestionType
-    
     private let datePicker = UIDatePicker()
     
     private var diaryDate: Date?
     
+    let type: OnBoardingQuestionType
     
-    // Initialize
-    init(type: OnBoardingQuestionType) {
+    let viewModel: OnBoardingTextFieldViewViewModel
+    
+    
+    /// Initialize
+    init(type: OnBoardingQuestionType, viewModel: OnBoardingTextFieldViewViewModel = OnBoardingTextFieldViewViewModel()) {
         self.type = type
+        self.viewModel = viewModel
         super.init(frame: .zero)
     }
     
@@ -41,11 +44,11 @@ class OnBoardingTextFieldView: BaseView {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
-        
-        self.endEditing(true)
+        endEditing(true)
     }
     
-    /// life Cycle
+    
+    /// Life Cycle
     override func setupAttributes() {
         super.setupAttributes()
         if type == .birth { setDatePicker() }
@@ -55,6 +58,8 @@ class OnBoardingTextFieldView: BaseView {
         
         backView.backgroundColor = Color.BaseColor.lightOrange
         backView.layer.cornerRadius = 10
+        
+        textField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
     }
     
     override func setupLayout() {
@@ -63,10 +68,8 @@ class OnBoardingTextFieldView: BaseView {
             make.top.bottom.equalToSuperview().inset(10)
             make.leading.trailing.equalToSuperview().inset(10)
         }
-        
+
         [contentTitle, backView].forEach { stackView.addArrangedSubview($0) }
-        
-        
         addSubview(stackView)
         stackView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview().inset(20)
@@ -79,6 +82,10 @@ class OnBoardingTextFieldView: BaseView {
         textField.placeholder = "\(type.title)을 입력해주세요."
     }
     
+}
+
+
+extension OnBoardingTextFieldView {
     
     /// Custom Function
     private func setDatePicker() {
@@ -92,6 +99,7 @@ class OnBoardingTextFieldView: BaseView {
     }
     
     
+    /// Objc
     @objc
     private func datePickerValueDidChange(_ datePicker: UIDatePicker){
         let formmater = DateFormatter()
@@ -101,4 +109,8 @@ class OnBoardingTextFieldView: BaseView {
         self.textField.text = formmater.string(from: datePicker.date)
     }
     
+    @objc
+    func textFieldDidChange(_ sender: Any?) {
+        viewModel.textFieldText.value = textField.text 
+    }
 }

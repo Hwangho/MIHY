@@ -9,8 +9,16 @@ import Foundation
 
 
 // MARK: - 정책 유형
-
-enum PolicyType {
+enum PolicyType: Hashable {
+    
+    enum caseType {
+        case employSupport
+        case foundedSupport
+        case dwellingandFinance
+        case lifeandWelfare
+        case policyParticipation
+        case corona
+    }
     
     static var allSection: [[PolicyType]] {
         return[ EmploySupport.allCases.map{.employSupport($0)},
@@ -42,17 +50,6 @@ enum PolicyType {
     
     var rowTitle: String {
         switch self {
-        case .employSupport(let employSupport): return employSupport.title
-        case .foundedSupport(let foundedSupport): return foundedSupport.title
-        case .dwellingandFinance(let dwellingandFinance): return dwellingandFinance.title
-        case .lifeandWelfare(let lifeandWelfare): return lifeandWelfare.title
-        case .policyParticipation(let policyParticipation): return policyParticipation.title
-        case .corona(let corona): return corona.title
-        }
-    }
-    
-    var rawValue: Int {
-        switch self {
         case .employSupport(let employSupport): return employSupport.rawValue
         case .foundedSupport(let foundedSupport): return foundedSupport.rawValue
         case .dwellingandFinance(let dwellingandFinance): return dwellingandFinance.rawValue
@@ -61,119 +58,130 @@ enum PolicyType {
         case .corona(let corona): return corona.rawValue
         }
     }
+    
+    var checkedData: (PolicyType.caseType, String) {
+        switch self {
+        case .employSupport(let employSupport): return employSupport.data
+        case .foundedSupport(let foundedSupport): return foundedSupport.data
+        case .dwellingandFinance(let dwellingandFinance): return dwellingandFinance.data
+        case .lifeandWelfare(let lifeandWelfare): return lifeandWelfare.data
+        case .policyParticipation(let policyParticipation): return policyParticipation.data
+        case .corona(let corona): return corona.data
+        }
+    }
+    
 }
 
 
-
 // 1. 취업 지원
-enum EmploySupport: Int, CaseIterable {
-    case all = 004001                   // 전체
-    case intern = 004001001             // 교육훈련·체험·인턴
-    case smallenterprise = 004001002    // 중소(중견)기업 취업지원
-    case Specialty = 004001003          // 전문분야 취업지원
-    case overseas = 004001004           // 해외진출
+enum EmploySupport:String, CaseIterable {
+    case all = "전체"
+    case intern = "교육훈련·체험·인턴"
+    case smallenterprise = "중소(중견)기업 취업지원"
+    case Specialty = "전문분야 취업지원"
+    case overseas = "해외진출"
     
-    var title: String {
+    var data: (PolicyType.caseType, String) {
         switch self {
-        case .all: return "전체"
-        case .intern: return "교육훈련·체험·인턴"
-        case .smallenterprise: return "중소(중견)기업 취업지원"
-        case .Specialty: return "전문분야 취업지원"
-        case .overseas: return "해외진출"
+        case .all: return (.employSupport, "004001")
+        case .intern: return (.employSupport, "004001001")
+        case .smallenterprise: return (.employSupport, "004001002")
+        case .Specialty: return (.employSupport, "004001003")
+        case .overseas: return (.employSupport, "004001004")
         }
     }
 }
 
 
 // 2. 창업 지원
-enum FoundedSupport: Int, CaseIterable {
-    case all = 004002              // 전체
-    case resarch = 004002001       // R&D 지원
-    case management = 004002002    // 경영 지원
-    case capital = 004002003       // 자본금 지원
+enum FoundedSupport: String, CaseIterable {
+    case all = "전체"
+    case resarch = "R&D 지원"
+    case management = "경영 지원"
+    case capital = "자본금 지원"
     
-    var title: String {
+    var data: (PolicyType.caseType, String) {
         switch self {
-        case .all: return "전체"
-        case .resarch: return "R&D 지원"
-        case .management: return "경영 지원"
-        case .capital: return "자본금 지원"
+        case .all: return (.foundedSupport, "004002")
+        case .resarch: return (.foundedSupport, "004002001")
+        case .management: return (.foundedSupport, "004002002")
+        case .capital: return (.foundedSupport, "004002003")
         }
     }
 }
 
 
 // 3. 주거·금융
-enum DwellingandFinance: Int, CaseIterable {
-    case all = 004003               // 전체
-    case livingexpenses = 004003001 // 생활비지원 및 금융 혜택
-    case Housing = 004003002        // 주거지원
-    case capital = 004003003        // 학자금 지원
+enum DwellingandFinance: String, CaseIterable {
+    case all = "전체"
+    case livingexpenses = "생활비지원 및 금융 혜택"
+    case Housing = "주거지원"
+    case capital = "학자금 지원"
     
-    var title: String {
+    var data: (PolicyType.caseType, String) {
         switch self {
-        case .all: return "전체"
-        case .livingexpenses: return "생활비지원 및 금융 혜택"
-        case .Housing: return "주거지원"
-        case .capital: return "학자금 지원"
+        case .all: return (.dwellingandFinance, "004003")
+        case .livingexpenses: return (.dwellingandFinance, "004003001")
+        case .Housing: return (.dwellingandFinance, "004003002")
+        case .capital: return (.dwellingandFinance, "004003003")
         }
     }
 }
+
 
 // 4. 생활·복지
-enum LifeandWelfare: Int, CaseIterable {
-    case all = 004004           // 전체
-    case health = 004004001     // 건강
-    case culture = 004004002    // 문화
+enum LifeandWelfare: String, CaseIterable {
+    case all = "전체"
+    case health = "건강"
+    case culture = "문화"
     
-    var title: String {
+    var data: (PolicyType.caseType, String) {
         switch self {
-        case .all: return "전체"
-        case .health: return "건강"
-        case .culture: return "문화"
+        case .all: return (.lifeandWelfare, "004004")
+        case .health: return (.lifeandWelfare, "004004001")
+        case .culture: return (.lifeandWelfare, "004004002")
         }
     }
 }
 
+
 // 5. 정책참여
-enum PolicyParticipation: Int, CaseIterable {
-    case all = 004005                   // 전체
-    case Proposal = 004005001           // 정책제안
-    case protection = 004005002         // 권리보호
-    case regionDevelopment = 004005003  // 지역발전
+enum PolicyParticipation: String, CaseIterable {
+    case all = "전체"
+    case Proposal = "정책제안"
+    case protection = "권리보호"
+    case regionDevelopment = "지역발전"
     
-    var title: String {
+    var data: (PolicyType.caseType, String) {
         switch self {
-        case .all: return "전체"
-        case .Proposal: return "정책제안"
-        case .protection: return "권리보호"
-        case .regionDevelopment: return "지역발전"
+        case .all: return (.policyParticipation, "004005")
+        case .Proposal: return (.policyParticipation, "004005001")
+        case .protection: return (.policyParticipation, "004005002")
+        case .regionDevelopment: return (.policyParticipation, "004005003")
         }
     }
 }
 
 
 // 6. 코로나19
-enum Corona: Int, CaseIterable {
-    case all = 004006                   // 전체
-    case basicIncome = 004006001        // 기본소득지원
-    case lowIncome = 004006002          // 저소득층지원
-    case disasterDamage = 004006003     // 재난피해지원
-    case jobpreservation = 004006004    // 소득및일자리보전
-    case incentive = 004006005          // 인센티브
-    case psychological = 004006006      // 심리지원
+enum Corona: String, CaseIterable {
+    case all = "전체"
+    case basicIncome = "기본소득지원"
+    case lowIncome = "저소득층지원"
+    case disasterDamage = "재난피해지원"
+    case jobpreservation = "소득및일자리보전"
+    case incentive = "인센티브"
+    case psychological = "심리지원"
     
-    var title: String {
+    var data: (PolicyType.caseType, String) {
         switch self {
-        case .all: return "전체"
-        case .basicIncome: return "기본소득지원"
-        case .lowIncome: return "저소득층지원"
-        case .disasterDamage: return "재난피해지원"
-        case .jobpreservation: return "소득및일자리보전"
-        case .incentive: return "인센티브"
-        case .psychological: return "심리지원"
+        case .all: return (.corona, "004006")
+        case .basicIncome: return (.corona, "004006001")
+        case .lowIncome: return (.corona, "004006002")
+        case .disasterDamage: return (.corona, "004006003")
+        case .jobpreservation: return (.corona, "004006004")
+        case .incentive: return (.corona, "004006005")
+        case .psychological: return (.corona, "004006006")
         }
     }
 }
-
-

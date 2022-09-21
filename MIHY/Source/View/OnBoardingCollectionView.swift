@@ -42,12 +42,10 @@ class OnBoardingCollectionView: BaseView {
     }
 
     
-    
     // Life Cycle
     override func setupAttributes() {
         super.setupAttributes()
         collectionViewdelegate()
-//        backgroundColor = .orange
     }
     
     override func setupLayout() {
@@ -135,29 +133,37 @@ extension OnBoardingCollectionView: UICollectionViewDelegate, UICollectionViewDa
     }
     
     
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch type {
         case .policy:
-            array.append(PolicyType.allSection[indexPath.section][indexPath.row])
+            let type = PolicyType.allSection[indexPath.section][indexPath.row].checkedData.0
+            let value = PolicyType.allSection[indexPath.section][indexPath.row].checkedData.1
+            viewModel.appendPolicyData(key: type, value: value)
+            
         case .region:
-            print("지역 관련 데이터 저장")
+            viewModel.updateRegion(type: Region.allCases[indexPath.row])
+            
         case .myInfo:
-            print("내 정보 관련 데이터 저장")
+            let type = MyInfo.allSection[indexPath.section][indexPath.row].checkedData.0
+            let value = MyInfo.allSection[indexPath.section][indexPath.row].checkedData.1
+            viewModel.appendmyInfoData(key: type, value: value)
+            
         default:
             print("내 정보 관련 데이터 저장")
         }
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         switch type {
         case .policy:
-            array.append(PolicyType.allSection[indexPath.section][indexPath.row])
-        case .region:
-            print("지역 관련 데이터 제거")
+            let type = PolicyType.allSection[indexPath.section][indexPath.row].checkedData.0
+            let value = PolicyType.allSection[indexPath.section][indexPath.row].checkedData.1
+            viewModel.deletePolicyData(key: type, value: value)
+
         case .myInfo:
-            print("내 정보 관련 데이터 제거")
+            let type = MyInfo.allSection[indexPath.section][indexPath.row].checkedData.0
+            let value = MyInfo.allSection[indexPath.section][indexPath.row].checkedData.1
+            viewModel.appendmyInfoData(key: type, value: value)
         default:
             print("내 정보 관련 데이터 제거")
         }
@@ -185,14 +191,3 @@ extension OnBoardingCollectionView: UICollectionViewDelegate, UICollectionViewDa
 
 
 
-
-class OnBoardingCollectionViewModel {
-    
-    let type: OnBoardingQuestionType
-
-    
-    init(type: OnBoardingQuestionType) {
-        self.type = type
-    }
-    
-}

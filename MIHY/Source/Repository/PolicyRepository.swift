@@ -13,6 +13,7 @@ protocol PolicyRepositoryProtocol {
     func fetchPolicyData(city: String, district: String, handler: @escaping ([PolicySupport]) -> Void)
 }
 
+
 struct PolicyRepository: PolicyRepositoryProtocol {
     
     let router: Provider<Router>
@@ -68,36 +69,3 @@ struct PolicyRepository: PolicyRepositoryProtocol {
     
 }
 
-
-
-struct RouterManager {
-   
-   static let `default` = RouterManager()
-
-   private init() {}
-   
-    
-    func createProvider<T>() -> Provider<T> {
-        return Provider()
-    }
-    
-    func provider<T: RouterProtocol>(target: T.Type) -> Provider<T>? {
-        return Provider<T>()
-    }
-   
-}
-
-
-
-protocol ProviderType: AnyObject {
-    func AFRequest(target: RouterProtocol) -> DataRequest
-}
-
-
-class Provider<Target: RouterProtocol>: ProviderType {
-    
-    func AFRequest(target: RouterProtocol) -> DataRequest {
-        return AF.request(target.path, method: target.method, parameters: target.parameter)
-    }
-
-}

@@ -16,6 +16,9 @@
 		0EB22BEA28D9B29100E745E5 /* OnBoardingCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB22BE928D9B29100E745E5 /* OnBoardingCollectionCell.swift */; };
 		0EB22BED28DAEC9D00E745E5 /* TagFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB22BEC28DAEC9D00E745E5 /* TagFlowLayout.swift */; };
 		0EB22BEF28DAECBA00E745E5 /* OnBoardingCollectionViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB22BEE28DAECBA00E745E5 /* OnBoardingCollectionViewHeaderView.swift */; };
+		0EB22BF128DAFE6D00E745E5 /* OnBoardingCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB22BF028DAFE6D00E745E5 /* OnBoardingCollectionViewModel.swift */; };
+		0EB22BF328DB002A00E745E5 /* OnBoardingTextFieldViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB22BF228DB002A00E745E5 /* OnBoardingTextFieldViewViewModel.swift */; };
+		0EB22BF528DB1DA300E745E5 /* RouterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB22BF428DB1DA300E745E5 /* RouterManager.swift */; };
 		0EDE841F28CDAE28003B7191 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDE841E28CDAE28003B7191 /* AppDelegate.swift */; };
 		0EDE842128CDAE28003B7191 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDE842028CDAE28003B7191 /* SceneDelegate.swift */; };
 		0EDE842828CDAE2A003B7191 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EDE842728CDAE2A003B7191 /* Assets.xcassets */; };
@@ -80,6 +83,9 @@
 		0EB22BE928D9B29100E745E5 /* OnBoardingCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingCollectionCell.swift; sourceTree = "<group>"; };
 		0EB22BEC28DAEC9D00E745E5 /* TagFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagFlowLayout.swift; sourceTree = "<group>"; };
 		0EB22BEE28DAECBA00E745E5 /* OnBoardingCollectionViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingCollectionViewHeaderView.swift; sourceTree = "<group>"; };
+		0EB22BF028DAFE6D00E745E5 /* OnBoardingCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingCollectionViewModel.swift; sourceTree = "<group>"; };
+		0EB22BF228DB002A00E745E5 /* OnBoardingTextFieldViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingTextFieldViewViewModel.swift; sourceTree = "<group>"; };
+		0EB22BF428DB1DA300E745E5 /* RouterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterManager.swift; sourceTree = "<group>"; };
 		0EDE841B28CDAE27003B7191 /* MIHY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MIHY.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EDE841E28CDAE28003B7191 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0EDE842028CDAE28003B7191 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -359,6 +365,8 @@
 			children = (
 				0EDE848D28CDCC0B003B7191 /* PolicySupportViewModel.swift */,
 				0EB22BDD28D5A7D700E745E5 /* OnBoardingViewModel.swift */,
+				0EB22BF028DAFE6D00E745E5 /* OnBoardingCollectionViewModel.swift */,
+				0EB22BF228DB002A00E745E5 /* OnBoardingTextFieldViewViewModel.swift */,
 			);
 			path = VIewModel;
 			sourceTree = "<group>";
@@ -366,6 +374,7 @@
 		0EDE849128CDD1E7003B7191 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				0EB22BF428DB1DA300E745E5 /* RouterManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -552,8 +561,10 @@
 				0EDE841F28CDAE28003B7191 /* AppDelegate.swift in Sources */,
 				0EDE846928CDB1AC003B7191 /* BaseCollectionViewCell.swift in Sources */,
 				0EDE846528CDB1AC003B7191 /* FileMangager+Extension.swift in Sources */,
+				0EB22BF128DAFE6D00E745E5 /* OnBoardingCollectionViewModel.swift in Sources */,
 				0EDE849F28D17DF2003B7191 /* OnBoardingViewController.swift in Sources */,
 				0EDE845228CDAF35003B7191 /* PolicySupportViewController.swift in Sources */,
+				0EB22BF328DB002A00E745E5 /* OnBoardingTextFieldViewViewModel.swift in Sources */,
 				0EDE848B28CDC7C5003B7191 /* PolicyRepository.swift in Sources */,
 				0EDE848528CDBF1E003B7191 /* PolicyRouter.swift in Sources */,
 				0EB22BEA28D9B29100E745E5 /* OnBoardingCollectionCell.swift in Sources */,
@@ -580,6 +591,7 @@
 				0EDE846728CDB1AC003B7191 /* BaseViewController.swift in Sources */,
 				0EDE847F28CDBC3E003B7191 /* APIKey.swift in Sources */,
 				0EDE849C28D067EA003B7191 /* User.swift in Sources */,
+				0EB22BF528DB1DA300E745E5 /* RouterManager.swift in Sources */,
 				0EB22BDC28D58F4300E745E5 /* OnBoardingCollectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
