@@ -14,6 +14,8 @@
 		0EB22BE528D9B17B00E745E5 /* MyInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB22BE428D9B17B00E745E5 /* MyInfo.swift */; };
 		0EB22BE728D9B1E000E745E5 /* OnBoardingQuestionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB22BE628D9B1E000E745E5 /* OnBoardingQuestionType.swift */; };
 		0EB22BEA28D9B29100E745E5 /* OnBoardingCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB22BE928D9B29100E745E5 /* OnBoardingCollectionCell.swift */; };
+		0EB22BED28DAEC9D00E745E5 /* TagFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB22BEC28DAEC9D00E745E5 /* TagFlowLayout.swift */; };
+		0EB22BEF28DAECBA00E745E5 /* OnBoardingCollectionViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB22BEE28DAECBA00E745E5 /* OnBoardingCollectionViewHeaderView.swift */; };
 		0EDE841F28CDAE28003B7191 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDE841E28CDAE28003B7191 /* AppDelegate.swift */; };
 		0EDE842128CDAE28003B7191 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDE842028CDAE28003B7191 /* SceneDelegate.swift */; };
 		0EDE842828CDAE2A003B7191 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EDE842728CDAE2A003B7191 /* Assets.xcassets */; };
@@ -76,6 +78,8 @@
 		0EB22BE428D9B17B00E745E5 /* MyInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfo.swift; sourceTree = "<group>"; };
 		0EB22BE628D9B1E000E745E5 /* OnBoardingQuestionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingQuestionType.swift; sourceTree = "<group>"; };
 		0EB22BE928D9B29100E745E5 /* OnBoardingCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingCollectionCell.swift; sourceTree = "<group>"; };
+		0EB22BEC28DAEC9D00E745E5 /* TagFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagFlowLayout.swift; sourceTree = "<group>"; };
+		0EB22BEE28DAECBA00E745E5 /* OnBoardingCollectionViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingCollectionViewHeaderView.swift; sourceTree = "<group>"; };
 		0EDE841B28CDAE27003B7191 /* MIHY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MIHY.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EDE841E28CDAE28003B7191 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0EDE842028CDAE28003B7191 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -157,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				0EB22BE928D9B29100E745E5 /* OnBoardingCollectionCell.swift */,
+				0EB22BEE28DAECBA00E745E5 /* OnBoardingCollectionViewHeaderView.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -395,6 +400,7 @@
 			children = (
 				0EDE84A328D1BE6F003B7191 /* OnBoardingTextFieldView.swift */,
 				0EB22BDB28D58F4300E745E5 /* OnBoardingCollectionView.swift */,
+				0EB22BEC28DAEC9D00E745E5 /* TagFlowLayout.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -542,6 +548,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EB22BDE28D5A7D700E745E5 /* OnBoardingViewModel.swift in Sources */,
+				0EB22BEF28DAECBA00E745E5 /* OnBoardingCollectionViewHeaderView.swift in Sources */,
 				0EDE841F28CDAE28003B7191 /* AppDelegate.swift in Sources */,
 				0EDE846928CDB1AC003B7191 /* BaseCollectionViewCell.swift in Sources */,
 				0EDE846528CDB1AC003B7191 /* FileMangager+Extension.swift in Sources */,
@@ -558,6 +565,7 @@
 				0EDE846C28CDB1AC003B7191 /* Theme.swift in Sources */,
 				0EB22BE528D9B17B00E745E5 /* MyInfo.swift in Sources */,
 				0EB22BE128D9B14400E745E5 /* PolicyType.swift in Sources */,
+				0EB22BED28DAEC9D00E745E5 /* TagFlowLayout.swift in Sources */,
 				0EDE849A28CE080D003B7191 /* RouterProtocol.swift in Sources */,
 				0EDE842128CDAE28003B7191 /* SceneDelegate.swift in Sources */,
 				0EDE847228CDB20C003B7191 /* TabbarViewController.swift in Sources */,

@@ -71,8 +71,8 @@ class OnBoardingCollectionView: BaseView {
         default:
             break
         }
-        
     }
+    
 }
 
 extension OnBoardingCollectionView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -137,7 +137,6 @@ extension OnBoardingCollectionView: UICollectionViewDelegate, UICollectionViewDa
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         switch type {
         case .policy:
             array.append(PolicyType.allSection[indexPath.section][indexPath.row])
@@ -165,6 +164,7 @@ extension OnBoardingCollectionView: UICollectionViewDelegate, UICollectionViewDa
     }
 
     
+    /// cell width size dynamic 하도록
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OnBoardingCollectionCell.reuseIdentifier, for: indexPath) as? OnBoardingCollectionCell else {
             return  .zero }
@@ -195,75 +195,4 @@ class OnBoardingCollectionViewModel {
         self.type = type
     }
     
-}
-
-
-class OnBoardingCollectionViewHeaderView: UICollectionReusableView {
-    
-    let titleLabel = UILabel()
-    
-    override init(frame: CGRect) {
-        super.init(frame: .zero)
-        addSubview(titleLabel)
-        titleLabel.snp.makeConstraints { make in
-            make.verticalEdges.equalToSuperview().inset(10)
-            make.leading.equalToSuperview()
-        }
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-}
-
-
-
-
-
-
-
-class Row {
-    var attributes = [UICollectionViewLayoutAttributes]()
-    var spacing: CGFloat = 0
-
-    init(spacing: CGFloat) {
-        self.spacing = spacing
-    }
-
-    func add(attribute: UICollectionViewLayoutAttributes) {
-        attributes.append(attribute)
-    }
-
-    func tagLayout(collectionViewWidth: CGFloat) {
-        let padding = 0
-        var offset = padding
-        for attribute in attributes {
-            attribute.frame.origin.x = CGFloat(offset)
-            offset += Int(attribute.frame.width + spacing)
-        }
-    }
-}
-
-class TagFlowLayout: UICollectionViewFlowLayout {
-    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        guard let attributes = super.layoutAttributesForElements(in: rect) else {
-            return nil
-        }
-
-        var rows = [Row]()
-        var currentRowY: CGFloat = -1
-
-        for attribute in attributes {
-            if currentRowY != attribute.frame.origin.y {
-                currentRowY = attribute.frame.origin.y
-                rows.append(Row(spacing: 8))
-            }
-            rows.last?.add(attribute: attribute)
-        }
-
-        rows.forEach { $0.tagLayout(collectionViewWidth: collectionView?.frame.width ?? 0) }
-        return rows.flatMap { $0.attributes }
-    }
 }

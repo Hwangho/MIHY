@@ -40,16 +40,15 @@ class OnBoardingTextFieldView: BaseView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.textField.resignFirstResponder()
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+        
+        self.endEditing(true)
     }
     
     /// life Cycle
     override func setupAttributes() {
         super.setupAttributes()
         if type == .birth { setDatePicker() }
-        
-//        backgroundColor = .orange
         
         stackView.axis = .vertical
         stackView.spacing = 10

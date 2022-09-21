@@ -20,7 +20,7 @@ class OnBoardingViewController: BaseViewController {
     let nextButton = UIButton()
     
     lazy var onBoardingTextFieldView: OnBoardingTextFieldView = {
-       return OnBoardingTextFieldView(type: onBoardingType)
+        return OnBoardingTextFieldView(type: onBoardingType)
     }()
     
     lazy var onBoardingCollectionView: OnBoardingCollectionView = {
@@ -45,15 +45,14 @@ class OnBoardingViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-
-    // Life Cycle
     
+    // Life Cycle
     override func viewWillAppear(_ animated: Bool) {
-        self.addKeyboardNotifications()
+        addKeyboardNotifications()
     }
     override func viewWillDisappear(_ animated: Bool) {
         onBoardingTextFieldView.textField.resignFirstResponder()
-        self.removeKeyboardNotifications()
+        removeKeyboardNotifications()
     }
     
     
@@ -105,50 +104,13 @@ class OnBoardingViewController: BaseViewController {
         navigationItem.backBarButtonItem = backButton
     }
     
-    
-    // 노티피케이션을 추가하는 메서드
-    func addKeyboardNotifications(){
-        // 키보드가 나타날 때 앱에게 알리는 메서드 추가
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification , object: nil)
-        // 키보드가 사라질 때 앱에게 알리는 메서드 추가
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-
-    // 노티피케이션을 제거하는 메서드
-    func removeKeyboardNotifications(){
-        // 키보드가 나타날 때 앱에게 알리는 메서드 제거
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification , object: nil)
-        // 키보드가 사라질 때 앱에게 알리는 메서드 제거
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
-    // 키보드가 나타났다는 알림을 받으면 실행할 메서드
-    @objc func keyboardWillShow(_ noti: NSNotification){
-        // 키보드의 높이만큼 화면을 올려준다.
-        if let keyboardFrame: NSValue = noti.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-            let keyboardRectangle = keyboardFrame.cgRectValue
-            let keyboardHeight = keyboardRectangle.height
-            nextButton.frame.origin.y -= keyboardHeight
-        }
-    }
-
-    // 키보드가 사라졌다는 알림을 받으면 실행할 메서드
-    @objc func keyboardWillHide(_ noti: NSNotification){
-        // 키보드의 높이만큼 화면을 내려준다.
-        if let keyboardFrame: NSValue = noti.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-            let keyboardRectangle = keyboardFrame.cgRectValue
-            let keyboardHeight = keyboardRectangle.height
-            nextButton.frame.origin.y += keyboardHeight
-        }
-    }
-    
     @objc
     func tapdoneButton() {
         switch onBoardingType {
         case .nickName, .birth:
             let value = onBoardingTextFieldView.textField.text
             viewModel.addData(key: onBoardingType, value: value)
-        
+            
         case .policy:
             print("policy")
         case .region:
@@ -166,5 +128,50 @@ class OnBoardingViewController: BaseViewController {
 }
 
 
-
-
+// MARK: - keyBoard 관련
+extension OnBoardingViewController {
+    
+    func addKeyboardNotifications(){
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification , object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    func removeKeyboardNotifications(){
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification , object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc
+    func keyboardWillShow(_ noti: NSNotification){
+        if let keyboardFrame: NSValue = noti.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+            UIView.animate(withDuration: 0) {
+                self.nextButton.frame.origin.y -= keyboardHeight
+                self.nextButton.snp.makeConstraints { make in
+                    make.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(30 + keyboardHeight)
+                }
+            } completion: { _ in
+                self.view.layoutIfNeeded()
+            }
+        }
+    }
+    
+    @objc
+    func keyboardWillHide(_ noti: NSNotification){
+        if let keyboardFrame: NSValue = noti.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+            
+            UIView.animate(withDuration: 0) {
+                self.nextButton.frame.origin.y += keyboardHeight
+                self.nextButton.snp.makeConstraints { make in
+                    make.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(30)
+                }
+            } completion: { _ in
+                self.view.layoutIfNeeded()
+            }
+        }
+    }
+    
+}
