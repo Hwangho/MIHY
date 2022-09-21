@@ -15,6 +15,7 @@ class BaseView: UIView {
         setupAttributes()
         setupLayout()
         setData()
+        setBinding()
     }
     
     required init?(coder: NSCoder) {
@@ -36,6 +37,10 @@ class BaseView: UIView {
     func setupAttributes() {
         // Override Attributes
         self.backgroundColor = Color.BaseColor.background
+    }
+    
+    func setBinding() {
+        
     }
 }
 

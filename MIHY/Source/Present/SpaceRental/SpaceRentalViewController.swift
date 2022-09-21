@@ -7,12 +7,12 @@
 
 import UIKit
 
+import SnapKit
+
 
 class SpaceRentalViewController: BaseViewController {
     
-    
-    override func setupAttributes() {
-        super.setupAttributes()
-        view.backgroundColor = .green
-    }
+
 }
+
+

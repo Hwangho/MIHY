@@ -12,8 +12,9 @@ struct Color {
         
     struct BaseColor {
         static let background = UIColor { change(traitCollection: $0).backgroundColor }     // UIColor(dynamicProvider: <#T##(UITraitCollection) -> UIColor#>)
-        static let tabbar = UIColor  { change(traitCollection: $0).tabbarColor }
-        static let cell = UIColor  { change(traitCollection: $0).tableViewCellColor }
+        static let thickOrange = UIColor { change(traitCollection: $0).thickOrangeColor }
+        static let middleOrange = UIColor { change(traitCollection: $0).OrangeColor }
+        static let lightOrange = UIColor { change(traitCollection: $0).lightOrangeColor }
         static let title = UIColor { change(traitCollection: $0).textColor }
         static let content = UIColor { change(traitCollection: $0).contentColor }
         static let highlight = UIColor { change(traitCollection: $0).highlightColor }

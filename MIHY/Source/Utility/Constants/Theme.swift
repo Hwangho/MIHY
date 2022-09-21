@@ -14,28 +14,32 @@ enum Theme: Int {
     case dark
     
     
+    var thickOrangeColor: UIColor {
+        switch self {
+        default:
+            return  #colorLiteral(red: 1, green: 0.6392156863, blue: 0, alpha: 1)
+        }
+    }
+    
+    var OrangeColor: UIColor {
+        switch self {
+        default:
+            return #colorLiteral(red: 1, green: 0.7882352941, blue: 0.3725490196, alpha: 1)
+        }
+    }
+    
+    var lightOrangeColor: UIColor {
+        switch self {
+        default:
+            return #colorLiteral(red: 0.9960784314, green: 0.937254902, blue: 0.7764705882, alpha: 1)
+        }
+    }
+    
+    
     var backgroundColor: UIColor {
         switch self {
         case .dark:
             return UIColor.black
-        default:
-            return UIColor.white
-        }
-    }
-    
-    var tabbarColor: UIColor {
-        switch self {
-        case .dark:
-            return #colorLiteral(red: 0.1013579145, green: 0.1013579145, blue: 0.1013579145, alpha: 1)
-        default:
-            return UIColor.white
-        }
-    }
-    
-    var tableViewCellColor: UIColor {
-        switch self {
-        case .dark:
-            return #colorLiteral(red: 0.1058823529, green: 0.1058823529, blue: 0.1058823529, alpha: 1)
         default:
             return UIColor.white
         }

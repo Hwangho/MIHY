@@ -10,9 +10,21 @@ import UIKit
 
 class PolicySupportViewController: BaseViewController {
     
+
+    let viewModel = PolicySupportViewModel()
+    
     
     override func setupAttributes() {
         super.setupAttributes()
         view.backgroundColor = .orange
     }
+    
+    override func setData() {
+        server()
+    }
+    
+    func server() {
+        viewModel.setdata()
+    }
+    
 }
