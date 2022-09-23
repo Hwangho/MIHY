@@ -9,7 +9,7 @@ import Alamofire
 
 
 enum Router {
-    case Policy(city: String, district: String)
+    case Policy(policySupport: String, city: String, page: Int, display: Int)
 }
 
 
@@ -35,14 +35,14 @@ extension Router: RouterProtocol {
     
     var parameter: [String : Any]? {
         switch self {
-        case .Policy(let city, let district):
+        case .Policy(let policySupport, let city, let page, let display):
             return ["openApiVlak": APIKey.key,
-                    "pageIndex": 1,
-                    "display": 100,
+                    "pageIndex": page,
+                    "display": display,
 //                    "query": "청년취업",
 //                    "srchPolicyId": "R2020123101105",
-                    "bizTycdSel": city,
-                    "srchPolyBizSecd": district,
+                    "bizTycdSel": policySupport,
+                    "srchPolyBizSecd": city,
             ]
         }
     }

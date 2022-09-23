@@ -98,7 +98,6 @@ extension OnBoardingTextFieldView {
         textField.inputView = datePicker
     }
     
-    
     /// Objc
     @objc
     private func datePickerValueDidChange(_ datePicker: UIDatePicker){
@@ -106,11 +105,14 @@ extension OnBoardingTextFieldView {
         formmater.dateFormat = "yyyy년 MM월 dd일"
         formmater.locale = Locale(identifier: "ko_KR")
         self.diaryDate = datePicker.date
-        self.textField.text = formmater.string(from: datePicker.date)
+        let text = formmater.string(from: datePicker.date)
+        self.textField.text = text
+        viewModel.textFieldText.value = text
     }
     
     @objc
     func textFieldDidChange(_ sender: Any?) {
-        viewModel.textFieldText.value = textField.text 
+        guard let text = textField.text else {return}
+        viewModel.textFieldText.value = text
     }
 }

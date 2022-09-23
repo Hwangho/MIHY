@@ -9,5 +9,5 @@ import Foundation
 
 class OnBoardingTextFieldViewViewModel {
     
-    var textFieldText: Observable<String?> = Observable(nil)
+    var textFieldText: Observable<String> = Observable("")
 }

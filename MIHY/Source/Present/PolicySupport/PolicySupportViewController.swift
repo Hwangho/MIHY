@@ -24,7 +24,7 @@ class PolicySupportViewController: BaseViewController {
     }
     
     func server() {
-        viewModel.setdata()
+//        viewModel.setdata()
     }
     
 }

@@ -95,6 +95,41 @@ class OnBoardingViewController: BaseViewController {
         
     }
     
+    override func setupBinding() {
+        
+        switch onBoardingType {
+        case .nickName:
+            onBoardingTextFieldView.viewModel.textFieldText.bind { [weak self] text in
+                self?.nextButton.setTitle("다음", for: .normal)
+                self?.nextButton.isEnabled = text.isEmpty ? false : true
+                self?.nextButton.backgroundColor = text.isEmpty ? Color.BaseColor.middleOrange : Color.BaseColor.thickOrange
+            }
+        case .birth:
+            onBoardingTextFieldView.viewModel.textFieldText.bind { [weak self] text in
+                self?.nextButton.setTitle(text.isEmpty ? "건너뛰기": "다음", for: .normal)
+                self?.nextButton.backgroundColor = text.isEmpty ? Color.BaseColor.middleOrange : Color.BaseColor.thickOrange
+            }
+        case .policy:
+            onBoardingCollectionView.viewModel.policyDatas.bind { [weak self] dic in
+                self?.nextButton.setTitle(dic.values.isEmpty ? "건너뛰기": "다음", for: .normal)
+                self?.nextButton.backgroundColor = dic.values.isEmpty ? Color.BaseColor.middleOrange : Color.BaseColor.thickOrange
+                
+            }
+        case .region:
+            onBoardingCollectionView.viewModel.regionData.bind { [weak self] region in
+                self?.nextButton.setTitle(region == nil ? "건너뛰기": "다음", for: .normal)
+                self?.nextButton.backgroundColor = region == nil ? Color.BaseColor.middleOrange : Color.BaseColor.thickOrange
+                
+            }
+        case .myInfo:
+            onBoardingCollectionView.viewModel.myInfoDatas.bind { [weak self] dic in
+                self?.nextButton.setTitle("완료", for: .normal)
+                self?.nextButton.backgroundColor = dic.values.isEmpty ? Color.BaseColor.middleOrange : Color.BaseColor.thickOrange
+                
+            }
+        }
+    }
+    
     func setNavigation() {
         navigationController?.navigationBar.tintColor = .black
         navigationItem.title = onBoardingType.title
@@ -111,15 +146,15 @@ class OnBoardingViewController: BaseViewController {
             self.viewModel.addData(key: self.onBoardingType, value: value)
             
         case .policy:
-            let value = onBoardingCollectionView.viewModel.policyDatas
+            let value = onBoardingCollectionView.viewModel.policyDatas.value
             viewModel.addData(key: onBoardingType, value: value)
             
         case .region:
-            let value = onBoardingCollectionView.viewModel.regionData
+            let value = onBoardingCollectionView.viewModel.regionData.value
             viewModel.addData(key: onBoardingType, value: value)
             
         case .myInfo:
-            let value = onBoardingCollectionView.viewModel.myInfoDatas
+            let value = onBoardingCollectionView.viewModel.myInfoDatas.value
             viewModel.addData(key: onBoardingType, value: value)
         }
         
@@ -127,12 +162,13 @@ class OnBoardingViewController: BaseViewController {
             let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
             let sceneDelegate = windowScene?.delegate as? SceneDelegate
             
-            let vc = PolicySupportViewController()
-            vc.viewModel.onBoardingData = viewModel.onBoardingData
-            
-            sceneDelegate?.window?.rootViewController = UINavigationController(rootViewController: vc)
-            UIView.transition(with: (sceneDelegate?.window)!, duration: 0.4, options: [.transitionCrossDissolve], animations: nil, completion: nil)
-            sceneDelegate?.window?.makeKeyAndVisible()
+            viewModel.myDataapi { user in
+                let vc = TabbarViewController(index: .policy)
+                dump(user)
+                sceneDelegate?.window?.rootViewController = UINavigationController(rootViewController: vc)
+                UIView.transition(with: (sceneDelegate?.window)!, duration: 0.4, options: [.transitionCrossDissolve], animations: nil, completion: nil)
+                sceneDelegate?.window?.makeKeyAndVisible()
+            }
             
             return
         }

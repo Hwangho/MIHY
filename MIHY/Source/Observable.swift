@@ -13,7 +13,7 @@ class Observable<T> {
     private var listener: ((T) -> Void)?
     var value: T {
         didSet {
-            print("didset", value)
+            listener?(value)
         }
     }
     
