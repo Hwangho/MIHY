@@ -17,9 +17,9 @@ enum Font {
     
     var type: String {
         switch self {
-        case .bold: return "GmarketSansBold"
-        case .light: return "GmarketSansLight"
-        case .medium: return "GmarketSansMedium"
+        case .bold: return "esamanruOTFBold"
+        case .light: return "esamanruOTFLight"
+        case .medium: return "esamanruOTFMedium"
         }
     }
     
@@ -34,15 +34,20 @@ enum Font {
 
 
 enum FontTextSize {
+    case onBoardingtitle
     case sectionTitle
-    case cellTitle
+    
+    case policyCellTitle
+    case policyCellContent
     case cellContent
     case changeMemoText
     
     var value: CGFloat {
         switch self {
+        case .onBoardingtitle: return 18
         case .sectionTitle: return 23
-        case .cellTitle: return 16
+        case .policyCellTitle: return 16
+        case .policyCellContent: return 12
         case .cellContent: return 12
         case .changeMemoText: return 15
         }

@@ -17,6 +17,11 @@ class TabbarViewController: UITabBarController {
     }
     
     
+    let policySupportViewController = PolicySupportViewController()
+    
+    let spaceRentalViewController = SpaceRentalViewController()
+    
+    
     // variable
     var defaultIndex: type {
         didSet {
@@ -65,13 +70,12 @@ class TabbarViewController: UITabBarController {
     
     func setTabbar() {
         let firstNavigationController = UINavigationController()
-        let firstTabController = PolicySupportViewController()
-        firstNavigationController.addChild(firstTabController)
+        
+        firstNavigationController.addChild(policySupportViewController)
         firstNavigationController.tabBarItem.image = UIImage(systemName: "text.book.closed")
         
         let secondNavigationController = UINavigationController()
-        let secondTabController = SpaceRentalViewController()
-        secondNavigationController.addChild(secondTabController)
+        secondNavigationController.addChild(spaceRentalViewController)
         secondNavigationController.tabBarItem.image = UIImage(systemName: "map")
         
         let viewControllers = [firstNavigationController, secondNavigationController]

@@ -56,6 +56,8 @@ class OnBoardingTextFieldView: BaseView {
         stackView.axis = .vertical
         stackView.spacing = 10
         
+        contentTitle.font = Font.medium.scaledFont(size: .onBoardingtitle)
+        
         backView.backgroundColor = Color.BaseColor.lightOrange
         backView.layer.cornerRadius = 10
         
@@ -70,6 +72,7 @@ class OnBoardingTextFieldView: BaseView {
         }
 
         [contentTitle, backView].forEach { stackView.addArrangedSubview($0) }
+        
         addSubview(stackView)
         stackView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview().inset(20)

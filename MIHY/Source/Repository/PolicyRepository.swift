@@ -11,8 +11,8 @@ import RealmSwift
 
 
 protocol PolicyRepositoryProtocol {
-    func fetchPolicyData(policySupport: String, city: String, handler: @escaping ([PolicySupport]) -> Void)
-//    func fetchPolicyData(policySupport: String, city: String, handler: @escaping ([RealmPolicySupport]) -> Void)
+//    func fetchPolicyData(policySupport: String, city: String, handler: @escaping ([PolicySupport]) -> Void)
+    func fetchPolicyData(policySupport: String, city: String, handler: @escaping ([RealmPolicySupport]) -> Void)
 }
 
 
@@ -26,13 +26,13 @@ struct PolicyRepository: PolicyRepositoryProtocol {
     }
     
     
-    func fetchPolicyData(policySupport: String, city: String, handler: @escaping ([PolicySupport]) -> Void) {
+    func fetchPolicyData(policySupport: String, city: String, handler: @escaping ([RealmPolicySupport]) -> Void) {
         
         router.AFRequest(target: Router.Policy(policySupport: policySupport, city: city, page: 1, display: 10)).validate().responseData { response in
             switch response.result {
             case .success(let value):
-                var datas: [PolicySupport] = []
-//                var realmDatas: [RealmPolicySupport] = []
+//                var datas: [PolicySupport] = []
+                var realmDatas: [RealmPolicySupport] = []
 
                 
                 let xml = XMLHash.parse(value)
@@ -59,40 +59,40 @@ struct PolicyRepository: PolicyRepositoryProtocol {
                                 let process = xml["rqutProcCn"].element?.text
                                 let applyURL = xml["rqutUrla"].element?.text
                                 
-//                                let realmData = RealmPolicyData(policyID: ID ?? "",
-//                                                                title: title ?? "",
-//                                                                introduce: introduce ?? "",
-//                                                                category: category ?? "",
-//                                                                age:  age ?? "",
-//                                                                employment: employment ?? "",
-//                                                                Education: Education ?? "",
-//                                                                major: major ?? "",
-//                                                                period: period ?? "",
-//                                                                process: process ?? "",
-//                                                                applyURL: applyURL ?? "")
+                                let realmData = RealmPolicyData(policyID: ID ?? "",
+                                                                title: title ?? "",
+                                                                introduce: introduce ?? "",
+                                                                category: category ?? "",
+                                                                age:  age ?? "",
+                                                                employment: employment ?? "",
+                                                                Education: Education ?? "",
+                                                                major: major ?? "",
+                                                                period: period ?? "",
+                                                                process: process ?? "",
+                                                                applyURL: applyURL ?? "")
                                 
-                                let data = PolicyData(ID: ID!,
-                                                      title: title!,
-                                                      introduce: introduce!,
-                                                      category: category!,
-                                                      age: age!,
-                                                      employment: employment!,
-                                                      Education: Education!,
-                                                      major: major!,
-                                                      period: period!,
-                                                      process: process!,
-                                                      applyURL: applyURL!)
+//                                let data = PolicyData(ID: ID!,
+//                                                      title: title!,
+//                                                      introduce: introduce!,
+//                                                      category: category!,
+//                                                      age: age!,
+//                                                      employment: employment!,
+//                                                      Education: Education!,
+//                                                      major: major!,
+//                                                      period: period!,
+//                                                      process: process!,
+//                                                      applyURL: applyURL!)
                                 
-                                let policyData = PolicySupport(isHidden: false, data: data)
-//                                let realmPolicyData = RealmPolicySupport(isHidden: false, data: realmData)
+//                                let policyData = PolicySupport(isHidden: false, data: data)
+                                let realmPolicyData = RealmPolicySupport(isHidden: false, data: realmData)
                                 
-                                datas.append(policyData)
-//                                realmDatas.append(realmPolicyData)
+//                                datas.append(policyData)
+                                realmDatas.append(realmPolicyData)
                             }
                             
                             /// 마지막 for문을 돌고 api를 받았을 때 handler 처리
                             if page == totalAPICount {
-                                handler(datas)
+                                handler(realmDatas)
                             }
                             
                         case .failure(let error):

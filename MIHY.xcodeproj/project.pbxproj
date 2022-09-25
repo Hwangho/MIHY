@@ -22,6 +22,10 @@
 		0EB22BFA28DD430F00E745E5 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB22BF928DD430F00E745E5 /* RealmService.swift */; };
 		0EB22BFD28DD437F00E745E5 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 0EB22BFC28DD437F00E745E5 /* Realm */; };
 		0EB22BFF28DD437F00E745E5 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0EB22BFE28DD437F00E745E5 /* RealmSwift */; };
+		0EB22C0328DEE3DB00E745E5 /* PolicyTableViewViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB22C0228DEE3DB00E745E5 /* PolicyTableViewViewCell.swift */; };
+		0EB22C0928DEF41900E745E5 /* esamanru OTF Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0EB22C0628DEF41900E745E5 /* esamanru OTF Medium.otf */; };
+		0EB22C0A28DEF41900E745E5 /* esamanru OTF Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0EB22C0728DEF41900E745E5 /* esamanru OTF Bold.otf */; };
+		0EB22C0B28DEF41900E745E5 /* esamanru OTF Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0EB22C0828DEF41900E745E5 /* esamanru OTF Light.otf */; };
 		0EDE841F28CDAE28003B7191 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDE841E28CDAE28003B7191 /* AppDelegate.swift */; };
 		0EDE842128CDAE28003B7191 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDE842028CDAE28003B7191 /* SceneDelegate.swift */; };
 		0EDE842828CDAE2A003B7191 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EDE842728CDAE2A003B7191 /* Assets.xcassets */; };
@@ -90,6 +94,10 @@
 		0EB22BF228DB002A00E745E5 /* OnBoardingTextFieldViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingTextFieldViewViewModel.swift; sourceTree = "<group>"; };
 		0EB22BF428DB1DA300E745E5 /* RouterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterManager.swift; sourceTree = "<group>"; };
 		0EB22BF928DD430F00E745E5 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
+		0EB22C0228DEE3DB00E745E5 /* PolicyTableViewViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyTableViewViewCell.swift; sourceTree = "<group>"; };
+		0EB22C0628DEF41900E745E5 /* esamanru OTF Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "esamanru OTF Medium.otf"; sourceTree = "<group>"; };
+		0EB22C0728DEF41900E745E5 /* esamanru OTF Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "esamanru OTF Bold.otf"; sourceTree = "<group>"; };
+		0EB22C0828DEF41900E745E5 /* esamanru OTF Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "esamanru OTF Light.otf"; sourceTree = "<group>"; };
 		0EDE841B28CDAE27003B7191 /* MIHY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MIHY.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EDE841E28CDAE28003B7191 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0EDE842028CDAE28003B7191 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -172,8 +180,8 @@
 		0EB22BE828D9B25500E745E5 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				0EB22BE928D9B29100E745E5 /* OnBoardingCollectionCell.swift */,
-				0EB22BEE28DAECBA00E745E5 /* OnBoardingCollectionViewHeaderView.swift */,
+				0EB22C0428DEE3F700E745E5 /* OnBoarding */,
+				0EB22C0128DEE3CB00E745E5 /* Policy */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -210,6 +218,33 @@
 				0EDE847128CDB20C003B7191 /* TabbarViewController.swift */,
 			);
 			path = Tabbar;
+			sourceTree = "<group>";
+		};
+		0EB22C0128DEE3CB00E745E5 /* Policy */ = {
+			isa = PBXGroup;
+			children = (
+				0EB22C0228DEE3DB00E745E5 /* PolicyTableViewViewCell.swift */,
+			);
+			path = Policy;
+			sourceTree = "<group>";
+		};
+		0EB22C0428DEE3F700E745E5 /* OnBoarding */ = {
+			isa = PBXGroup;
+			children = (
+				0EB22BE928D9B29100E745E5 /* OnBoardingCollectionCell.swift */,
+				0EB22BEE28DAECBA00E745E5 /* OnBoardingCollectionViewHeaderView.swift */,
+			);
+			path = OnBoarding;
+			sourceTree = "<group>";
+		};
+		0EB22C0528DEF3FE00E745E5 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				0EB22C0728DEF41900E745E5 /* esamanru OTF Bold.otf */,
+				0EB22C0828DEF41900E745E5 /* esamanru OTF Light.otf */,
+				0EB22C0628DEF41900E745E5 /* esamanru OTF Medium.otf */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 		0EDE841228CDAE27003B7191 = {
@@ -282,6 +317,7 @@
 		0EDE844F28CDAE61003B7191 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				0EB22C0528DEF3FE00E745E5 /* Font */,
 				0EDE847D28CDBC0E003B7191 /* Key */,
 				0EDE842728CDAE2A003B7191 /* Assets.xcassets */,
 				0EDE847328CDB46C003B7191 /* StoryBoard */,
@@ -570,9 +606,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EB22C0B28DEF41900E745E5 /* esamanru OTF Light.otf in Resources */,
+				0EB22C0928DEF41900E745E5 /* esamanru OTF Medium.otf in Resources */,
 				0EDE847C28CDBB8B003B7191 /* .gitignore in Resources */,
 				0EDE845428CDB0E8003B7191 /* Main.storyboard in Resources */,
 				0EDE842B28CDAE2A003B7191 /* LaunchScreen.storyboard in Resources */,
+				0EB22C0A28DEF41900E745E5 /* esamanru OTF Bold.otf in Resources */,
 				0EDE842828CDAE2A003B7191 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -598,6 +637,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EB22C0328DEE3DB00E745E5 /* PolicyTableViewViewCell.swift in Sources */,
 				0EB22BDE28D5A7D700E745E5 /* OnBoardingViewModel.swift in Sources */,
 				0EB22BEF28DAECBA00E745E5 /* OnBoardingCollectionViewHeaderView.swift in Sources */,
 				0EDE841F28CDAE28003B7191 /* AppDelegate.swift in Sources */,

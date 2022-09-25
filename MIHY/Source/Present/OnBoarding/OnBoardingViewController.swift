@@ -13,11 +13,11 @@ import SnapKit
 class OnBoardingViewController: BaseViewController {
     
     /// View
-    let scrollView = UIScrollView()
+    private let scrollView = UIScrollView()
     
-    let stackView = UIStackView()
+    private let stackView = UIStackView()
     
-    let nextButton = UIButton()
+    private let nextButton = UIButton()
     
     lazy var onBoardingTextFieldView: OnBoardingTextFieldView = {
         return OnBoardingTextFieldView(type: onBoardingType)
@@ -29,13 +29,13 @@ class OnBoardingViewController: BaseViewController {
     
     
     /// Variable
-    let onBoardingType: OnBoardingQuestionType
+    private let onBoardingType: OnBoardingQuestionType
     
-    var viewModel: OnBoardingViewModel
+    var viewModel: OnBoardingViewModel    
     
     
     /// Initialize
-    init(type: OnBoardingQuestionType = OnBoardingQuestionType.nickName, viewModel: OnBoardingViewModel = OnBoardingViewModel()) {
+    init(type: OnBoardingQuestionType, viewModel: OnBoardingViewModel = OnBoardingViewModel()) {
         self.onBoardingType = type
         self.viewModel = viewModel
         super.init()
@@ -50,11 +50,16 @@ class OnBoardingViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         addKeyboardNotifications()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        onBoardingTextFieldView.textField.becomeFirstResponder()
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         onBoardingTextFieldView.textField.resignFirstResponder()
         removeKeyboardNotifications()
     }
-    
     
     override func setupAttributes() {
         super.setupAttributes()
@@ -91,12 +96,7 @@ class OnBoardingViewController: BaseViewController {
         }
     }
     
-    override func setData() {
-        
-    }
-    
     override func setupBinding() {
-        
         switch onBoardingType {
         case .nickName:
             onBoardingTextFieldView.viewModel.textFieldText.bind { [weak self] text in
@@ -113,23 +113,21 @@ class OnBoardingViewController: BaseViewController {
             onBoardingCollectionView.viewModel.policyDatas.bind { [weak self] dic in
                 self?.nextButton.setTitle(dic.values.isEmpty ? "건너뛰기": "다음", for: .normal)
                 self?.nextButton.backgroundColor = dic.values.isEmpty ? Color.BaseColor.middleOrange : Color.BaseColor.thickOrange
-                
             }
         case .region:
             onBoardingCollectionView.viewModel.regionData.bind { [weak self] region in
                 self?.nextButton.setTitle(region == nil ? "건너뛰기": "다음", for: .normal)
                 self?.nextButton.backgroundColor = region == nil ? Color.BaseColor.middleOrange : Color.BaseColor.thickOrange
-                
             }
         case .myInfo:
             onBoardingCollectionView.viewModel.myInfoDatas.bind { [weak self] dic in
                 self?.nextButton.setTitle("완료", for: .normal)
                 self?.nextButton.backgroundColor = dic.values.isEmpty ? Color.BaseColor.middleOrange : Color.BaseColor.thickOrange
-                
             }
         }
     }
     
+    /// Custom Function
     func setNavigation() {
         navigationController?.navigationBar.tintColor = .black
         navigationItem.title = onBoardingType.title
@@ -162,14 +160,15 @@ class OnBoardingViewController: BaseViewController {
             let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
             let sceneDelegate = windowScene?.delegate as? SceneDelegate
             
-            viewModel.myDataapi { user in
+            viewModel.myDataapi {[weak self] user in
+                self?.viewModel.realmService.addData(data: user)
+                
+                UserDefaults.standard.set(true, forKey: "checkedSetData")
                 let vc = TabbarViewController(index: .policy)
-                dump(user)
                 sceneDelegate?.window?.rootViewController = UINavigationController(rootViewController: vc)
                 UIView.transition(with: (sceneDelegate?.window)!, duration: 0.4, options: [.transitionCrossDissolve], animations: nil, completion: nil)
                 sceneDelegate?.window?.makeKeyAndVisible()
             }
-            
             return
         }
         let viewController = OnBoardingViewController(type: type, viewModel: viewModel)
@@ -199,7 +198,7 @@ extension OnBoardingViewController {
             let keyboardHeight = keyboardRectangle.height
             UIView.animate(withDuration: 0) {
                 self.nextButton.frame.origin.y -= keyboardHeight
-                self.nextButton.snp.makeConstraints { make in
+                self.nextButton.snp.updateConstraints { make in
                     make.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(30 + keyboardHeight)
                 }
             } completion: { _ in
@@ -216,10 +215,9 @@ extension OnBoardingViewController {
             
             UIView.animate(withDuration: 0) {
                 self.nextButton.frame.origin.y += keyboardHeight
-                self.nextButton.snp.makeConstraints { make in
+                self.nextButton.snp.updateConstraints { make in
                     make.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(30)
                 }
-
             } completion: { _ in
                 self.view.layoutIfNeeded()
             }

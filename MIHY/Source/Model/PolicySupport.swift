@@ -15,6 +15,7 @@ struct PolicySupport {
     var data: PolicyData
 }
 
+
 struct PolicyData {
     var ID: String              // ID 값
     var title: String           // 청책 이름
@@ -30,44 +31,43 @@ struct PolicyData {
 }
 
 
+class RealmPolicySupport: Object {
+    @Persisted var isHidden: Bool
+    @Persisted var data: RealmPolicyData?
 
-//class RealmPolicySupport: Object {
-//    @Persisted var isHidden: Bool
-//    @Persisted var data: RealmPolicyData
-//
-//    convenience init(isHidden: Bool, data: RealmPolicyData) {
-//        self.init()
-//        self.isHidden = isHidden
-//        self.data = data
-//    }
-//}
-//
-//class RealmPolicyData: Object {
-//    @Persisted var policyID: String              // ID 값
-//    @Persisted var title: String           // 청책 이름
-//    @Persisted var introduce: String       // 정책 소개
-//    @Persisted var category: String        // 정책유형
-//    @Persisted var age: String             // 참여 가능 나이
-//    @Persisted var employment: String      // 취업 상태
-//    @Persisted var Education: String       // 학력
-//    @Persisted var major: String           // 전공
-//    @Persisted var period: String          // 신청기간
-//    @Persisted var process: String         // 신청 절차
-//    @Persisted var applyURL: String        // 지원 홈페이지
-//
-//
-//    convenience init(policyID: String, title: String, introduce: String, category: String, age: String, employment: String, Education: String, major: String, period: String, process: String, applyURL: String) {
-//        self.init()
-//        self.policyID = policyID
-//        self.title = title
-//        self.introduce = introduce
-//        self.category = category
-//        self.age = age
-//        self.employment = employment
-//        self.Education = Education
-//        self.major = major
-//        self.period = period
-//        self.process = process
-//        self.applyURL = applyURL
-//    }
-//}
+    convenience init(isHidden: Bool, data: RealmPolicyData) {
+        self.init()
+        self.isHidden = isHidden
+        self.data = data
+    }
+}
+
+
+class RealmPolicyData: Object {
+    @Persisted var policyID: String        // ID 값
+    @Persisted var title: String           // 청책 이름
+    @Persisted var introduce: String       // 정책 소개
+    @Persisted var category: String        // 정책유형
+    @Persisted var age: String             // 참여 가능 나이
+    @Persisted var employment: String      // 취업 상태
+    @Persisted var Education: String       // 학력
+    @Persisted var major: String           // 전공
+    @Persisted var period: String          // 신청기간
+    @Persisted var process: String         // 신청 절차
+    @Persisted var applyURL: String        // 지원 홈페이지
+
+    convenience init(policyID: String, title: String, introduce: String, category: String, age: String, employment: String, Education: String, major: String, period: String, process: String, applyURL: String) {
+        self.init()
+        self.policyID = policyID
+        self.title = title
+        self.introduce = introduce
+        self.category = category
+        self.age = age
+        self.employment = employment
+        self.Education = Education
+        self.major = major
+        self.period = period
+        self.process = process
+        self.applyURL = applyURL
+    }
+}

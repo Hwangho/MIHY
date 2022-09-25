@@ -11,6 +11,7 @@ import SwiftUI
 
 class OnBoardingCollectionView: BaseView {
     
+    /// UI
     let collectionView: UICollectionView = {
         let layout = TagFlowLayout()
         layout.scrollDirection = .vertical
@@ -31,7 +32,7 @@ class OnBoardingCollectionView: BaseView {
     var array: [PolicyType] = []
     
     
-    // Initialize
+    /// Initialize
     init(type: OnBoardingQuestionType) {
         self.type = type
         super.init(frame: .zero)
@@ -42,7 +43,7 @@ class OnBoardingCollectionView: BaseView {
     }
 
     
-    // Life Cycle
+    /// Life Cycle
     override func setupAttributes() {
         super.setupAttributes()
         collectionViewdelegate()
@@ -73,6 +74,9 @@ class OnBoardingCollectionView: BaseView {
     
 }
 
+
+// MARK: - UICollectionVIew 관련
+
 extension OnBoardingCollectionView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -101,16 +105,13 @@ extension OnBoardingCollectionView: UICollectionViewDelegate, UICollectionViewDa
         switch type {
         case .policy:
             cell.titleLabel.text = PolicyType.allSection[indexPath.section][indexPath.row].rowTitle
-            return cell
         case .region:
             cell.titleLabel.text = Region.allCases[indexPath.row].title
-            return cell
         case .myInfo:
             cell.titleLabel.text = MyInfo.allSection[indexPath.section][indexPath.row].rowTitle
-            return cell
-        default:
-            return cell
+        default: break
         }
+        return cell
     }
     
     
@@ -119,7 +120,15 @@ extension OnBoardingCollectionView: UICollectionViewDelegate, UICollectionViewDa
         
         switch kind {
         case UICollectionView.elementKindSectionHeader:
-            header.titleLabel.text = PolicyType.allSection[indexPath.section][indexPath.row].sectionTitle
+            switch type {
+            case .policy:
+                header.titleLabel.text = PolicyType.allSection[indexPath.section][indexPath.row].sectionTitle
+            case .region:
+                header.titleLabel.text = "지역"
+            case .myInfo:
+                header.titleLabel.text = MyInfo.allSection[indexPath.section][indexPath.row].sectionTitle
+            default: break
+            }
             return header
         default:
             assert(false, "Don't use this kind.")
@@ -131,7 +140,6 @@ extension OnBoardingCollectionView: UICollectionViewDelegate, UICollectionViewDa
         
         return CGSize(width: width, height: 60)
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch type {
@@ -163,13 +171,12 @@ extension OnBoardingCollectionView: UICollectionViewDelegate, UICollectionViewDa
         case .myInfo:
             let type = MyInfo.allSection[indexPath.section][indexPath.row].checkedData.0
             let value = MyInfo.allSection[indexPath.section][indexPath.row].checkedData.1
-            viewModel.appendmyInfoData(key: type, value: value)
+            viewModel.deletemyInfoData(key: type, value: value)
         default:
             print("내 정보 관련 데이터 제거")
         }
     }
 
-    
     /// cell width size dynamic 하도록
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OnBoardingCollectionCell.reuseIdentifier, for: indexPath) as? OnBoardingCollectionCell else {

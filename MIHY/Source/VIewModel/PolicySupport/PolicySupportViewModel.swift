@@ -7,24 +7,25 @@
 
 import Foundation
 
+import RealmSwift
+
 class PolicySupportViewModel {
     
-    let service: PolicyRepositoryProtocol
     
     var onBoardingData: [OnBoardingQuestionType: Any] = [:]
     
     var data: [PolicySupport] = []
+    
+    let service: PolicyRepositoryProtocol
+    
+    let realmService = RealmService()
+    
         
     init(service: PolicyRepositoryProtocol = PolicyRepository() ) {
         self.service = service
     }
     
     func setdata() {
-//        service.fetchPolicyData(policySupport: "004001,004002003", city: "003002001,003002002") { [weak self] value in
-//            self?.data = value
-////            print(self?.data)
-//            dump(self?.data)
-//        }
         
     }
 }

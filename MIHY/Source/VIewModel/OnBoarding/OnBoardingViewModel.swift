@@ -16,8 +16,6 @@ class OnBoardingViewModel {
     
     lazy var service = PolicyRepository()
     
-    var userData: User?
-    
     let realmService = RealmService()
     
     
@@ -26,7 +24,7 @@ class OnBoardingViewModel {
         onBoardingData.updateValue(value, forKey: key)
     }
     
-    func myDataapi(_ handler: @escaping(User) -> ()) {
+    func myDataapi(_ handler: @escaping(RealmUser) -> ()) {
         let nickName = onBoardingData[.nickName] as? String
         let birth = onBoardingData[.birth] as? String
         
@@ -39,26 +37,25 @@ class OnBoardingViewModel {
         let myInfo = onBoardingData[.myInfo] as? [MyInfo.caseType: [String]]
         
         service.fetchPolicyData(policySupport: policySupport, city: city) { data in
-            let user: User = User(nickName: nickName!,
-                                  birth: birth,
-                                  category: policy!.values.flatMap { $0 },
-                                  region: city,
-                                  employment: myInfo?[.employmentStatus],
-                                  Education: myInfo?[.education],
-                                  specialization: myInfo?[.specialization],
-                                  data: data)
+//            let user: User = User(nickName: nickName!,
+//                                  birth: birth,
+//                                  category: policy!.values.flatMap { $0 },
+//                                  region: city,
+//                                  employment: myInfo?[.employmentStatus],
+//                                  Education: myInfo?[.education],
+//                                  specialization: myInfo?[.specialization],
+//                                  data: data)
 
-//            let realmUser: RealmUser = RealmUser(nickName: nickName!,
-//                                                 birth: birth,
-//                                                 category: policy!.values.flatMap { $0 },
-//                                                 region: city,
-//                                                 employment: myInfo?[.employmentStatus],
-//                                                 Education: myInfo?[.education],
-//                                                 specialization: myInfo?[.specialization],
-//                                                 data: data)
+            let realmUser: RealmUser = RealmUser(nickName: nickName!,
+                                                 birth: birth,
+                                                 category: policy!.values.flatMap { $0 },
+                                                 region: city,
+                                                 employment: myInfo?[.employmentStatus],
+                                                 Education: myInfo?[.education],
+                                                 specialization: myInfo?[.specialization],
+                                                 data: data)
             
-            self.userData = user
-            handler(user)
+            handler(realmUser)
         }    
     }
     
