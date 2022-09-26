@@ -18,7 +18,7 @@ class PolicySupportViewModel {
     
     let service: PolicyRepositoryProtocol
     
-    let realmService = RealmService()
+    let realmService = RealmService(type: .nothidden)
     
         
     init(service: PolicyRepositoryProtocol = PolicyRepository() ) {

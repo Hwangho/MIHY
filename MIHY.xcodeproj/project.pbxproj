@@ -26,6 +26,9 @@
 		0EB22C0928DEF41900E745E5 /* esamanru OTF Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0EB22C0628DEF41900E745E5 /* esamanru OTF Medium.otf */; };
 		0EB22C0A28DEF41900E745E5 /* esamanru OTF Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0EB22C0728DEF41900E745E5 /* esamanru OTF Bold.otf */; };
 		0EB22C0B28DEF41900E745E5 /* esamanru OTF Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0EB22C0828DEF41900E745E5 /* esamanru OTF Light.otf */; };
+		0EB22C4928E1734D00E745E5 /* PolicySupportScetionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB22C4828E1734C00E745E5 /* PolicySupportScetionHeaderView.swift */; };
+		0EB22C4B28E1736400E745E5 /* PolicySupportHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB22C4A28E1736400E745E5 /* PolicySupportHeaderView.swift */; };
+		0EB22C4E28E17AA900E745E5 /* PolicySupportDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB22C4D28E17AA900E745E5 /* PolicySupportDetailViewController.swift */; };
 		0EDE841F28CDAE28003B7191 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDE841E28CDAE28003B7191 /* AppDelegate.swift */; };
 		0EDE842128CDAE28003B7191 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDE842028CDAE28003B7191 /* SceneDelegate.swift */; };
 		0EDE842828CDAE2A003B7191 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EDE842728CDAE2A003B7191 /* Assets.xcassets */; };
@@ -98,6 +101,9 @@
 		0EB22C0628DEF41900E745E5 /* esamanru OTF Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "esamanru OTF Medium.otf"; sourceTree = "<group>"; };
 		0EB22C0728DEF41900E745E5 /* esamanru OTF Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "esamanru OTF Bold.otf"; sourceTree = "<group>"; };
 		0EB22C0828DEF41900E745E5 /* esamanru OTF Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "esamanru OTF Light.otf"; sourceTree = "<group>"; };
+		0EB22C4828E1734C00E745E5 /* PolicySupportScetionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicySupportScetionHeaderView.swift; sourceTree = "<group>"; };
+		0EB22C4A28E1736400E745E5 /* PolicySupportHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicySupportHeaderView.swift; sourceTree = "<group>"; };
+		0EB22C4D28E17AA900E745E5 /* PolicySupportDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicySupportDetailViewController.swift; sourceTree = "<group>"; };
 		0EDE841B28CDAE27003B7191 /* MIHY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MIHY.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EDE841E28CDAE28003B7191 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0EDE842028CDAE28003B7191 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -224,6 +230,8 @@
 			isa = PBXGroup;
 			children = (
 				0EB22C0228DEE3DB00E745E5 /* PolicyTableViewViewCell.swift */,
+				0EB22C4828E1734C00E745E5 /* PolicySupportScetionHeaderView.swift */,
+				0EB22C4A28E1736400E745E5 /* PolicySupportHeaderView.swift */,
 			);
 			path = Policy;
 			sourceTree = "<group>";
@@ -245,6 +253,14 @@
 				0EB22C0628DEF41900E745E5 /* esamanru OTF Medium.otf */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		0EB22C4C28E17A8900E745E5 /* PolicySupportDetail */ = {
+			isa = PBXGroup;
+			children = (
+				0EB22C4D28E17AA900E745E5 /* PolicySupportDetailViewController.swift */,
+			);
+			path = PolicySupportDetail;
 			sourceTree = "<group>";
 		};
 		0EDE841228CDAE27003B7191 = {
@@ -334,6 +350,7 @@
 				0EB22C0028DD90A700E745E5 /* Tabbar */,
 				0EDE849D28D17CF2003B7191 /* OnBoarding */,
 				0EDE847028CDB1F0003B7191 /* PolicySupport */,
+				0EB22C4C28E17A8900E745E5 /* PolicySupportDetail */,
 				0EDE847428CDB9BD003B7191 /* SpaceRental */,
 			);
 			path = Present;
@@ -658,6 +675,7 @@
 				0EDE846C28CDB1AC003B7191 /* Theme.swift in Sources */,
 				0EB22BE528D9B17B00E745E5 /* MyInfo.swift in Sources */,
 				0EB22BE128D9B14400E745E5 /* PolicyType.swift in Sources */,
+				0EB22C4928E1734D00E745E5 /* PolicySupportScetionHeaderView.swift in Sources */,
 				0EB22BED28DAEC9D00E745E5 /* TagFlowLayout.swift in Sources */,
 				0EDE849A28CE080D003B7191 /* RouterProtocol.swift in Sources */,
 				0EDE842128CDAE28003B7191 /* SceneDelegate.swift in Sources */,
@@ -667,6 +685,7 @@
 				0EDE847628CDB9E0003B7191 /* SpaceRentalViewController.swift in Sources */,
 				0EDE846D28CDB1AC003B7191 /* Font.swift in Sources */,
 				0EDE846A28CDB1AC003B7191 /* BaseView.swift in Sources */,
+				0EB22C4B28E1736400E745E5 /* PolicySupportHeaderView.swift in Sources */,
 				0EDE849028CDCC4E003B7191 /* Observable.swift in Sources */,
 				0EDE846628CDB1AC003B7191 /* Transition+Extension.swift in Sources */,
 				0EB22BE328D9B15E00E745E5 /* Region.swift in Sources */,
@@ -674,6 +693,7 @@
 				0EB22BFA28DD430F00E745E5 /* RealmService.swift in Sources */,
 				0EDE847F28CDBC3E003B7191 /* APIKey.swift in Sources */,
 				0EDE849C28D067EA003B7191 /* User.swift in Sources */,
+				0EB22C4E28E17AA900E745E5 /* PolicySupportDetailViewController.swift in Sources */,
 				0EB22BF528DB1DA300E745E5 /* RouterManager.swift in Sources */,
 				0EB22BDC28D58F4300E745E5 /* OnBoardingCollectionView.swift in Sources */,
 			);

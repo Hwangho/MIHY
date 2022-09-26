@@ -36,7 +36,8 @@ enum Font {
 enum FontTextSize {
     case onBoardingtitle
     case sectionTitle
-    
+    case policyheaderTitlte
+    case policyheaderhidden
     case policyCellTitle
     case policyCellContent
     case cellContent
@@ -46,6 +47,8 @@ enum FontTextSize {
         switch self {
         case .onBoardingtitle: return 18
         case .sectionTitle: return 23
+        case .policyheaderTitlte: return 16
+        case .policyheaderhidden: return 12
         case .policyCellTitle: return 16
         case .policyCellContent: return 12
         case .cellContent: return 12

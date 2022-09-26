@@ -11,16 +11,41 @@ import UIKit
 
 
 class RealmService {
-
+    
+    enum dataType {
+        case all
+        case hidden
+        case nothidden
+    }
+    
+    
     let localRealm = try! Realm()
     
     var userData: Results<RealmUser>!
     
+    let type: dataType
+    
+    
+    /// initialization
+    init(type: dataType = .all) {
+        self.type = type
+    }
+    
+    
     /// User
     func featchData() {
-        userData = localRealm.objects(RealmUser.self)
+        switch type {
+        case .hidden:
+            userData = localRealm.objects(RealmUser.self).where({  $0.data.isHidden == true })
+        case .nothidden:
+            userData = localRealm.objects(RealmUser.self).where({  $0.data.isHidden == false })
+        case .all:
+            userData = localRealm.objects(RealmUser.self)
+        }
+        
     }
-   
+    
+    
     func addData(data: RealmUser) {
         do {
            try localRealm.write({
@@ -61,24 +86,16 @@ class RealmService {
         }
     }
     
-    func updatecheckBoxData(task: User) {
+    func updateHiddenData(task: RealmPolicySupport) {
         do {
            try localRealm.write({
-//               task.checkBox = !task.checkBox
+               task.isHidden = !task.isHidden
+               task.newPolicy = !task.newPolicy // 숨기게 되면 새로운 정책에서 제거
             })
         } catch {
             print("checkBox 변경 안됨")
         }
-    }
-    
-    func updateFavoriteData(task: User) {
-        do {
-           try localRealm.write({
-//               task.favorite = !task.favorite
-            })
-        } catch {
-            print("checkBox 변경 안됨")
-        }
+        featchData()
     }
     
 }

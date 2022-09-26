@@ -41,6 +41,7 @@ class PolicyTableViewViewCell: BaseTableViewCell {
     let hiddenButton = UIButton()
     
     
+    /// variable
     var delegate: CellDelegate?
     
     var indexPath: IndexPath?
@@ -48,6 +49,7 @@ class PolicyTableViewViewCell: BaseTableViewCell {
     var leadingConstraint: Constraint!
     
     var initialXPosition: CGFloat = 0.0
+    
     
     /// Life Cycle
     override func setupAttributes() {
@@ -65,6 +67,7 @@ class PolicyTableViewViewCell: BaseTableViewCell {
         shadowView.layer.shadowOpacity = 0.4
         shadowView.layer.shadowColor = UIColor.black.cgColor
         shadowView.layer.shadowOffset = CGSize(width: 3, height: 3)
+//        shadowView.layer.shadowPath = UIBezierPath(roundedRect: shadowView.bounds, cornerRadius: shadowView.layer.cornerRadius).cgPath
         
         hiddenButton.backgroundColor = .orange
         hiddenButton.layer.cornerRadius = 20
@@ -113,7 +116,7 @@ class PolicyTableViewViewCell: BaseTableViewCell {
         
         contentView.addSubview(hiddenButtonStackView)
         hiddenButtonStackView.snp.makeConstraints { make in
-            make.leading.equalTo(backView.snp.trailing).offset(15)
+            make.leading.equalTo(backView.snp.trailing).offset(10)
             make.verticalEdges.equalTo(shadowView.snp.verticalEdges)
 //            make.bottom.equalTo(backView.snp.bottom).offset(-10)
             make.trailing.equalTo(contentView.snp.trailing).inset(10)
@@ -142,7 +145,7 @@ class PolicyTableViewViewCell: BaseTableViewCell {
 
 extension PolicyTableViewViewCell {
     func didSwipe() {
-//        delegate?.swipeCell(indexPath: indexPath!)
+        delegate?.swipeCell(indexPath: indexPath!)
     }
     
     private func addGesture() {
@@ -167,13 +170,12 @@ extension PolicyTableViewViewCell {
             switch sender.state {
 
             case .ended:
-                if  initialXPosition > -(contentView.frame.width/2) && initialXPosition < -(hiddenButtonStackView.frame.size.width) {
+                if  initialXPosition > -(contentView.frame.width/2) && initialXPosition < -(hiddenButtonStackView.bounds.width) {
                     hiddenButtonStackView.frame.size.width = 108
                     self.leadingConstraint?.update(offset: -hiddenButtonStackView.bounds.width)
 
-                    UIView.animate(withDuration: 0.3) {
+                    UIView.animate(withDuration: 0.1) {
                         self.layoutIfNeeded()
-                        self.hiddenButtonStackView.frame.size.width = 108
                     }
                 }
                 else if initialXPosition < -(contentView.frame.width/2){
@@ -183,7 +185,7 @@ extension PolicyTableViewViewCell {
                         self.layoutIfNeeded()
                     }
                     ///해당 cell을 지우기 위한 data 전송
-    //                didSwipe()
+                    didSwipe()
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1){
                         self.leadingConstraint?.update(offset: 0)
                         self.layoutIfNeeded()
@@ -192,7 +194,7 @@ extension PolicyTableViewViewCell {
                 }else {
                     self.leadingConstraint?.update(offset:0)
 
-                    UIView.animate(withDuration: 0.3) {
+                    UIView.animate(withDuration: 0.1) {
                         self.layoutIfNeeded()
                     }
                 }
@@ -212,20 +214,11 @@ extension PolicyTableViewViewCell {
                 sender.setTranslation(CGPoint.zero, in: self.backView)
             }
         }
-        else if sender.velocity(in: backView).x.magnitude < sender.velocity(in: backView).y.magnitude {
-            initialXPosition = 0
-            self.leadingConstraint?.update(offset:0)
-
-            UIView.animate(withDuration: 0.3) {
-                self.layoutIfNeeded()
-            }
-        }
         
     }
     
-    
     @objc func deleteAction(_ sender: Any){
         print("숨기기 버튼 Click!")
-//        didSwipe()
+        didSwipe()
     }
 }

@@ -33,10 +33,12 @@ struct PolicyData {
 
 class RealmPolicySupport: Object {
     @Persisted var isHidden: Bool
+    @Persisted var newPolicy: Bool
     @Persisted var data: RealmPolicyData?
 
-    convenience init(isHidden: Bool, data: RealmPolicyData) {
+    convenience init(newPolicy: Bool = true, isHidden: Bool, data: RealmPolicyData) {
         self.init()
+        self.newPolicy = newPolicy
         self.isHidden = isHidden
         self.data = data
     }
