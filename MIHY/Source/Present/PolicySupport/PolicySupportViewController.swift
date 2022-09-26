@@ -119,7 +119,7 @@ extension PolicySupportViewController: UITableViewDataSource, UITableViewDelegat
 // MARK: - CellDelegate
 extension PolicySupportViewController: CellDelegate {
     func swipeCell(indexPath: IndexPath) {
-        guard let data = viewModel.realmService.userData.first?.data.makeArray()[indexPath.item] else {return}
+//        guard let data = viewModel.realmService.userData.first?.data.makeArray()[indexPath.item] else {return}
 
         UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseIn], animations: {
             guard let cell = self.tableView.cellForRow(at: indexPath) as? PolicyTableViewViewCell else{
@@ -127,7 +127,7 @@ extension PolicySupportViewController: CellDelegate {
             }
             cell.contentView.alpha = 0
         }, completion: {_ in self.tableView.performBatchUpdates({
-            self.viewModel.realmService.updateHiddenData(task: data)
+            self.viewModel.realmService.updateHiddenData(item: indexPath.item)
             self.tableView.reloadData()
         })})
     }

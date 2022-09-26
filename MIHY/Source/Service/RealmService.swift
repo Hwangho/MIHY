@@ -36,9 +36,9 @@ class RealmService {
     func featchData() {
         switch type {
         case .hidden:
-            userData = localRealm.objects(RealmUser.self).where({  $0.data.isHidden == true })
+            userData = localRealm.objects(RealmUser.self).where{  $0.data.isHidden == false }
         case .nothidden:
-            userData = localRealm.objects(RealmUser.self).where({  $0.data.isHidden == false })
+            userData = localRealm.objects(RealmUser.self).where{  $0.data.isHidden == true }            
         case .all:
             userData = localRealm.objects(RealmUser.self)
         }
@@ -86,7 +86,9 @@ class RealmService {
         }
     }
     
-    func updateHiddenData(task: RealmPolicySupport) {
+    func updateHiddenData(item: Int) {
+        guard let task = userData.first?.data[item] else { return }
+        
         do {
            try localRealm.write({
                task.isHidden = !task.isHidden

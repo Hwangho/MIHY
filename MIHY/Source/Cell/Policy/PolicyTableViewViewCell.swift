@@ -124,10 +124,12 @@ class PolicyTableViewViewCell: BaseTableViewCell {
     }
     
     override func prepareForReuse() {
-            super.prepareForReuse()
-            
-            
-        }
+        super.prepareForReuse()
+        
+        hiddenButtonStackView.frame.size.width = 0
+        initialXPosition = 0
+        leadingConstraint.update(offset: 0)
+    }
     
     
     /// Custom Func
@@ -135,10 +137,6 @@ class PolicyTableViewViewCell: BaseTableViewCell {
         self.titleLabel.text = policyData.data?.title
         self.contentLabel.text = policyData.data?.introduce
     }
-    
-    
-    
-
     
 }
 
