@@ -34,6 +34,7 @@ enum Font {
 
 
 enum FontTextSize {
+    case navigationTitle
     case onBoardingtitle
     case sectionTitle
     case policyheaderTitlte
@@ -45,10 +46,11 @@ enum FontTextSize {
     
     var value: CGFloat {
         switch self {
+        case .navigationTitle: return 18
         case .onBoardingtitle: return 18
         case .sectionTitle: return 23
         case .policyheaderTitlte: return 16
-        case .policyheaderhidden: return 12
+        case .policyheaderhidden: return 14
         case .policyCellTitle: return 16
         case .policyCellContent: return 12
         case .cellContent: return 12

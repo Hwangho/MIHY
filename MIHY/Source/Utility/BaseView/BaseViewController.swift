@@ -60,6 +60,12 @@ class BaseViewController: UIViewController {
     func setupAttributes() {
         // Override Attributes
         view.backgroundColor = Color.BaseColor.background
+        
+        navigationController?.navigationBar.tintColor = .black
+        let backButton  = UIBarButtonItem(title: nil, style: .plain, target: nil, action: nil)
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: Font.medium.scaledFont(size: .navigationTitle)]     // 색상 변경
+        navigationItem.backBarButtonItem = backButton
+        
     }
     
     

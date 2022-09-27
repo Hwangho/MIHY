@@ -1,8 +1,8 @@
 //
-//  PolicySupportViewController.swift
+//  HiddenPolicySupportViewController.swift
 //  MIHY
 //
-//  Created by 송황호 on 2022/09/11.
+//  Created by 송황호 on 2022/09/27.
 //
 
 import UIKit
@@ -11,14 +11,14 @@ import SnapKit
 import RealmSwift
 
 
-class PolicySupportViewController: BaseViewController {
+class HiddenPolicySupportViewController: BaseViewController {
     
     
     let tableView = UITableView(frame: .zero, style: .grouped)
     
     
     /// variable
-    let viewModel = PolicySupportViewModel()
+    let viewModel = HiddenPolicySupportViewModel()
     
     
     /// Life Cycle
@@ -31,14 +31,7 @@ class PolicySupportViewController: BaseViewController {
     override func setupAttributes() {
         super.setupAttributes()
         settingTableView()
-        navigationItem.title = "청년 정책"
-        
-        guard let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
-            showAlertMessage(title: "Document 파일 통로를 못찾았습니다.")
-            return
-        }
-        print("❤️document path ==== \(path)❤️")
-        
+        navigationItem.title = "숨김 정책"
     }
     
     override func setupLayout() {
@@ -57,12 +50,11 @@ class PolicySupportViewController: BaseViewController {
         viewModel.setdata()
         self.tableView.reloadData()
     }
-
 }
 
 
 // MARK: - DiffableTableView
-extension PolicySupportViewController: UITableViewDataSource, UITableViewDelegate {
+extension HiddenPolicySupportViewController: UITableViewDataSource, UITableViewDelegate {
     
     func settingTableView() {
         tableView.backgroundColor = .clear
@@ -86,11 +78,6 @@ extension PolicySupportViewController: UITableViewDataSource, UITableViewDelegat
             return data.data!.count
 
         }
-//        if let policyDataArray = viewModel.policyDataArray[section].data {
-//            return policyDataArray.count
-//        } else {
-//            return 0
-//        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -112,33 +99,32 @@ extension PolicySupportViewController: UITableViewDataSource, UITableViewDelegat
         }
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let type = viewModel.policyDataArray[section].cellType
-        
-        switch type {
-        case .onlyHeader:
-            let headerView = PolicySupportHeaderView()
-            headerView.backgroundColor = .orange
-            return headerView
-            
-        case .newPolicy, .oldPolicy:
-            let headerView = PolicySupportScetionHeaderFooterView(type: .header)
-            headerView.titleLabel.text = type.title
-            return headerView
-        }
-    }
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let type = viewModel.policyDataArray[section].cellType
-        
-        switch type {
-        case .onlyHeader:
-            let footerView = PolicySupportScetionHeaderFooterView(type: .footer)
-            footerView.delegate = self
-            return footerView
-        default:
-            return nil
-        }
-    }
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let type = viewModel.policyDataArray[section].cellType
+//
+//        switch type {
+//        case .onlyHeader:
+//            let headerView = PolicySupportHeaderView()
+//            headerView.backgroundColor = .orange
+//            return headerView
+//
+//        case .newPolicy, .oldPolicy:
+//            let headerView = PolicySupportScetionHeaderFooterView(type: .header)
+//            headerView.titleLabel.text = type.title
+//            return headerView
+//        }
+//    }
+//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+//        let type = viewModel.policyDataArray[section].cellType
+//
+//        switch type {
+//        case .onlyHeader:
+//            let footerView = PolicySupportScetionHeaderFooterView(type: .footer)
+//            return footerView
+//        default:
+//            return nil
+//        }
+//    }
 
 //    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 //
@@ -147,7 +133,7 @@ extension PolicySupportViewController: UITableViewDataSource, UITableViewDelegat
 //        case .onlyHeader:
 //            return 250
 //        case .newPolicy, .oldPolicy:
-//            return 30
+//            return 20
 //        }
 //    }
 //
@@ -156,7 +142,7 @@ extension PolicySupportViewController: UITableViewDataSource, UITableViewDelegat
 //        let type = viewModel.policyDataArray[section].cellType
 //        switch type {
 //        case .onlyHeader:
-//            return 30
+//            return 40
 //        default:
 //            return 10
 //        }
@@ -164,7 +150,6 @@ extension PolicySupportViewController: UITableViewDataSource, UITableViewDelegat
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let data = viewModel.policyDataArray[indexPath.section].data![indexPath.row]
-
         viewModel.realmService.updateClickData(data: data)
         
         let vc = PolicySupoortDetailViewController()
@@ -175,9 +160,10 @@ extension PolicySupportViewController: UITableViewDataSource, UITableViewDelegat
 
 
 // MARK: - CellDelegate
-extension PolicySupportViewController: CellDelegate {
+extension HiddenPolicySupportViewController: CellDelegate {
     func swipeCell(indexPath: IndexPath) {
         let data = viewModel.policyDataArray[indexPath.section].data![indexPath.row]
+//        let data = viewModel.realmService.PolicySupportData[indexPath.item]
 
         UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseIn], animations: {
             guard let cell = self.tableView.cellForRow(at: indexPath) as? PolicyTableViewViewCell else{
@@ -200,16 +186,3 @@ extension PolicySupportViewController: CellDelegate {
     }
 }
 
-
-
-
-
-extension PolicySupportViewController: taphiddenButton {
-    
-    func tapHiddenPolicyButton() {
-        let vc = HiddenPolicySupportViewController()
-        transition(vc, transitionStyle: .push)
-    }
-    
-    
-}

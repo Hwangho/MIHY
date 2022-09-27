@@ -13,4 +13,8 @@ import SnapKit
 class PolicySupoortDetailViewController: BaseViewController {
     
     
+    override func setupAttributes() {
+        super.setupAttributes()
+        navigationItem.title = "상세 정보"
+    }
 }

@@ -30,7 +30,6 @@ struct PolicyData {
     var applyURL: String        // 지원 홈페이지
 }
 
-
 class RealmPolicySupport: Object {
     @Persisted var isHidden: Bool
     @Persisted var newPolicy: Bool
@@ -73,3 +72,24 @@ class RealmPolicyData: Object {
         self.applyURL = applyURL
     }
 }
+
+
+struct SectionPolicySupport {
+    enum type {
+        case onlyHeader
+        case newPolicy
+        case oldPolicy
+        
+        var title: String {
+            switch self {
+            case .onlyHeader: return ""
+            case .newPolicy: return "신규 정책"
+            case .oldPolicy: return "정책"
+            }
+        }
+    }
+    
+    var cellType: type
+    var data: Results<RealmPolicySupport>?
+}
+

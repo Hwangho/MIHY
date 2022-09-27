@@ -128,6 +128,7 @@ class PolicyTableViewViewCell: BaseTableViewCell {
         
         hiddenButtonStackView.frame.size.width = 0
         initialXPosition = 0
+        contentView.alpha = 1
         leadingConstraint.update(offset: 0)
     }
     

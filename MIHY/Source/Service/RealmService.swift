@@ -21,7 +21,7 @@ class RealmService {
     
     let localRealm = try! Realm()
     
-    var userData: Results<RealmUser>!
+    var PolicySupportData: Results<RealmPolicySupport>!
     
     let type: dataType
     
@@ -36,13 +36,12 @@ class RealmService {
     func featchData() {
         switch type {
         case .hidden:
-            userData = localRealm.objects(RealmUser.self).where{  $0.data.isHidden == false }
+            PolicySupportData = localRealm.objects(RealmPolicySupport.self).where{  $0.isHidden == true }
         case .nothidden:
-            userData = localRealm.objects(RealmUser.self).where{  $0.data.isHidden == true }            
+            PolicySupportData = localRealm.objects(RealmPolicySupport.self).where{  $0.isHidden == false }
         case .all:
-            userData = localRealm.objects(RealmUser.self)
+            PolicySupportData = localRealm.objects(RealmPolicySupport.self)
         }
-        
     }
     
     
@@ -86,16 +85,27 @@ class RealmService {
         }
     }
     
-    func updateHiddenData(item: Int) {
-        guard let task = userData.first?.data[item] else { return }
+    func updateHiddenData(data: RealmPolicySupport) {
         
         do {
            try localRealm.write({
-               task.isHidden = !task.isHidden
-               task.newPolicy = !task.newPolicy // 숨기게 되면 새로운 정책에서 제거
+               data.isHidden = !data.isHidden
+               data.newPolicy = false // 숨기게 되면 새로운 정책에서 제거
             })
         } catch {
-            print("checkBox 변경 안됨")
+            print("데이터 업데이트 못함")
+        }
+        featchData()
+    }
+    
+    func updateClickData(data: RealmPolicySupport) {
+        
+        do {
+           try localRealm.write({
+               data.newPolicy = false //
+            })
+        } catch {
+            print("신규 데이터 못 읽음")
         }
         featchData()
     }

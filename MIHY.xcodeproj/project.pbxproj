@@ -29,6 +29,8 @@
 		0EB22C4928E1734D00E745E5 /* PolicySupportScetionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB22C4828E1734C00E745E5 /* PolicySupportScetionHeaderView.swift */; };
 		0EB22C4B28E1736400E745E5 /* PolicySupportHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB22C4A28E1736400E745E5 /* PolicySupportHeaderView.swift */; };
 		0EB22C4E28E17AA900E745E5 /* PolicySupportDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB22C4D28E17AA900E745E5 /* PolicySupportDetailViewController.swift */; };
+		0ECA2F5528E2BB0D0006D9AC /* HiddenPolicySupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECA2F5428E2BB0D0006D9AC /* HiddenPolicySupportViewController.swift */; };
+		0ECA2F5728E2BB330006D9AC /* HiddenPolicySupportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECA2F5628E2BB330006D9AC /* HiddenPolicySupportViewModel.swift */; };
 		0EDE841F28CDAE28003B7191 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDE841E28CDAE28003B7191 /* AppDelegate.swift */; };
 		0EDE842128CDAE28003B7191 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDE842028CDAE28003B7191 /* SceneDelegate.swift */; };
 		0EDE842828CDAE2A003B7191 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EDE842728CDAE2A003B7191 /* Assets.xcassets */; };
@@ -104,6 +106,8 @@
 		0EB22C4828E1734C00E745E5 /* PolicySupportScetionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicySupportScetionHeaderView.swift; sourceTree = "<group>"; };
 		0EB22C4A28E1736400E745E5 /* PolicySupportHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicySupportHeaderView.swift; sourceTree = "<group>"; };
 		0EB22C4D28E17AA900E745E5 /* PolicySupportDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicySupportDetailViewController.swift; sourceTree = "<group>"; };
+		0ECA2F5428E2BB0D0006D9AC /* HiddenPolicySupportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiddenPolicySupportViewController.swift; sourceTree = "<group>"; };
+		0ECA2F5628E2BB330006D9AC /* HiddenPolicySupportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiddenPolicySupportViewModel.swift; sourceTree = "<group>"; };
 		0EDE841B28CDAE27003B7191 /* MIHY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MIHY.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EDE841E28CDAE28003B7191 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0EDE842028CDAE28003B7191 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -206,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				0EDE848D28CDCC0B003B7191 /* PolicySupportViewModel.swift */,
+				0ECA2F5628E2BB330006D9AC /* HiddenPolicySupportViewModel.swift */,
 			);
 			path = PolicySupport;
 			sourceTree = "<group>";
@@ -409,6 +414,7 @@
 			isa = PBXGroup;
 			children = (
 				0EDE845128CDAF35003B7191 /* PolicySupportViewController.swift */,
+				0ECA2F5428E2BB0D0006D9AC /* HiddenPolicySupportViewController.swift */,
 			);
 			path = PolicySupport;
 			sourceTree = "<group>";
@@ -678,7 +684,9 @@
 				0EB22C4928E1734D00E745E5 /* PolicySupportScetionHeaderView.swift in Sources */,
 				0EB22BED28DAEC9D00E745E5 /* TagFlowLayout.swift in Sources */,
 				0EDE849A28CE080D003B7191 /* RouterProtocol.swift in Sources */,
+				0ECA2F5528E2BB0D0006D9AC /* HiddenPolicySupportViewController.swift in Sources */,
 				0EDE842128CDAE28003B7191 /* SceneDelegate.swift in Sources */,
+				0ECA2F5728E2BB330006D9AC /* HiddenPolicySupportViewModel.swift in Sources */,
 				0EDE847228CDB20C003B7191 /* TabbarViewController.swift in Sources */,
 				0EDE846F28CDB1AC003B7191 /* ReusableProtocol.swift in Sources */,
 				0EDE846828CDB1AC003B7191 /* BaseTableViewCell.swift in Sources */,

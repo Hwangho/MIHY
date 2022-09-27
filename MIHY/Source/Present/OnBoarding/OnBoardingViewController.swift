@@ -63,7 +63,7 @@ class OnBoardingViewController: BaseViewController {
     
     override func setupAttributes() {
         super.setupAttributes()
-        setNavigation()
+        navigationItem.title = onBoardingType.title
         
         stackView.axis = .vertical
         stackView.spacing = 30
@@ -125,15 +125,6 @@ class OnBoardingViewController: BaseViewController {
                 self?.nextButton.backgroundColor = dic.values.isEmpty ? Color.BaseColor.middleOrange : Color.BaseColor.thickOrange
             }
         }
-    }
-    
-    /// Custom Function
-    func setNavigation() {
-        navigationController?.navigationBar.tintColor = .black
-        navigationItem.title = onBoardingType.title
-        
-        let backButton  = UIBarButtonItem(title: nil, style: .plain, target: nil, action: nil)
-        navigationItem.backBarButtonItem = backButton
     }
     
     @objc
