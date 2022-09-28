@@ -14,7 +14,7 @@ class OnBoardingCollectionCell: BaseCollectionViewCell {
     
     override var isSelected: Bool{
         didSet {
-            self.backgroundColor = isSelected ? Color.BaseColor.thickOrange : Color.BaseColor.background
+            self.setSelected(isSelected)
         }
     }
     
@@ -32,6 +32,8 @@ class OnBoardingCollectionCell: BaseCollectionViewCell {
         layer.masksToBounds = true
         layer.borderWidth = 1
         layer.borderColor = UIColor.black.cgColor
+        
+        titleLabel.font = Font.light.scaledFont(size: .cellContent)
     }
     
     override func setupLayout() {
@@ -44,6 +46,7 @@ class OnBoardingCollectionCell: BaseCollectionViewCell {
     /// Custom Func
     func configure(title: String) {
         titleLabel.text = title
+        self.setSelected(false)
     }
     
     func adjustCellSize(title: String) -> CGSize {
@@ -54,5 +57,8 @@ class OnBoardingCollectionCell: BaseCollectionViewCell {
                                                         verticalFittingPriority:.required)
     }
     
+    private func setSelected(_ selected: Bool) {
+        self.backgroundColor = isSelected ? Color.BaseColor.thickOrange : Color.BaseColor.background
+    }
 
 }

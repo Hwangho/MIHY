@@ -49,4 +49,9 @@ class OnBoardingCollectionViewModel {
         }
         if myInfoDatas.value[key]!.isEmpty { myInfoDatas.value[key] = nil }
     }
+    
+    func checkisSelected(data: String) -> Bool {
+        let dataArray = policyDatas.value.values.flatMap { $0 }
+        return dataArray.contains(data)
+    }
 }

@@ -51,13 +51,14 @@ class RealmPolicyData: Object {
     @Persisted var category: String        // 정책유형
     @Persisted var age: String             // 참여 가능 나이
     @Persisted var employment: String      // 취업 상태
-    @Persisted var Education: String       // 학력
+    @Persisted var education: String       // 학력
+    @Persisted var specialization: String  // 특화분야
     @Persisted var major: String           // 전공
     @Persisted var period: String          // 신청기간
     @Persisted var process: String         // 신청 절차
     @Persisted var applyURL: String        // 지원 홈페이지
 
-    convenience init(policyID: String, title: String, introduce: String, category: String, age: String, employment: String, Education: String, major: String, period: String, process: String, applyURL: String) {
+    convenience init(policyID: String, title: String, introduce: String, category: String, age: String, employment: String, education: String,specialization: String, major: String, period: String, process: String, applyURL: String) {
         self.init()
         self.policyID = policyID
         self.title = title
@@ -65,7 +66,8 @@ class RealmPolicyData: Object {
         self.category = category
         self.age = age
         self.employment = employment
-        self.Education = Education
+        self.education = education
+        self.specialization = specialization
         self.major = major
         self.period = period
         self.process = process

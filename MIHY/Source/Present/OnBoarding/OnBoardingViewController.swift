@@ -81,18 +81,26 @@ class OnBoardingViewController: BaseViewController {
                 make.edges.equalTo(view.safeAreaLayoutGuide)
             }
             
+            view.addSubview(nextButton)
+            nextButton.snp.makeConstraints { make in
+                make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(100)
+                make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
+                make.height.equalTo(50)
+            }
+            
         case .policy, .region, .myInfo:
             view.addSubview(onBoardingCollectionView)
             onBoardingCollectionView.snp.makeConstraints { make in
-                make.edges.equalTo(view.safeAreaLayoutGuide)
+                make.leading.trailing.top.equalTo(view.safeAreaLayoutGuide)
             }
-        }
-        
-        view.addSubview(nextButton)
-        nextButton.snp.makeConstraints { make in
-            make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(100)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(30)
-            make.height.equalTo(50)
+            
+            view.addSubview(nextButton)
+            nextButton.snp.makeConstraints { make in
+                make.leading.trailing.equalToSuperview().inset(100)
+                make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
+                make.top.equalTo(onBoardingCollectionView.snp.bottom).offset(10)
+                make.height.equalTo(50)
+            }
         }
     }
     
@@ -156,12 +164,13 @@ class OnBoardingViewController: BaseViewController {
                 
                 UserDefaults.standard.set(true, forKey: "checkedSetData")
                 let vc = TabbarViewController(index: .policy)
-                sceneDelegate?.window?.rootViewController = UINavigationController(rootViewController: vc)
+                sceneDelegate?.window?.rootViewController = vc
                 UIView.transition(with: (sceneDelegate?.window)!, duration: 0.4, options: [.transitionCrossDissolve], animations: nil, completion: nil)
                 sceneDelegate?.window?.makeKeyAndVisible()
             }
             return
         }
+        
         let viewController = OnBoardingViewController(type: type, viewModel: viewModel)
         transition(viewController, transitionStyle: .push)
     }
@@ -190,7 +199,7 @@ extension OnBoardingViewController {
             UIView.animate(withDuration: 0) {
                 self.nextButton.frame.origin.y -= keyboardHeight
                 self.nextButton.snp.updateConstraints { make in
-                    make.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(30 + keyboardHeight)
+                    make.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(20 + keyboardHeight)
                 }
             } completion: { _ in
                 self.view.layoutIfNeeded()
@@ -207,7 +216,7 @@ extension OnBoardingViewController {
             UIView.animate(withDuration: 0) {
                 self.nextButton.frame.origin.y += keyboardHeight
                 self.nextButton.snp.updateConstraints { make in
-                    make.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(30)
+                    make.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(20)
                 }
             } completion: { _ in
                 self.view.layoutIfNeeded()

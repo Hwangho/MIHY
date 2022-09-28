@@ -14,15 +14,25 @@ class OnBoardingCollectionViewHeaderView: UICollectionReusableView {
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
-        addSubview(titleLabel)
-        titleLabel.snp.makeConstraints { make in
-            make.verticalEdges.equalToSuperview().inset(10)
-            make.leading.equalToSuperview()
-        }
+        
+        setupAttribute()
+        setupLayout()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
         
+    
+    func setupAttribute() {
+        titleLabel.font = Font.medium.scaledFont(size: .onBoardingSectionTitle)
+    }
+    
+    func setupLayout() {
+        addSubview(titleLabel)
+        titleLabel.snp.makeConstraints { make in
+            make.verticalEdges.equalToSuperview().inset(10)
+            make.leading.equalToSuperview()
+        }
+    }
 }

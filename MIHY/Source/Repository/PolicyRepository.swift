@@ -55,17 +55,19 @@ struct PolicyRepository: PolicyRepositoryProtocol {
                                 let employment = xml["empmSttsCn"].element?.text
                                 let Education = xml["accrRqisCn"].element?.text
                                 let major = xml["majrRqisCn"].element?.text
+                                let specialization = xml["splzRlmRqisCn"].element?.text
                                 let period = xml["rqutPrdCn"].element?.text
                                 let process = xml["rqutProcCn"].element?.text
                                 let applyURL = xml["rqutUrla"].element?.text
-                                
+
                                 let realmData = RealmPolicyData(policyID: ID ?? "",
                                                                 title: title ?? "",
                                                                 introduce: introduce ?? "",
                                                                 category: category ?? "",
                                                                 age:  age ?? "",
                                                                 employment: employment ?? "",
-                                                                Education: Education ?? "",
+                                                                education: Education ?? "",
+                                                                specialization: specialization ?? "",
                                                                 major: major ?? "",
                                                                 period: period ?? "",
                                                                 process: process ?? "",

@@ -69,7 +69,7 @@ enum MyInfo {
 
 // 1. 취업 상태
 enum EmploymentStatus: String, CaseIterable {
-    case all = "전체"                     // 전체
+//    case all = "전체"                     // 전체
     case employed = "재직자"               // 재직자
     case unemployed = "미취업자"            // 미취업자
     case selfemployed = "자영업자"          // 자영업자
@@ -82,7 +82,7 @@ enum EmploymentStatus: String, CaseIterable {
     
     var data: (MyInfo.caseType, String) {
         switch self {
-        case .all: return (.employmentStatus, "전체")
+//        case .all: return (.employmentStatus, "전체")
         case .employed: return (.employmentStatus,"재직자")
         case .unemployed: return (.employmentStatus,"미취업자")
         case .selfemployed: return (.employmentStatus,"자영업자")
@@ -99,7 +99,7 @@ enum EmploymentStatus: String, CaseIterable {
 
 // 2. 학력
 enum Education: String, CaseIterable {
-    case all = "전체"                       // 전체
+//    case all = "전체"                       // 전체
     case lessH = "고졸미만"                  // 고졸미만
     case attendingH = "고교재학"             // 고교재학
     case intendedgraduationH = "고졸예정"    // 고졸예정
@@ -112,7 +112,7 @@ enum Education: String, CaseIterable {
     
     var data: (MyInfo.caseType, String) {
         switch self {
-        case .all: return (.education, "전체")
+//        case .all: return (.education, "전체")
         case .lessH: return (.education,"고졸미만")
         case .attendingH: return (.education,"고교재학")
         case .intendedgraduationH: return (.education,"고졸예정")
@@ -128,7 +128,7 @@ enum Education: String, CaseIterable {
 
 // 3. 특화분야
 enum Specialization: String, CaseIterable {
-    case all = "전체"             // 전체
+//    case all = "전체"             // 전체
     case smallbusiness = "중소기업" // 중소기업
     case female = "여성"          // 여성
     case lowincome = "저소득층"     // 저소득층
@@ -140,7 +140,7 @@ enum Specialization: String, CaseIterable {
     
     var data: (MyInfo.caseType, String) {
         switch self {
-        case .all: return (.specialization, "전체")
+//        case .all: return (.specialization, "전체")
         case .smallbusiness: return (.specialization,"중소기업")
         case .female: return (.specialization,"여성")
         case .lowincome: return (.specialization,"저소득층")

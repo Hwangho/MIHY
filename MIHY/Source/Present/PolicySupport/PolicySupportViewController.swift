@@ -122,7 +122,7 @@ extension PolicySupportViewController: UITableViewDataSource, UITableViewDelegat
             return headerView
             
         case .newPolicy, .oldPolicy:
-            let headerView = PolicySupportScetionHeaderFooterView(type: .header)
+            let headerView = PolicySupportScetionHeaderFooterView(type: .header(type))
             headerView.titleLabel.text = type.title
             return headerView
         }
@@ -139,35 +139,12 @@ extension PolicySupportViewController: UITableViewDataSource, UITableViewDelegat
             return nil
         }
     }
-
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//
-//        let type = viewModel.policyDataArray[section].cellType
-//        switch type {
-//        case .onlyHeader:
-//            return 250
-//        case .newPolicy, .oldPolicy:
-//            return 30
-//        }
-//    }
-//
-//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-//
-//        let type = viewModel.policyDataArray[section].cellType
-//        switch type {
-//        case .onlyHeader:
-//            return 30
-//        default:
-//            return 10
-//        }
-//    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let data = viewModel.policyDataArray[indexPath.section].data![indexPath.row]
-
         viewModel.realmService.updateClickData(data: data)
         
-        let vc = PolicySupoortDetailViewController()
+        let vc = PolicySupoortDetailViewController(data: data.data)
         transition(vc, transitionStyle: .push)
     }
     
@@ -201,12 +178,10 @@ extension PolicySupportViewController: CellDelegate {
 }
 
 
-
-
-
-extension PolicySupportViewController: taphiddenButton {
+// MARK: - taphiddenButton
+extension PolicySupportViewController: TapActionDelegate {
     
-    func tapHiddenPolicyButton() {
+    func tapActionButton() {
         let vc = HiddenPolicySupportViewController()
         transition(vc, transitionStyle: .push)
     }

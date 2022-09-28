@@ -13,7 +13,7 @@ import RealmSwift
 
 class HiddenPolicySupportViewController: BaseViewController {
     
-    
+    /// UI
     let tableView = UITableView(frame: .zero, style: .grouped)
     
     
@@ -22,7 +22,6 @@ class HiddenPolicySupportViewController: BaseViewController {
     
     
     /// Life Cycle
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fetchPolicyData()
@@ -46,6 +45,8 @@ class HiddenPolicySupportViewController: BaseViewController {
         viewModel.setdata()
     }
     
+    
+    /// Custom Func
     func fetchPolicyData() {
         viewModel.setdata()
         self.tableView.reloadData()
@@ -60,6 +61,7 @@ extension HiddenPolicySupportViewController: UITableViewDataSource, UITableViewD
         tableView.backgroundColor = .clear
         tableView.dataSource = self
         tableView.delegate = self
+        
         
         tableView.separatorStyle = .none
         tableView.register(PolicyTableViewViewCell.self, forCellReuseIdentifier: PolicyTableViewViewCell.reuseIdentifier)
@@ -76,7 +78,6 @@ extension HiddenPolicySupportViewController: UITableViewDataSource, UITableViewD
             return 0
         case .newPolicy, .oldPolicy:
             return data.data!.count
-
         }
     }
     
@@ -99,60 +100,11 @@ extension HiddenPolicySupportViewController: UITableViewDataSource, UITableViewD
         }
     }
     
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let type = viewModel.policyDataArray[section].cellType
-//
-//        switch type {
-//        case .onlyHeader:
-//            let headerView = PolicySupportHeaderView()
-//            headerView.backgroundColor = .orange
-//            return headerView
-//
-//        case .newPolicy, .oldPolicy:
-//            let headerView = PolicySupportScetionHeaderFooterView(type: .header)
-//            headerView.titleLabel.text = type.title
-//            return headerView
-//        }
-//    }
-//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-//        let type = viewModel.policyDataArray[section].cellType
-//
-//        switch type {
-//        case .onlyHeader:
-//            let footerView = PolicySupportScetionHeaderFooterView(type: .footer)
-//            return footerView
-//        default:
-//            return nil
-//        }
-//    }
-
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//
-//        let type = viewModel.policyDataArray[section].cellType
-//        switch type {
-//        case .onlyHeader:
-//            return 250
-//        case .newPolicy, .oldPolicy:
-//            return 20
-//        }
-//    }
-//
-//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-//
-//        let type = viewModel.policyDataArray[section].cellType
-//        switch type {
-//        case .onlyHeader:
-//            return 40
-//        default:
-//            return 10
-//        }
-//    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let data = viewModel.policyDataArray[indexPath.section].data![indexPath.row]
         viewModel.realmService.updateClickData(data: data)
         
-        let vc = PolicySupoortDetailViewController()
+        let vc = PolicySupoortDetailViewController(data: data.data)
         transition(vc, transitionStyle: .push)
     }
     
@@ -161,9 +113,9 @@ extension HiddenPolicySupportViewController: UITableViewDataSource, UITableViewD
 
 // MARK: - CellDelegate
 extension HiddenPolicySupportViewController: CellDelegate {
+
     func swipeCell(indexPath: IndexPath) {
         let data = viewModel.policyDataArray[indexPath.section].data![indexPath.row]
-//        let data = viewModel.realmService.PolicySupportData[indexPath.item]
 
         UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseIn], animations: {
             guard let cell = self.tableView.cellForRow(at: indexPath) as? PolicyTableViewViewCell else{

@@ -14,8 +14,6 @@ class HiddenPolicySupportViewModel {
     
     var onBoardingData: [OnBoardingQuestionType: Any] = [:]
     
-//    var data: [PolicySupport] = []
-    
     let service: PolicyRepositoryProtocol
     
     let realmService = RealmService(type: .hidden)

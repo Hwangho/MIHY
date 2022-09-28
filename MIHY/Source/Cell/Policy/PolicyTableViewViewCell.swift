@@ -162,10 +162,13 @@ extension PolicyTableViewViewCell {
     func didPanAction(_ sender: UIPanGestureRecognizer) {
         let changedX = sender.translation(in: backView).x
         initialXPosition += changedX
+
+        let velocity = sender.velocity(in: self.contentView)
+        if abs(velocity.y) > abs(velocity.x) {
+            return
+        }
+
         
-        
-//        print("----> \(initialXPosition)")
-        if sender.velocity(in: backView).x.magnitude > sender.velocity(in: backView).y.magnitude {
             switch sender.state {
 
             case .ended:
@@ -177,9 +180,9 @@ extension PolicyTableViewViewCell {
                         self.layoutIfNeeded()
                     }
                 }
-                else if initialXPosition < -(contentView.frame.width/2){
+                else if initialXPosition <= -(contentView.frame.width/2){
                     self.leadingConstraint?.update(offset: -(self.backView.frame.size.width))
-
+                    
                     UIView.animate(withDuration: 0.2) {
                         self.layoutIfNeeded()
                     }
@@ -189,30 +192,33 @@ extension PolicyTableViewViewCell {
                         self.leadingConstraint?.update(offset: 0)
                         self.layoutIfNeeded()
                     }
-
-                }else {
-                    self.leadingConstraint?.update(offset:0)
-
-                    UIView.animate(withDuration: 0.1) {
-                        self.layoutIfNeeded()
-                    }
-                }
-
-            default:
-                if initialXPosition < 0 {
-                    hiddenButtonStackView.frame.size.width = -(initialXPosition) - 15
-                    self.leadingConstraint.update(offset: initialXPosition)
-
-                    UIView.animate(withDuration: 0.1) {
-                        self.layoutIfNeeded()
-                    }
+                    
                 }
                 else {
-                    initialXPosition = 0
+                    self.leadingConstraint?.update(offset:0)
+                    
+                    UIView.animate(withDuration: 0.1) {
+                        self.layoutIfNeeded()
+                    }
                 }
-                sender.setTranslation(CGPoint.zero, in: self.backView)
+                
+            default:
+                if abs(velocity.y) < abs(velocity.x) + 30 {
+                    if initialXPosition < 0 {
+                        hiddenButtonStackView.frame.size.width = -(initialXPosition)
+                        self.leadingConstraint.update(offset: initialXPosition)
+                        
+                        UIView.animate(withDuration: 0.1) {
+                            self.layoutIfNeeded()
+                        }
+                    }
+                    else {
+                        initialXPosition = 0
+                    }
+                    sender.setTranslation(CGPoint.zero, in: self.backView)
+                }
             }
-        }
+        
         
     }
     

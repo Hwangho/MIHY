@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0EA180CA28E467D000489C3A /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA180C928E467D000489C3A /* String+Extension.swift */; };
 		0EB22BDC28D58F4300E745E5 /* OnBoardingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB22BDB28D58F4300E745E5 /* OnBoardingCollectionView.swift */; };
 		0EB22BDE28D5A7D700E745E5 /* OnBoardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB22BDD28D5A7D700E745E5 /* OnBoardingViewModel.swift */; };
 		0EB22BE128D9B14400E745E5 /* PolicyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB22BE028D9B14400E745E5 /* PolicyType.swift */; };
@@ -31,6 +32,11 @@
 		0EB22C4E28E17AA900E745E5 /* PolicySupportDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB22C4D28E17AA900E745E5 /* PolicySupportDetailViewController.swift */; };
 		0ECA2F5528E2BB0D0006D9AC /* HiddenPolicySupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECA2F5428E2BB0D0006D9AC /* HiddenPolicySupportViewController.swift */; };
 		0ECA2F5728E2BB330006D9AC /* HiddenPolicySupportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECA2F5628E2BB330006D9AC /* HiddenPolicySupportViewModel.swift */; };
+		0ECA2F5A28E2EB6D0006D9AC /* PolicySupportDetailContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECA2F5928E2EB6D0006D9AC /* PolicySupportDetailContentView.swift */; };
+		0ECA2F5C28E2EB860006D9AC /* PolicySupportDetailPeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECA2F5B28E2EB860006D9AC /* PolicySupportDetailPeriodView.swift */; };
+		0ECA2F5E28E2EBAB0006D9AC /* PolicySupportDetailApllyQulificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECA2F5D28E2EBAB0006D9AC /* PolicySupportDetailApllyQulificationView.swift */; };
+		0ECA2F6028E2EBCC0006D9AC /* PolicySupportDetailProcessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECA2F5F28E2EBCC0006D9AC /* PolicySupportDetailProcessView.swift */; };
+		0ECA2F6228E2EBE20006D9AC /* PolicySupportPeriodDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECA2F6128E2EBE20006D9AC /* PolicySupportPeriodDetailView.swift */; };
 		0EDE841F28CDAE28003B7191 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDE841E28CDAE28003B7191 /* AppDelegate.swift */; };
 		0EDE842128CDAE28003B7191 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDE842028CDAE28003B7191 /* SceneDelegate.swift */; };
 		0EDE842828CDAE2A003B7191 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EDE842728CDAE2A003B7191 /* Assets.xcassets */; };
@@ -86,6 +92,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0EA180C928E467D000489C3A /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		0EB22BDB28D58F4300E745E5 /* OnBoardingCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingCollectionView.swift; sourceTree = "<group>"; };
 		0EB22BDD28D5A7D700E745E5 /* OnBoardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewModel.swift; sourceTree = "<group>"; };
 		0EB22BE028D9B14400E745E5 /* PolicyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyType.swift; sourceTree = "<group>"; };
@@ -108,6 +115,11 @@
 		0EB22C4D28E17AA900E745E5 /* PolicySupportDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicySupportDetailViewController.swift; sourceTree = "<group>"; };
 		0ECA2F5428E2BB0D0006D9AC /* HiddenPolicySupportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiddenPolicySupportViewController.swift; sourceTree = "<group>"; };
 		0ECA2F5628E2BB330006D9AC /* HiddenPolicySupportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiddenPolicySupportViewModel.swift; sourceTree = "<group>"; };
+		0ECA2F5928E2EB6D0006D9AC /* PolicySupportDetailContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicySupportDetailContentView.swift; sourceTree = "<group>"; };
+		0ECA2F5B28E2EB860006D9AC /* PolicySupportDetailPeriodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicySupportDetailPeriodView.swift; sourceTree = "<group>"; };
+		0ECA2F5D28E2EBAB0006D9AC /* PolicySupportDetailApllyQulificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicySupportDetailApllyQulificationView.swift; sourceTree = "<group>"; };
+		0ECA2F5F28E2EBCC0006D9AC /* PolicySupportDetailProcessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicySupportDetailProcessView.swift; sourceTree = "<group>"; };
+		0ECA2F6128E2EBE20006D9AC /* PolicySupportPeriodDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicySupportPeriodDetailView.swift; sourceTree = "<group>"; };
 		0EDE841B28CDAE27003B7191 /* MIHY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MIHY.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EDE841E28CDAE28003B7191 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0EDE842028CDAE28003B7191 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -176,6 +188,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0EA180C828E467C000489C3A /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				0EA180C928E467D000489C3A /* String+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		0EB22BDF28D9B12500E745E5 /* Enum */ = {
 			isa = PBXGroup;
 			children = (
@@ -268,6 +288,18 @@
 			path = PolicySupportDetail;
 			sourceTree = "<group>";
 		};
+		0ECA2F5828E2E72F0006D9AC /* PolicySupport */ = {
+			isa = PBXGroup;
+			children = (
+				0ECA2F5928E2EB6D0006D9AC /* PolicySupportDetailContentView.swift */,
+				0ECA2F5B28E2EB860006D9AC /* PolicySupportDetailPeriodView.swift */,
+				0ECA2F5D28E2EBAB0006D9AC /* PolicySupportDetailApllyQulificationView.swift */,
+				0ECA2F5F28E2EBCC0006D9AC /* PolicySupportDetailProcessView.swift */,
+				0ECA2F6128E2EBE20006D9AC /* PolicySupportPeriodDetailView.swift */,
+			);
+			path = PolicySupport;
+			sourceTree = "<group>";
+		};
 		0EDE841228CDAE27003B7191 = {
 			isa = PBXGroup;
 			children = (
@@ -318,6 +350,7 @@
 		0EDE844E28CDAE5B003B7191 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				0EA180C828E467C000489C3A /* Extension */,
 				0EDE848F28CDCC4E003B7191 /* Observable.swift */,
 				0EDE845028CDAEFC003B7191 /* Present */,
 				0EDE84A228D1BE53003B7191 /* View */,
@@ -505,6 +538,7 @@
 		0EDE84A228D1BE53003B7191 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0ECA2F5828E2E72F0006D9AC /* PolicySupport */,
 				0EDE84A328D1BE6F003B7191 /* OnBoardingTextFieldView.swift */,
 				0EB22BDB28D58F4300E745E5 /* OnBoardingCollectionView.swift */,
 				0EB22BEC28DAEC9D00E745E5 /* TagFlowLayout.swift */,
@@ -668,15 +702,18 @@
 				0EDE846528CDB1AC003B7191 /* FileMangager+Extension.swift in Sources */,
 				0EB22BF128DAFE6D00E745E5 /* OnBoardingCollectionViewModel.swift in Sources */,
 				0EDE849F28D17DF2003B7191 /* OnBoardingViewController.swift in Sources */,
+				0EA180CA28E467D000489C3A /* String+Extension.swift in Sources */,
 				0EDE845228CDAF35003B7191 /* PolicySupportViewController.swift in Sources */,
 				0EB22BF328DB002A00E745E5 /* OnBoardingTextFieldViewViewModel.swift in Sources */,
 				0EDE848B28CDC7C5003B7191 /* PolicyRepository.swift in Sources */,
 				0EDE848528CDBF1E003B7191 /* PolicyRouter.swift in Sources */,
+				0ECA2F6228E2EBE20006D9AC /* PolicySupportPeriodDetailView.swift in Sources */,
 				0EB22BEA28D9B29100E745E5 /* OnBoardingCollectionCell.swift in Sources */,
 				0EB22BE728D9B1E000E745E5 /* OnBoardingQuestionType.swift in Sources */,
 				0EDE84A428D1BE6F003B7191 /* OnBoardingTextFieldView.swift in Sources */,
 				0EDE846E28CDB1AC003B7191 /* Color.swift in Sources */,
 				0EDE849728CE079D003B7191 /* PolicySupport.swift in Sources */,
+				0ECA2F5E28E2EBAB0006D9AC /* PolicySupportDetailApllyQulificationView.swift in Sources */,
 				0EDE848E28CDCC0B003B7191 /* PolicySupportViewModel.swift in Sources */,
 				0EDE846C28CDB1AC003B7191 /* Theme.swift in Sources */,
 				0EB22BE528D9B17B00E745E5 /* MyInfo.swift in Sources */,
@@ -689,6 +726,7 @@
 				0ECA2F5728E2BB330006D9AC /* HiddenPolicySupportViewModel.swift in Sources */,
 				0EDE847228CDB20C003B7191 /* TabbarViewController.swift in Sources */,
 				0EDE846F28CDB1AC003B7191 /* ReusableProtocol.swift in Sources */,
+				0ECA2F5A28E2EB6D0006D9AC /* PolicySupportDetailContentView.swift in Sources */,
 				0EDE846828CDB1AC003B7191 /* BaseTableViewCell.swift in Sources */,
 				0EDE847628CDB9E0003B7191 /* SpaceRentalViewController.swift in Sources */,
 				0EDE846D28CDB1AC003B7191 /* Font.swift in Sources */,
@@ -697,7 +735,9 @@
 				0EDE849028CDCC4E003B7191 /* Observable.swift in Sources */,
 				0EDE846628CDB1AC003B7191 /* Transition+Extension.swift in Sources */,
 				0EB22BE328D9B15E00E745E5 /* Region.swift in Sources */,
+				0ECA2F5C28E2EB860006D9AC /* PolicySupportDetailPeriodView.swift in Sources */,
 				0EDE846728CDB1AC003B7191 /* BaseViewController.swift in Sources */,
+				0ECA2F6028E2EBCC0006D9AC /* PolicySupportDetailProcessView.swift in Sources */,
 				0EB22BFA28DD430F00E745E5 /* RealmService.swift in Sources */,
 				0EDE847F28CDBC3E003B7191 /* APIKey.swift in Sources */,
 				0EDE849C28D067EA003B7191 /* User.swift in Sources */,

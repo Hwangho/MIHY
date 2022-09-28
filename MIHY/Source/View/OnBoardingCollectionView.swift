@@ -18,7 +18,7 @@ class OnBoardingCollectionView: BaseView {
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .clear
-        collectionView.contentInset = UIEdgeInsets(top: 15, left: 15, bottom: 100, right: 15)
+        collectionView.contentInset = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
         collectionView.showsVerticalScrollIndicator = false
         return collectionView
     }()
@@ -104,11 +104,19 @@ extension OnBoardingCollectionView: UICollectionViewDelegate, UICollectionViewDa
         cell.backgroundColor = .white
         switch type {
         case .policy:
-            cell.titleLabel.text = PolicyType.allSection[indexPath.section][indexPath.row].rowTitle
+            let text = PolicyType.allSection[indexPath.section][indexPath.row].rowTitle
+            cell.titleLabel.text = text
+            let dataArray = viewModel.policyDatas.value.values.flatMap { $0 }
+            cell.isSelected =  dataArray.contains(text)
+            
         case .region:
             cell.titleLabel.text = Region.allCases[indexPath.row].title
+            
         case .myInfo:
-            cell.titleLabel.text = MyInfo.allSection[indexPath.section][indexPath.row].rowTitle
+            let text = MyInfo.allSection[indexPath.section][indexPath.row].rowTitle
+            cell.titleLabel.text = text
+            let dataArray = viewModel.myInfoDatas.value.values.flatMap { $0 }
+            cell.isSelected = dataArray.contains(text)
         default: break
         }
         return cell
@@ -131,14 +139,14 @@ extension OnBoardingCollectionView: UICollectionViewDelegate, UICollectionViewDa
             }
             return header
         default:
-            assert(false, "Don't use this kind.")
+            return UICollectionReusableView()
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         let width: CGFloat = collectionView.frame.width
         
-        return CGSize(width: width, height: 60)
+        return CGSize(width: width, height: 50)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -190,7 +198,7 @@ extension OnBoardingCollectionView: UICollectionViewDelegate, UICollectionViewDa
         case .myInfo:
             return cell.adjustCellSize(title: MyInfo.allSection[indexPath.section][indexPath.item].rowTitle)
         default:
-            assert(false, "잘못 들어감")
+            return .zero
         }
     }
     

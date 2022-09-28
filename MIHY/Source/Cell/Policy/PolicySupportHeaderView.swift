@@ -17,6 +17,8 @@ class PolicySupportHeaderView: BaseView {
     
     override func setupLayout() {
         
+        label.text = "야호"
+        
         addSubview(label)
         label.snp.makeConstraints { make in
             make.verticalEdges.equalToSuperview().inset(130)

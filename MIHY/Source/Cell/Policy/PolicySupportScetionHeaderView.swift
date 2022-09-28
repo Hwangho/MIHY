@@ -9,22 +9,28 @@ import UIKit
 
 import SnapKit
 
-protocol taphiddenButton {
-    func tapHiddenPolicyButton()
+protocol TapActionDelegate {
+    func tapActionButton()
 }
 
 class PolicySupportScetionHeaderFooterView: BaseView {
     
     enum sectionType {
-        case header
+        case header(SectionPolicySupport.type)
         case footer
     }
     
+    
+    /// UI
     let titleLabel = UILabel()
+    
+    let newImage = UIImageView()
     
     let hiddenPolicyButton = UIButton()
     
-    var delegate: taphiddenButton?
+    
+    /// Variable
+    var delegate: TapActionDelegate?
     
     let type: sectionType
     
@@ -42,22 +48,31 @@ class PolicySupportScetionHeaderFooterView: BaseView {
         titleLabel.font = Font.medium.scaledFont(size: .policyheaderTitlte)
         titleLabel.textColor = Color.BaseColor.title
         
+        newImage.image = UIImage(named: "new")
+        
         hiddenPolicyButton.setTitle("숨김정책", for: .normal)
         hiddenPolicyButton.titleLabel?.font = Font.light.scaledFont(size: .policyheaderhidden)
         hiddenPolicyButton.setTitleColor(Color.BaseColor.title, for: .normal)
         hiddenPolicyButton.addTarget(self, action: #selector(tapHiddenPolicyButton), for: .touchUpInside)
-
+        
         switch type {
-        case .header:
+        case .header(let value):
             hiddenPolicyButton.isHidden = true
+            switch value {
+            case .newPolicy:
+                newImage.isHidden = false
+            default:
+                newImage.isHidden = true
+            }
+            
         case .footer:
             titleLabel.isHidden = true
+            newImage.isHidden = true
         }
-        
     }
     
     override func setupLayout() {
-        [titleLabel, hiddenPolicyButton].forEach { view in
+        [titleLabel, newImage, hiddenPolicyButton].forEach { view in
             addSubview(view)
         }
         
@@ -65,6 +80,12 @@ class PolicySupportScetionHeaderFooterView: BaseView {
             make.leading.equalToSuperview().inset(20)
             make.bottom.equalToSuperview()
             make.top.equalTo(15)
+        }
+        
+        newImage.snp.makeConstraints { make in
+            make.leading.equalTo(titleLabel.snp.trailing).offset(-3)
+            make.bottom.equalTo(titleLabel.snp.top).offset(8)
+            make.width.height.equalTo(20)
         }
         
         hiddenPolicyButton.snp.makeConstraints { make in
@@ -76,6 +97,6 @@ class PolicySupportScetionHeaderFooterView: BaseView {
     
     @objc
     func tapHiddenPolicyButton() {
-        delegate?.tapHiddenPolicyButton()
+        delegate?.tapActionButton()
     }
 }
