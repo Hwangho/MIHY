@@ -57,11 +57,9 @@ class PolicySupportPeriodDetailView: BaseView {
         copyButton.backgroundColor = .lightGray
         copyButton.layer.cornerRadius = 5
         copyButton.addTarget(self, action: #selector(tapCopy), for: .touchUpInside)
-        
     }
     
     override func setupLayout() {
-        
         [titleLabel, arrowLabel, contentButton, copyButton].forEach { view in
             addSubview(view)
         }

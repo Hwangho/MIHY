@@ -118,7 +118,6 @@ extension PolicySupportViewController: UITableViewDataSource, UITableViewDelegat
         switch type {
         case .onlyHeader:
             let headerView = PolicySupportHeaderView()
-            headerView.backgroundColor = .orange
             return headerView
             
         case .newPolicy, .oldPolicy:

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0EA180CA28E467D000489C3A /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA180C928E467D000489C3A /* String+Extension.swift */; };
+		0EA180CE28E589FA00489C3A /* headerRoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA180CD28E589FA00489C3A /* headerRoundView.swift */; };
 		0EB22BDC28D58F4300E745E5 /* OnBoardingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB22BDB28D58F4300E745E5 /* OnBoardingCollectionView.swift */; };
 		0EB22BDE28D5A7D700E745E5 /* OnBoardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB22BDD28D5A7D700E745E5 /* OnBoardingViewModel.swift */; };
 		0EB22BE128D9B14400E745E5 /* PolicyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB22BE028D9B14400E745E5 /* PolicyType.swift */; };
@@ -93,6 +94,7 @@
 
 /* Begin PBXFileReference section */
 		0EA180C928E467D000489C3A /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		0EA180CD28E589FA00489C3A /* headerRoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = headerRoundView.swift; sourceTree = "<group>"; };
 		0EB22BDB28D58F4300E745E5 /* OnBoardingCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingCollectionView.swift; sourceTree = "<group>"; };
 		0EB22BDD28D5A7D700E745E5 /* OnBoardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewModel.swift; sourceTree = "<group>"; };
 		0EB22BE028D9B14400E745E5 /* PolicyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyType.swift; sourceTree = "<group>"; };
@@ -196,6 +198,23 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		0EA180CB28E589E000489C3A /* OnBoarding */ = {
+			isa = PBXGroup;
+			children = (
+				0EDE84A328D1BE6F003B7191 /* OnBoardingTextFieldView.swift */,
+				0EB22BDB28D58F4300E745E5 /* OnBoardingCollectionView.swift */,
+			);
+			path = OnBoarding;
+			sourceTree = "<group>";
+		};
+		0EA180CC28E589EB00489C3A /* PolicySupport */ = {
+			isa = PBXGroup;
+			children = (
+				0EA180CD28E589FA00489C3A /* headerRoundView.swift */,
+			);
+			path = PolicySupport;
+			sourceTree = "<group>";
+		};
 		0EB22BDF28D9B12500E745E5 /* Enum */ = {
 			isa = PBXGroup;
 			children = (
@@ -288,7 +307,7 @@
 			path = PolicySupportDetail;
 			sourceTree = "<group>";
 		};
-		0ECA2F5828E2E72F0006D9AC /* PolicySupport */ = {
+		0ECA2F5828E2E72F0006D9AC /* PolicySupportDetail */ = {
 			isa = PBXGroup;
 			children = (
 				0ECA2F5928E2EB6D0006D9AC /* PolicySupportDetailContentView.swift */,
@@ -297,7 +316,7 @@
 				0ECA2F5F28E2EBCC0006D9AC /* PolicySupportDetailProcessView.swift */,
 				0ECA2F6128E2EBE20006D9AC /* PolicySupportPeriodDetailView.swift */,
 			);
-			path = PolicySupport;
+			path = PolicySupportDetail;
 			sourceTree = "<group>";
 		};
 		0EDE841228CDAE27003B7191 = {
@@ -538,9 +557,9 @@
 		0EDE84A228D1BE53003B7191 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0ECA2F5828E2E72F0006D9AC /* PolicySupport */,
-				0EDE84A328D1BE6F003B7191 /* OnBoardingTextFieldView.swift */,
-				0EB22BDB28D58F4300E745E5 /* OnBoardingCollectionView.swift */,
+				0EA180CB28E589E000489C3A /* OnBoarding */,
+				0EA180CC28E589EB00489C3A /* PolicySupport */,
+				0ECA2F5828E2E72F0006D9AC /* PolicySupportDetail */,
 				0EB22BEC28DAEC9D00E745E5 /* TagFlowLayout.swift */,
 			);
 			path = View;
@@ -740,6 +759,7 @@
 				0ECA2F6028E2EBCC0006D9AC /* PolicySupportDetailProcessView.swift in Sources */,
 				0EB22BFA28DD430F00E745E5 /* RealmService.swift in Sources */,
 				0EDE847F28CDBC3E003B7191 /* APIKey.swift in Sources */,
+				0EA180CE28E589FA00489C3A /* headerRoundView.swift in Sources */,
 				0EDE849C28D067EA003B7191 /* User.swift in Sources */,
 				0EB22C4E28E17AA900E745E5 /* PolicySupportDetailViewController.swift in Sources */,
 				0EB22BF528DB1DA300E745E5 /* RouterManager.swift in Sources */,
@@ -920,7 +940,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -949,7 +969,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
