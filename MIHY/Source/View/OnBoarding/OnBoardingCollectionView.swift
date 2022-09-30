@@ -27,14 +27,16 @@ class OnBoardingCollectionView: BaseView {
     /// Variable
     let type: OnBoardingQuestionType
     
-    lazy var viewModel = OnBoardingCollectionViewModel(type: type)
+    let viewModel: OnBoardingCollectionViewModel
     
     var array: [PolicyType] = []
     
     
     /// Initialize
-    init(type: OnBoardingQuestionType) {
+    init(type: OnBoardingQuestionType, onboardingData: [OnBoardingQuestionType: Any] = [:]) {
         self.type = type
+        self.viewModel = OnBoardingCollectionViewModel(type: type)
+        self.viewModel.onBoardingData = onboardingData
         super.init(frame: .zero)
     }
     
@@ -53,6 +55,38 @@ class OnBoardingCollectionView: BaseView {
         addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
+        }
+    }
+    
+    override func setBinding() {
+        switch type {
+        case .policy:
+            guard let array = viewModel.onBoardingData[.policy] as? [PolicyType.caseType: [String]] else { return }
+            
+            array.forEach { [weak self] key, arrayvalue in
+                arrayvalue.forEach { value in
+                    self?.viewModel.appendPolicyData(key: key, value: value)
+                }
+            }
+            
+        case .region:
+            guard let region = viewModel.onBoardingData[.region] as? Region? else { return }
+            self.viewModel.regionData.value = region
+            
+        case .myInfo:
+            guard let array = viewModel.onBoardingData[.myInfo] as? [[MyInfo.caseType: [String]]] else { return }
+            
+            array.forEach { [weak self] dic in
+                dic.forEach { key, values in
+                    values.forEach { value in
+                        self?.viewModel.appendmyInfoData(key: key, value: value)
+                    }
+                }
+            }
+            
+            
+        default:
+            break
         }
     }
     
@@ -107,16 +141,29 @@ extension OnBoardingCollectionView: UICollectionViewDelegate, UICollectionViewDa
             let text = PolicyType.allSection[indexPath.section][indexPath.row].rowTitle
             cell.titleLabel.text = text
             let dataArray = viewModel.policyDatas.value.values.flatMap { $0 }
-            cell.isSelected =  dataArray.contains(text)
+            if dataArray.contains(PolicyType.allSection[indexPath.section][indexPath.row].checkedData.1) {
+                cell.isSelected = true
+                collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredVertically)
+            }
             
         case .region:
             cell.titleLabel.text = Region.allCases[indexPath.row].title
+            if Region.allCases[indexPath.row].title == viewModel.regionData.value?.title {
+            cell.isSelected = true
+            collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredVertically)
+            }
             
         case .myInfo:
             let text = MyInfo.allSection[indexPath.section][indexPath.row].rowTitle
             cell.titleLabel.text = text
             let dataArray = viewModel.myInfoDatas.value.values.flatMap { $0 }
-            cell.isSelected = dataArray.contains(text)
+            if dataArray.contains(text) {
+                cell.isSelected = true
+                collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredVertically)
+            }
+            
+//            let dataArray = viewModel.myInfoDatas.value.values.flatMap { $0 }
+//            cell.isSelected = dataArray.contains(text)
         default: break
         }
         return cell

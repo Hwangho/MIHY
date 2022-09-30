@@ -12,6 +12,8 @@ class OnBoardingCollectionViewModel {
     
     let type: OnBoardingQuestionType
     
+    var onBoardingData: [OnBoardingQuestionType: Any] = [:]
+    
     var policyDatas: Observable<[PolicyType.caseType: [String]]> = Observable([:])
     
     var regionData: Observable<Region?> = Observable(nil)

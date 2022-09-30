@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		0EA180CA28E467D000489C3A /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA180C928E467D000489C3A /* String+Extension.swift */; };
 		0EA180CE28E589FA00489C3A /* headerRoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA180CD28E589FA00489C3A /* headerRoundView.swift */; };
+		0EA180D128E58F4E00489C3A /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA180D028E58F4E00489C3A /* SettingViewController.swift */; };
+		0EA180D328E5C03E00489C3A /* UIAlertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA180D228E5C03E00489C3A /* UIAlertController+Extension.swift */; };
+		0EA180D628E5C24600489C3A /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA180D528E5C24600489C3A /* SettingViewModel.swift */; };
 		0EB22BDC28D58F4300E745E5 /* OnBoardingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB22BDB28D58F4300E745E5 /* OnBoardingCollectionView.swift */; };
 		0EB22BDE28D5A7D700E745E5 /* OnBoardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB22BDD28D5A7D700E745E5 /* OnBoardingViewModel.swift */; };
 		0EB22BE128D9B14400E745E5 /* PolicyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB22BE028D9B14400E745E5 /* PolicyType.swift */; };
@@ -95,6 +98,9 @@
 /* Begin PBXFileReference section */
 		0EA180C928E467D000489C3A /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		0EA180CD28E589FA00489C3A /* headerRoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = headerRoundView.swift; sourceTree = "<group>"; };
+		0EA180D028E58F4E00489C3A /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		0EA180D228E5C03E00489C3A /* UIAlertController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extension.swift"; sourceTree = "<group>"; };
+		0EA180D528E5C24600489C3A /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		0EB22BDB28D58F4300E745E5 /* OnBoardingCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingCollectionView.swift; sourceTree = "<group>"; };
 		0EB22BDD28D5A7D700E745E5 /* OnBoardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewModel.swift; sourceTree = "<group>"; };
 		0EB22BE028D9B14400E745E5 /* PolicyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyType.swift; sourceTree = "<group>"; };
@@ -194,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				0EA180C928E467D000489C3A /* String+Extension.swift */,
+				0EA180D228E5C03E00489C3A /* UIAlertController+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -213,6 +220,22 @@
 				0EA180CD28E589FA00489C3A /* headerRoundView.swift */,
 			);
 			path = PolicySupport;
+			sourceTree = "<group>";
+		};
+		0EA180CF28E58F3200489C3A /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				0EA180D028E58F4E00489C3A /* SettingViewController.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		0EA180D428E5C23F00489C3A /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				0EA180D528E5C24600489C3A /* SettingViewModel.swift */,
+			);
+			path = Setting;
 			sourceTree = "<group>";
 		};
 		0EB22BDF28D9B12500E745E5 /* Enum */ = {
@@ -369,7 +392,6 @@
 		0EDE844E28CDAE5B003B7191 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				0EA180C828E467C000489C3A /* Extension */,
 				0EDE848F28CDCC4E003B7191 /* Observable.swift */,
 				0EDE845028CDAEFC003B7191 /* Present */,
 				0EDE84A228D1BE53003B7191 /* View */,
@@ -382,6 +404,7 @@
 				0EDE848328CDBEF8003B7191 /* Router */,
 				0EDE849128CDD1E7003B7191 /* Manager */,
 				0EDE849828CE0802003B7191 /* Protocol */,
+				0EA180C828E467C000489C3A /* Extension */,
 				0EDE845528CDB1AC003B7191 /* Utility */,
 			);
 			path = Source;
@@ -407,6 +430,7 @@
 				0EB22C0028DD90A700E745E5 /* Tabbar */,
 				0EDE849D28D17CF2003B7191 /* OnBoarding */,
 				0EDE847028CDB1F0003B7191 /* PolicySupport */,
+				0EA180CF28E58F3200489C3A /* Setting */,
 				0EB22C4C28E17A8900E745E5 /* PolicySupportDetail */,
 				0EDE847428CDB9BD003B7191 /* SpaceRental */,
 			);
@@ -517,6 +541,7 @@
 			children = (
 				0EB22BF628DB77DA00E745E5 /* OnBoarding */,
 				0EB22BF728DB77F600E745E5 /* PolicySupport */,
+				0EA180D428E5C23F00489C3A /* Setting */,
 			);
 			path = VIewModel;
 			sourceTree = "<group>";
@@ -716,6 +741,7 @@
 				0EB22C0328DEE3DB00E745E5 /* PolicyTableViewViewCell.swift in Sources */,
 				0EB22BDE28D5A7D700E745E5 /* OnBoardingViewModel.swift in Sources */,
 				0EB22BEF28DAECBA00E745E5 /* OnBoardingCollectionViewHeaderView.swift in Sources */,
+				0EA180D128E58F4E00489C3A /* SettingViewController.swift in Sources */,
 				0EDE841F28CDAE28003B7191 /* AppDelegate.swift in Sources */,
 				0EDE846928CDB1AC003B7191 /* BaseCollectionViewCell.swift in Sources */,
 				0EDE846528CDB1AC003B7191 /* FileMangager+Extension.swift in Sources */,
@@ -734,6 +760,7 @@
 				0EDE849728CE079D003B7191 /* PolicySupport.swift in Sources */,
 				0ECA2F5E28E2EBAB0006D9AC /* PolicySupportDetailApllyQulificationView.swift in Sources */,
 				0EDE848E28CDCC0B003B7191 /* PolicySupportViewModel.swift in Sources */,
+				0EA180D328E5C03E00489C3A /* UIAlertController+Extension.swift in Sources */,
 				0EDE846C28CDB1AC003B7191 /* Theme.swift in Sources */,
 				0EB22BE528D9B17B00E745E5 /* MyInfo.swift in Sources */,
 				0EB22BE128D9B14400E745E5 /* PolicyType.swift in Sources */,
@@ -754,6 +781,7 @@
 				0EDE849028CDCC4E003B7191 /* Observable.swift in Sources */,
 				0EDE846628CDB1AC003B7191 /* Transition+Extension.swift in Sources */,
 				0EB22BE328D9B15E00E745E5 /* Region.swift in Sources */,
+				0EA180D628E5C24600489C3A /* SettingViewModel.swift in Sources */,
 				0ECA2F5C28E2EB860006D9AC /* PolicySupportDetailPeriodView.swift in Sources */,
 				0EDE846728CDB1AC003B7191 /* BaseViewController.swift in Sources */,
 				0ECA2F6028E2EBCC0006D9AC /* PolicySupportDetailProcessView.swift in Sources */,

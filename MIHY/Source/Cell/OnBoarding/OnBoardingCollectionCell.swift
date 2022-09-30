@@ -43,12 +43,7 @@ class OnBoardingCollectionCell: BaseCollectionViewCell {
         }
     }
     
-    /// Custom Func
-    func configure(title: String) {
-        titleLabel.text = title
-        self.setSelected(false)
-    }
-    
+    /// Custom Func    
     func adjustCellSize(title: String) -> CGSize {
         self.titleLabel.text = title
         let targetSize = CGSize(width: UIView.layoutFittingCompressedSize.width, height:35)

@@ -128,7 +128,7 @@ class headerRoundView: BaseView {
     override func setBinding() {
         
         switch roundType {
-        case .center: self.count.value = realmRepository.PolicySupportData.filter({ $0.newPolicy == false}).count
+        case .center: self.count.value = realmRepository.PolicySupportData.count
         case .left: self.count.value = realmRepository.PolicySupportData.filter({ $0.newPolicy == true}).count
         case .right: self.count.value = realmRepository.PolicySupportData.count
             

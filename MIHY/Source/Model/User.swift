@@ -10,18 +10,6 @@ import Foundation
 import RealmSwift
 import UIKit
 
-struct User {
-    var nickName: String
-    var birth: String?             // 생년월일
-    var category: [String]?        // User 정책유형
-    var region: String?            // User 지역
-    var employment: [String]?      // User 취업 상태
-    var Education: [String]?       // User 학력
-    var specialization: [String]?  // User 특화분야
-    var data: [PolicySupport]
-}
-
-
 
 class RealmUser: Object {
     

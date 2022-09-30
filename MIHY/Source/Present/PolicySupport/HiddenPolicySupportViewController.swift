@@ -136,5 +136,6 @@ extension HiddenPolicySupportViewController: CellDelegate {
             self.fetchPolicyData()
         })})
     }
+    
 }
 

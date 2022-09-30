@@ -66,11 +66,10 @@ class PolicySupportDetailApllyQulificationView: BaseView {
             make.leading.equalToSuperview().inset(20)
         }
         
-        
         stackView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(15)
             make.leading.equalTo(titleLabel.snp.leading)
-            make.trailing.greaterThanOrEqualToSuperview().inset(20)
+            make.trailing.lessThanOrEqualToSuperview().inset(20)
             make.bottom.equalToSuperview().inset(20)
         }
         
@@ -117,11 +116,14 @@ class PolicySupportDetailApllyQulificationView: BaseView {
             titleLabel.font = Font.medium.scaledFont(to: 14)
             
             contentLabel.font = Font.light.scaledFont(size: .cellContent)
+            contentLabel.numberOfLines = 0
         }
         
         override func setupLayout() {
             
-            titleLabel.setContentHuggingPriority(.init(rawValue: 800), for: .horizontal)
+            titleLabel.setContentHuggingPriority(.required, for: .horizontal)
+            titleLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
+
             [titleLabel, contentLabel].forEach { view in
                 stackView.addArrangedSubview(view)
             }

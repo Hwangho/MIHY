@@ -20,24 +20,27 @@ class OnBoardingViewController: BaseViewController {
     private let nextButton = UIButton()
     
     lazy var onBoardingTextFieldView: OnBoardingTextFieldView = {
-        return OnBoardingTextFieldView(type: onBoardingType)
+        return OnBoardingTextFieldView(type: onBoardingType, onboardingData: viewModel.onBoardingData)
     }()
     
     lazy var onBoardingCollectionView: OnBoardingCollectionView = {
-        return OnBoardingCollectionView(type: onBoardingType)
+        return OnBoardingCollectionView(type: onBoardingType, onboardingData: viewModel.onBoardingData)
     }()
     
     
     /// Variable
     private let onBoardingType: OnBoardingQuestionType
     
-    var viewModel: OnBoardingViewModel    
+    var viewModel: OnBoardingViewModel
+    
+    let isModify: Bool
     
     
     /// Initialize
-    init(type: OnBoardingQuestionType, viewModel: OnBoardingViewModel = OnBoardingViewModel()) {
+    init(type: OnBoardingQuestionType = .nickName, viewModel: OnBoardingViewModel = OnBoardingViewModel(), isModify: Bool = false) {
         self.onBoardingType = type
         self.viewModel = viewModel
+        self.isModify = isModify
         super.init()
     }
     
@@ -63,7 +66,7 @@ class OnBoardingViewController: BaseViewController {
     
     override func setupAttributes() {
         super.setupAttributes()
-        navigationItem.title = onBoardingType.title
+        navigationAttribute()
         
         stackView.axis = .vertical
         stackView.spacing = 30
@@ -158,7 +161,9 @@ class OnBoardingViewController: BaseViewController {
         guard let type = onBoardingType.nextOnBoarding else {
             let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
             let sceneDelegate = windowScene?.delegate as? SceneDelegate
-            
+            if isModify {
+                viewModel.realmService.deleDataAll()
+            }
             viewModel.myDataapi {[weak self] user in
                 self?.viewModel.realmService.addData(data: user)
                 
@@ -171,10 +176,22 @@ class OnBoardingViewController: BaseViewController {
             return
         }
         
-        let viewController = OnBoardingViewController(type: type, viewModel: viewModel)
+        let viewController = OnBoardingViewController(type: type, viewModel: viewModel, isModify: isModify)
         transition(viewController, transitionStyle: .push)
     }
     
+    func navigationAttribute() {
+        navigationItem.title = onBoardingType.title
+        
+        if isModify {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "취소", style: .done, target: self, action: #selector(cancleButton))
+        }
+    }
+    
+    @objc
+    func cancleButton() {
+        dismiss(animated: true)
+    }
 }
 
 

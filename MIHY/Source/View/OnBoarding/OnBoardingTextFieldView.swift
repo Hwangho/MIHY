@@ -33,9 +33,10 @@ class OnBoardingTextFieldView: BaseView {
     
     
     /// Initialize
-    init(type: OnBoardingQuestionType, viewModel: OnBoardingTextFieldViewViewModel = OnBoardingTextFieldViewViewModel()) {
+    init(type: OnBoardingQuestionType, viewModel: OnBoardingTextFieldViewViewModel = OnBoardingTextFieldViewViewModel(), onboardingData: [OnBoardingQuestionType: Any] = [:]) {
         self.type = type
         self.viewModel = viewModel
+        self.viewModel.onBoardingData = onboardingData
         super.init(frame: .zero)
     }
     
@@ -82,7 +83,11 @@ class OnBoardingTextFieldView: BaseView {
     
     override func setData() {
         contentTitle.text = type.sectionTitle
-        textField.placeholder = "\(type.title)을 입력해주세요."
+	        textField.placeholder = "\(type.title)을 입력해주세요."
+        
+        guard let text = viewModel.onBoardingData[type] as? String else { return }
+        viewModel.textFieldText.value = text
+        textField.text = text
     }
     
 }

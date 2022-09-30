@@ -10,4 +10,7 @@ import Foundation
 class OnBoardingTextFieldViewViewModel {
     
     var textFieldText: Observable<String> = Observable("")
+    
+    var onBoardingData: [OnBoardingQuestionType: Any] = [:]
+    
 }

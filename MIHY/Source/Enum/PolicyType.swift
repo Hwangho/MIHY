@@ -74,7 +74,7 @@ enum PolicyType: Hashable {
 
 
 // 1. 취업 지원
-enum EmploySupport:String, CaseIterable {
+enum EmploySupport: String, CaseIterable {
 //    case all = "전체"
     case intern = "교육훈련·체험·인턴"
     case smallenterprise = "중소(중견)기업 취업지원"

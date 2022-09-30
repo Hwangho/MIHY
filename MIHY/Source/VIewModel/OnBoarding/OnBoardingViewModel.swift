@@ -29,7 +29,7 @@ class OnBoardingViewModel {
         let birth = onBoardingData[.birth] as? String
         
         let policy = onBoardingData[.policy] as? [PolicyType.caseType: [String]]
-        let policySupport = policy!.values.flatMap { $0 }.joined(separator: ", ")
+        let policySupport = policy!.values.flatMap { $0 }.joined(separator: ",")
         
         let region = onBoardingData[.region] as? Region
         let city = region == nil ? "" : region!.rawValue
@@ -37,14 +37,6 @@ class OnBoardingViewModel {
         let myInfo = onBoardingData[.myInfo] as? [MyInfo.caseType: [String]]
         
         service.fetchPolicyData(policySupport: policySupport, city: city) { data in
-//            let user: User = User(nickName: nickName!,
-//                                  birth: birth,
-//                                  category: policy!.values.flatMap { $0 },
-//                                  region: city,
-//                                  employment: myInfo?[.employmentStatus],
-//                                  Education: myInfo?[.education],
-//                                  specialization: myInfo?[.specialization],
-//                                  data: data)
 
             let realmUser: RealmUser = RealmUser(nickName: nickName!,
                                                  birth: birth,

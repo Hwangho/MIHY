@@ -31,7 +31,7 @@ class PolicySupportViewController: BaseViewController {
     override func setupAttributes() {
         super.setupAttributes()
         settingTableView()
-        navigationItem.title = "청년 정책"
+        NavigationAttribute()
         
         guard let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
             showAlertMessage(title: "Document 파일 통로를 못찾았습니다.")
@@ -53,11 +53,24 @@ class PolicySupportViewController: BaseViewController {
         viewModel.setdata()
     }
     
+    
+    /// Custom Func
     func fetchPolicyData() {
         viewModel.setdata()
         self.tableView.reloadData()
     }
+    
+    func NavigationAttribute() {
+        navigationItem.title = "청년 정책"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gearshape"), style: .plain, target: self, action: #selector(tapSettingButton))
+    }
 
+    
+    @objc
+    func tapSettingButton() {
+        let vc = SettingViewController()
+        transition(vc, transitionStyle: .push)
+    }
 }
 
 
@@ -86,11 +99,6 @@ extension PolicySupportViewController: UITableViewDataSource, UITableViewDelegat
             return data.data!.count
 
         }
-//        if let policyDataArray = viewModel.policyDataArray[section].data {
-//            return policyDataArray.count
-//        } else {
-//            return 0
-//        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

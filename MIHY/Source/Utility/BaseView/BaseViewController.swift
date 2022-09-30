@@ -62,10 +62,19 @@ class BaseViewController: UIViewController {
         view.backgroundColor = Color.BaseColor.background
         
         navigationController?.navigationBar.tintColor = .black
-        let backButton  = UIBarButtonItem(title: nil, style: .plain, target: nil, action: nil)
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: Font.medium.scaledFont(size: .navigationTitle)]     // 색상 변경
-        navigationItem.backBarButtonItem = backButton
+        navigationController?.navigationBar.isTranslucent = false   /// navigation 반투명 상태 제거
+        navigationController?.navigationBar.backgroundColor = Color.BaseColor.background    /// bacground 색상
         
+        let navigationBarAppearance = UINavigationBarAppearance()
+        navigationBarAppearance.backgroundColor = Color.BaseColor.background
+        navigationBarAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: Color.BaseColor.title,
+                                                       NSAttributedString.Key.font: Font.medium.scaledFont(size: .navigationTitle)]
+
+        navigationController?.navigationBar.standardAppearance = navigationBarAppearance
+        navigationController?.navigationBar.scrollEdgeAppearance = navigationBarAppearance
+
+        let backButton  = UIBarButtonItem(title: nil, style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = backButton
     }
     
     
