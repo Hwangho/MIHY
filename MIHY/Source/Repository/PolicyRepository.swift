@@ -41,64 +41,58 @@ struct PolicyRepository: PolicyRepositoryProtocol {
                 var valueCount = 0
                 print(totalCount)
                 
+                
                 for  page in 1...totalAPICount {
                     dispatchGroup.enter()
                     
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                        router.AFRequest(target: Router.Policy(policySupport: policySupport, city: city, page: page, display: 100)).validate().responseData { response in
-                            switch response.result {
-                            case .success(let value):
+                    
+                    router.AFRequest(target: Router.Policy(policySupport: policySupport, city: city, page: page, display: 100)).validate().responseData { response in
+                        switch response.result {
+                        case .success(let value):
+                            
+                            let xmls = XMLHash.parse(value)
+                            
+                            xmls["empsInfo"]["emp"].all.forEach { xml in
+                                let ID = xml["bizId"].element?.text as? String
+                                let title = xml["polyBizSjnm"].element?.text
+                                let introduce = xml["polyItcnCn"].element?.text
+                                let category = xml["plcyTpNm"].element?.text
+                                let age = xml["ageInfo"].element?.text
+                                let employment = xml["empmSttsCn"].element?.text
+                                let Education = xml["accrRqisCn"].element?.text
+                                let major = xml["majrRqisCn"].element?.text
+                                let specialization = xml["splzRlmRqisCn"].element?.text
+                                let period = xml["rqutPrdCn"].element?.text
+                                let process = xml["rqutProcCn"].element?.text
+                                let applyURL = xml["rqutUrla"].element?.text
                                 
-                                let xmls = XMLHash.parse(value)
+                                let realmData = RealmPolicyData(policyID: ID ?? "",
+                                                                title: title ?? "",
+                                                                introduce: introduce ?? "",
+                                                                category: category ?? "",
+                                                                age:  age ?? "",
+                                                                employment: employment ?? "",
+                                                                education: Education ?? "",
+                                                                specialization: specialization ?? "",
+                                                                major: major ?? "",
+                                                                period: period ?? "",
+                                                                process: process ?? "",
+                                                                applyURL: applyURL ?? "")
                                 
-                                xmls["empsInfo"]["emp"].all.forEach { xml in
-                                    let ID = xml["bizId"].element?.text as? String
-                                    let title = xml["polyBizSjnm"].element?.text
-                                    let introduce = xml["polyItcnCn"].element?.text
-                                    let category = xml["plcyTpNm"].element?.text
-                                    let age = xml["ageInfo"].element?.text
-                                    let employment = xml["empmSttsCn"].element?.text
-                                    let Education = xml["accrRqisCn"].element?.text
-                                    let major = xml["majrRqisCn"].element?.text
-                                    let specialization = xml["splzRlmRqisCn"].element?.text
-                                    let period = xml["rqutPrdCn"].element?.text
-                                    let process = xml["rqutProcCn"].element?.text
-                                    let applyURL = xml["rqutUrla"].element?.text
-                                    
-                                    let realmData = RealmPolicyData(policyID: ID ?? "",
-                                                                    title: title ?? "",
-                                                                    introduce: introduce ?? "",
-                                                                    category: category ?? "",
-                                                                    age:  age ?? "",
-                                                                    employment: employment ?? "",
-                                                                    education: Education ?? "",
-                                                                    specialization: specialization ?? "",
-                                                                    major: major ?? "",
-                                                                    period: period ?? "",
-                                                                    process: process ?? "",
-                                                                    applyURL: applyURL ?? "")
-                                    
-                                    let realmPolicyData = RealmPolicySupport(isHidden: false, data: realmData)
-                                    
-                                    realmDatas.append(realmPolicyData)
-                                    
-                                    valueCount += 1
-                                    
-                                    print(valueCount)
-                                    print(realmDatas.count)
-                                }
+                                let realmPolicyData = RealmPolicySupport(isHidden: false, data: realmData)
                                 
+                                realmDatas.append(realmPolicyData)
                                 
-                                /// 마지막 for문을 돌고 api를 받았을 때 handler 처리
-                                dispatchGroup.leave()
-                                
-                                
-                            case .failure(let error):
-                                print(error)
+                                print(realmDatas.count)
                             }
                             
+                            /// 마지막 for문을 돌고 api를 받았을 때 handler 처리
+                            dispatchGroup.leave()
                             
+                        case .failure(let error):
+                            print(error)
                         }
+                        
                     }
                     
                 }
