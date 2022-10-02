@@ -135,8 +135,8 @@ class PolicyTableViewViewCell: BaseTableViewCell {
     
     /// Custom Func
     func configure(policyData: RealmPolicySupport) {
-        self.titleLabel.text = policyData.data?.title
-        self.contentLabel.text = policyData.data?.introduce
+        self.titleLabel.text = policyData.title
+        self.contentLabel.text = policyData.introduce
     }
     
 }

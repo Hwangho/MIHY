@@ -161,18 +161,16 @@ class OnBoardingViewController: BaseViewController {
         guard let type = onBoardingType.nextOnBoarding else {
             let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
             let sceneDelegate = windowScene?.delegate as? SceneDelegate
-            if isModify {
-                viewModel.realmService.deleDataAll()
-            }
-            viewModel.myDataapi {[weak self] user in
-                self?.viewModel.realmService.addData(data: user)
-                
-                UserDefaults.standard.set(true, forKey: "checkedSetData")
-                let vc = TabbarViewController(index: .policy)
-                sceneDelegate?.window?.rootViewController = vc
-                UIView.transition(with: (sceneDelegate?.window)!, duration: 0.4, options: [.transitionCrossDissolve], animations: nil, completion: nil)
-                sceneDelegate?.window?.makeKeyAndVisible()
-            }
+            
+
+            viewModel.myDataapi(isModify: isModify)  // realm 데이터 추가 및 수정
+            UserDefaults.standard.set(true, forKey: "checkedSetData")
+            
+            let vc = TabbarViewController(index: .policy)
+            sceneDelegate?.window?.rootViewController = vc
+            UIView.transition(with: (sceneDelegate?.window)!, duration: 0.4, options: [.transitionCrossDissolve], animations: nil, completion: nil)
+            sceneDelegate?.window?.makeKeyAndVisible()
+            
             return
         }
         

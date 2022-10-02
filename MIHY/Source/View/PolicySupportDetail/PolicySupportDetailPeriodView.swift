@@ -19,21 +19,6 @@ class PolicySupportDetailPeriodView: BaseView {
     let contentLabel = UILabel()
     
     
-    /// variable
-    private let data: RealmPolicyData?
-    
-    
-    /// Initialization
-    init(data: RealmPolicyData?) {
-        self.data = data
-        super.init(frame: .zero)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
     override func setupAttributes() {
         super.setupAttributes()
         
@@ -73,8 +58,9 @@ class PolicySupportDetailPeriodView: BaseView {
         }
     }
     
-    override func setData() {
-        contentLabel.text = data?.period
+
+    func configure(data: PolicySupport) {
+        contentLabel.text = data.period
     }
     
 }

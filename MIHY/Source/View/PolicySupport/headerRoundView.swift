@@ -8,6 +8,7 @@
 import UIKit
 
 import SnapKit
+import RealmSwift
 
 
 class headerRoundView: BaseView {
@@ -48,7 +49,7 @@ class headerRoundView: BaseView {
     
     let contentLabel = UILabel()
     
-    let realmRepository: RealmService
+    let realmRepository = RealmService.shared
     
     var count: Observable<Int> = Observable(0)
     
@@ -63,12 +64,6 @@ class headerRoundView: BaseView {
     init(multiplied: Float, type: headerRoundView.type) {
         self.Multiplied = multiplied
         self.roundType = type
-        
-        switch roundType {
-        case .center: self.realmRepository = RealmService(type: .nothidden)
-        case .left: self.realmRepository = RealmService(type: .nothidden)
-        case .right: self.realmRepository = RealmService(type: .hidden)
-        }
         
         super.init(frame: .zero)
     }
@@ -126,11 +121,11 @@ class headerRoundView: BaseView {
     }
     
     override func setBinding() {
-        
+        let totalCount = UserDefaults.standard.integer(forKey: "totalCount")
         switch roundType {
-        case .center: self.count.value = realmRepository.PolicySupportData.count
-        case .left: self.count.value = realmRepository.PolicySupportData.filter({ $0.newPolicy == true}).count
-        case .right: self.count.value = realmRepository.PolicySupportData.count
+        case .center: self.count.value = totalCount - realmRepository.PolicySupportData.filter{ $0.isHidden == true }.count  // total - 숨김 정책
+        case .left: self.count.value = totalCount - realmRepository.PolicySupportData.filter{ $0.newPolicy == false }.count  // 새로운 정책
+        case .right: self.count.value = realmRepository.PolicySupportData.filter{ $0.isHidden == true }.count
             
         }
         

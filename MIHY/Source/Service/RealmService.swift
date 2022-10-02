@@ -10,38 +10,24 @@ import UIKit
 
 
 
-class RealmService {
+final class RealmService {
     
-    enum dataType {
-        case all
-        case hidden
-        case nothidden
-    }
+    static let shared = RealmService()
     
     
     let localRealm = try! Realm()
     
     var PolicySupportData: Results<RealmPolicySupport>!
     
-    let type: dataType
+    var userData: Results<RealmUser>!
     
     
-    /// initialization
-    init(type: dataType = .all) {
-        self.type = type
-    }
     
     
     /// User
     func featchData() {
-        switch type {
-        case .hidden:
-            PolicySupportData = localRealm.objects(RealmPolicySupport.self).where{  $0.isHidden == true }
-        case .nothidden:
-            PolicySupportData = localRealm.objects(RealmPolicySupport.self).where{  $0.isHidden == false }
-        case .all:
-            PolicySupportData = localRealm.objects(RealmPolicySupport.self)
-        }
+        PolicySupportData = localRealm.objects(RealmPolicySupport.self)
+        userData = localRealm.objects(RealmUser.self)
     }
     
     
@@ -86,11 +72,17 @@ class RealmService {
     }
     
     func updateHiddenData(data: RealmPolicySupport) {
-        
         do {
-           try localRealm.write({
-               data.isHidden = !data.isHidden
-               data.newPolicy = false // 숨기게 되면 새로운 정책에서 제거
+            try localRealm.write({
+                
+                data.isHidden = !data.isHidden
+                data.newPolicy = false // 숨기게 되면 새로운 정책에서 제거
+                
+                
+                if PolicySupportData.makeArray().contains { realmData in data.policyID != realmData.policyID } {
+                    localRealm.add(data)
+                }
+                
             })
         } catch {
             print("데이터 업데이트 못함")
@@ -99,10 +91,10 @@ class RealmService {
     }
     
     func updateClickData(data: RealmPolicySupport) {
-        
         do {
            try localRealm.write({
-               data.newPolicy = false //
+               data.newPolicy = false
+               localRealm.add(data)
             })
         } catch {
             print("신규 데이터 못 읽음")
@@ -124,5 +116,9 @@ extension Results {
 extension List {
     func makeArray() -> [RealmPolicySupport] {
         return self.compactMap { $0 as? RealmPolicySupport }
+    }
+    
+    func makeListArray() -> [String] {
+        return self.compactMap { $0 as? String }
     }
 }

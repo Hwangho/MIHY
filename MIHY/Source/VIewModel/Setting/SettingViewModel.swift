@@ -10,7 +10,7 @@ import RealmSwift
 
 class SettingViewModel {
     
-    let realmService = RealmService()
+    let realmService = RealmService.shared
     
     var user: Results<RealmUser>!
     

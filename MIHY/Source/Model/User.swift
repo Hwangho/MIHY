@@ -34,20 +34,17 @@ class RealmUser: Object {
         self.Education = returnList(array: Education)
         self.specialization = returnList(array: specialization)
         self.data = returnList(array: data)
-
    }
     
-    
-   
-    
+}
+
+
+extension Object {
     func returnList<T>(array: [T]?) -> List<T> {
         let dataList: List<T> = List<T>()
         dataList.append(objectsIn: array ?? [])
         
         return dataList
-        
     }
 
 }
-
-

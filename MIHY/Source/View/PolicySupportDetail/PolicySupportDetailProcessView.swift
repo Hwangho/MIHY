@@ -19,21 +19,6 @@ class PolicySupportDetailProcessView: BaseView {
     let contentLabel = UILabel()
     
     
-    /// variable
-    private let data: RealmPolicyData?
-    
-    
-    /// Initialization
-    init(data: RealmPolicyData?) {
-        self.data = data
-        super.init(frame: .zero)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
     /// Life Cycle
     override func setupAttributes() {
         super.setupAttributes()
@@ -71,10 +56,11 @@ class PolicySupportDetailProcessView: BaseView {
     
     override func setData() {
         
+
+    }
+    func configure(data: PolicySupport) {
         titleLabel.text = "신청 절차"
-        guard let data = data else { return }
         arrowLabel.text = "➜ "
         contentLabel.text = data.process
     }
-    
 }

@@ -11,7 +11,7 @@ import SnapKit
 
 
 protocol TapURLButtonDelegate {
-    func tapActionButton(url: String?)
+    func tapActionButton()
     func tapCopy()
 }
 
@@ -27,20 +27,8 @@ class PolicySupportPeriodDetailView: BaseView {
     
     
     /// variable
-    private let data: RealmPolicyData?
-    
     var delegate: TapURLButtonDelegate?
     
-    
-    /// Initialization
-    init(data: RealmPolicyData?) {
-        self.data = data
-        super.init(frame: .zero)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     
     /// Life Cycle
@@ -93,23 +81,25 @@ class PolicySupportPeriodDetailView: BaseView {
     
     
     override func setData() {
-        titleLabel.text = "관련 사이트"
-        copyButton.setTitle("복사하기", for: .normal)
-        
-        guard let data = data else { return }
-        arrowLabel.text = "➜ "
-        contentButton.setTitle( data.applyURL, for: .normal)
+
     }
 
     @objc
     func tapURLLink() {
-        delegate?.tapActionButton(url: data?.applyURL)
+        delegate?.tapActionButton()
     }
     
     
     @objc
     func tapCopy() {
-        UIPasteboard.general.string = data?.applyURL
         delegate?.tapCopy()
+    }
+    
+    func configure(data: PolicySupport) {
+        titleLabel.text = "관련 사이트"
+        copyButton.setTitle("복사하기", for: .normal)
+        
+        arrowLabel.text = "➜ "
+        contentButton.setTitle( data.applyURL, for: .normal)
     }
 }

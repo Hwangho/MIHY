@@ -19,21 +19,6 @@ class PolicySupportDetailContentView: BaseView {
     let titleLineView = UIView()
     
     
-    /// variable
-    private let data: RealmPolicyData?
-    
-    
-    /// Initialization
-    init(data: RealmPolicyData?) {
-        self.data = data
-        super.init(frame: .zero)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
     /// Life Cycle
     override func setupAttributes() {
         titleLabel.font = Font.bold.scaledFont(to: 20)
@@ -71,9 +56,10 @@ class PolicySupportDetailContentView: BaseView {
         }
     }
     
-    override func setData() {
-        titleLabel.text = data?.title
-        introduceLabel.text = data?.introduce
+    
+    func configure(data: PolicySupport) {
+        titleLabel.text = data.title
+        introduceLabel.text = data.introduce
     }
     
 }

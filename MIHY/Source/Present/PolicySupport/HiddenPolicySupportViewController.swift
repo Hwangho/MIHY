@@ -67,18 +67,8 @@ extension HiddenPolicySupportViewController: UITableViewDataSource, UITableViewD
         tableView.register(PolicyTableViewViewCell.self, forCellReuseIdentifier: PolicyTableViewViewCell.reuseIdentifier)
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModel.policyDataArray.count
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let data = viewModel.policyDataArray[section]
-        switch data.cellType {
-        case .onlyHeader:
-            return 0
-        case .newPolicy, .oldPolicy:
-            return data.data!.count
-        }
+        return viewModel.policyDataArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -86,25 +76,18 @@ extension HiddenPolicySupportViewController: UITableViewDataSource, UITableViewD
             return UITableViewCell()
         }
         
-        let type = viewModel.policyDataArray[indexPath.section].cellType
-        
-        switch type {
-        case .onlyHeader:
-            return cell
-        case .newPolicy, .oldPolicy:
-            let data = viewModel.policyDataArray[indexPath.section].data![indexPath.item]
-            cell.configure(policyData: data)
-            cell.indexPath = indexPath
-            cell.delegate = self
-            return cell
-        }
+        let data = viewModel.policyDataArray[indexPath.item]
+        cell.configure(policyData: data)
+        cell.indexPath = indexPath
+        cell.delegate = self
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let data = viewModel.policyDataArray[indexPath.section].data![indexPath.row]
+        let data = viewModel.policyDataArray[indexPath.item]
         viewModel.realmService.updateClickData(data: data)
         
-        let vc = PolicySupoortDetailViewController(data: data.data)
+        let vc = PolicySupoortDetailViewController(policyid: data.policyID)
         transition(vc, transitionStyle: .push)
     }
     
@@ -115,7 +98,7 @@ extension HiddenPolicySupportViewController: UITableViewDataSource, UITableViewD
 extension HiddenPolicySupportViewController: CellDelegate {
 
     func swipeCell(indexPath: IndexPath) {
-        let data = viewModel.policyDataArray[indexPath.section].data![indexPath.row]
+        let data = viewModel.policyDataArray[indexPath.item]
 
         UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseIn], animations: {
             guard let cell = self.tableView.cellForRow(at: indexPath) as? PolicyTableViewViewCell else{

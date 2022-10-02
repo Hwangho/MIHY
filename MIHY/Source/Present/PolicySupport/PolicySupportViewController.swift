@@ -13,7 +13,6 @@ import RealmSwift
 
 class PolicySupportViewController: BaseViewController {
     
-    
     let tableView = UITableView(frame: .zero, style: .grouped)
     
     
@@ -50,14 +49,14 @@ class PolicySupportViewController: BaseViewController {
     
     override func setData() {
         viewModel.realmService.featchData()
-        viewModel.setdata()
     }
-    
+
     
     /// Custom Func
     func fetchPolicyData() {
-        viewModel.setdata()
-        self.tableView.reloadData()
+        viewModel.featch {
+            self.tableView.reloadData()
+        }
     }
     
     func NavigationAttribute() {
@@ -87,11 +86,11 @@ extension PolicySupportViewController: UITableViewDataSource, UITableViewDelegat
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModel.policyDataArray.count
+        return viewModel.policySectionDataArray.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let data = viewModel.policyDataArray[section]
+        let data = viewModel.policySectionDataArray[section]
         switch data.cellType {
         case .onlyHeader:
             return 0
@@ -106,13 +105,13 @@ extension PolicySupportViewController: UITableViewDataSource, UITableViewDelegat
             return UITableViewCell()
         }
         
-        let type = viewModel.policyDataArray[indexPath.section].cellType
+        let type = viewModel.policySectionDataArray[indexPath.section].cellType
         
         switch type {
         case .onlyHeader:
             return cell
         case .newPolicy, .oldPolicy:
-            let data = viewModel.policyDataArray[indexPath.section].data![indexPath.item]
+            let data = viewModel.policySectionDataArray[indexPath.section].data![indexPath.item]
             cell.configure(policyData: data)
             cell.indexPath = indexPath
             cell.delegate = self
@@ -121,7 +120,7 @@ extension PolicySupportViewController: UITableViewDataSource, UITableViewDelegat
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let type = viewModel.policyDataArray[section].cellType
+        let type = viewModel.policySectionDataArray[section].cellType
         
         switch type {
         case .onlyHeader:
@@ -135,7 +134,7 @@ extension PolicySupportViewController: UITableViewDataSource, UITableViewDelegat
         }
     }
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let type = viewModel.policyDataArray[section].cellType
+        let type = viewModel.policySectionDataArray[section].cellType
         
         switch type {
         case .onlyHeader:
@@ -148,10 +147,11 @@ extension PolicySupportViewController: UITableViewDataSource, UITableViewDelegat
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let data = viewModel.policyDataArray[indexPath.section].data![indexPath.row]
+        let data = viewModel.policySectionDataArray[indexPath.section].data![indexPath.row]
         viewModel.realmService.updateClickData(data: data)
         
-        let vc = PolicySupoortDetailViewController(data: data.data)
+        
+        let vc = PolicySupoortDetailViewController(policyid: data.policyID)
         transition(vc, transitionStyle: .push)
     }
     
@@ -161,8 +161,8 @@ extension PolicySupportViewController: UITableViewDataSource, UITableViewDelegat
 // MARK: - CellDelegate
 extension PolicySupportViewController: CellDelegate {
     func swipeCell(indexPath: IndexPath) {
-        let data = viewModel.policyDataArray[indexPath.section].data![indexPath.row]
-
+        let data = viewModel.policySectionDataArray[indexPath.section].data![indexPath.row]
+        
         UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseIn], animations: {
             guard let cell = self.tableView.cellForRow(at: indexPath) as? PolicyTableViewViewCell else{
                 return
@@ -170,7 +170,8 @@ extension PolicySupportViewController: CellDelegate {
             cell.contentView.alpha = 0
         }, completion: { _ in self.tableView.performBatchUpdates({
             self.viewModel.realmService.updateHiddenData(data: data)
-
+            self.viewModel.policySectionDataArray[indexPath.section].data?.remove(at: indexPath.item)
+            
             // Deleting the row in the tableView
             if self.tableView.numberOfRows(inSection: indexPath.section) > 1 {
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
@@ -178,6 +179,7 @@ extension PolicySupportViewController: CellDelegate {
                 let indexSet = NSMutableIndexSet()
                 indexSet.add(indexPath.section)
                 self.tableView.deleteSections(indexSet as IndexSet, with: .fade)
+                self.viewModel.policySectionDataArray.remove(at: indexPath.section)
             }
             self.fetchPolicyData()
         })})

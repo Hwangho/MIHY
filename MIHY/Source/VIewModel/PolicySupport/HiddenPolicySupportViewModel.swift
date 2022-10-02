@@ -16,9 +16,9 @@ class HiddenPolicySupportViewModel {
     
     let service: PolicyRepositoryProtocol
     
-    let realmService = RealmService(type: .hidden)
+    let realmService = RealmService.shared
     
-    var policyDataArray: [SectionPolicySupport] = []
+    var policyDataArray: [RealmPolicySupport] = []
     
         
     init(service: PolicyRepositoryProtocol = PolicyRepository() ) {
@@ -27,15 +27,9 @@ class HiddenPolicySupportViewModel {
     
     func setdata() {
         policyDataArray = []
-        let newPolicy = SectionPolicySupport(cellType: .newPolicy, data: realmService.PolicySupportData.where { $0.newPolicy == true} )
-        let oldPolicy = SectionPolicySupport(cellType: .oldPolicy, data: realmService.PolicySupportData.where { $0.newPolicy == false} )
         
-        [newPolicy,oldPolicy].forEach { data in
-            if !data.data!.isEmpty {
-                policyDataArray.append(data)
-            }
-        }
-        
+        let isHiddenData = realmService.PolicySupportData.where{  $0.isHidden == true }
+        policyDataArray = isHiddenData.isEmpty ? [] : isHiddenData.makeArray()
     }
     
 }

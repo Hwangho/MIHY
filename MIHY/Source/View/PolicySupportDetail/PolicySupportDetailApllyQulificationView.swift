@@ -27,19 +27,6 @@ class PolicySupportDetailApllyQulificationView: BaseView {
     let specialQulificationView = ApllyQulificationView()
     
     
-    /// variable
-    private let data: RealmPolicyData?
-    
-    
-    /// Initialization
-    init(data: RealmPolicyData?) {
-        self.data = data
-        super.init(frame: .zero)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     override func setupAttributes() {
         super.setupAttributes()
@@ -77,20 +64,7 @@ class PolicySupportDetailApllyQulificationView: BaseView {
     
     override func setData() {
         
-        ageQulificationView.titleLabel.text = "· 연령:"
-        ageQulificationView.contentLabel.text = data?.age
         
-        educationQulificationView.titleLabel.text = "· 학력:"
-        educationQulificationView.contentLabel.text = data?.education
-        
-        majorQulificationView.titleLabel.text = "· 전공:"
-        majorQulificationView.contentLabel.text = data?.major
-        
-        employmentQulificationView.titleLabel.text = "· 취업 상태:"
-        employmentQulificationView.contentLabel.text = data?.employment
-        
-        specialQulificationView.titleLabel.text = "· 특화분야:"
-        specialQulificationView.contentLabel.text = data?.specialization
     }
     
     
@@ -136,4 +110,21 @@ class PolicySupportDetailApllyQulificationView: BaseView {
         }
     }
 
+    func configure(data: PolicySupport) {
+        ageQulificationView.titleLabel.text = "· 연령:"
+        ageQulificationView.contentLabel.text = data.age
+        
+        educationQulificationView.titleLabel.text = "· 학력:"
+        educationQulificationView.contentLabel.text = data.education
+        
+        majorQulificationView.titleLabel.text = "· 전공:"
+        majorQulificationView.contentLabel.text = data.major
+        
+        employmentQulificationView.titleLabel.text = "· 취업 상태:"
+        employmentQulificationView.contentLabel.text = data.employment
+        
+        specialQulificationView.titleLabel.text = "· 특화분야:"
+        specialQulificationView.contentLabel.text = data.specialization
+    }
+    
 }
