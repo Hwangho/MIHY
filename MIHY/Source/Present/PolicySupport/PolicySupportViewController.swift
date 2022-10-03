@@ -19,12 +19,15 @@ class PolicySupportViewController: BaseViewController {
     /// variable
     let viewModel = PolicySupportViewModel()
     
+    var fetchPage = 1
     
     /// Life Cycle
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        fetchPolicyData()
+        let indexSet = NSMutableIndexSet()
+        indexSet.add(0)
+        tableView.reloadSections(indexSet as IndexSet, with: .automatic)
     }
     
     override func setupAttributes() {
@@ -48,13 +51,13 @@ class PolicySupportViewController: BaseViewController {
     }
     
     override func setData() {
-        viewModel.realmService.featchData()
+        fetchPolicyData()
     }
 
     
     /// Custom Func
-    func fetchPolicyData() {
-        viewModel.featch {
+    func fetchPolicyData(pageNation: Bool = false, page: Int = 1) {
+        viewModel.featch(pageNation: pageNation, page: page) {
             self.tableView.reloadData()
         }
     }
@@ -146,6 +149,22 @@ extension PolicySupportViewController: UITableViewDataSource, UITableViewDelegat
         }
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let contentOffset_y = scrollView.contentOffset.y
+        let tableViewContentSize = tableView.contentSize.height
+        let pagination_y = tableViewContentSize * 0.1
+        
+        if contentOffset_y > tableViewContentSize - pagination_y {
+            guard !viewModel.isPagenating else { return }
+            
+            if fetchPage < UserDefaults.standard.integer(forKey: "totalCount")/100 + 1 {
+                fetchPage += 1
+                fetchPolicyData(pageNation: true, page: fetchPage)
+            }
+            
+        }
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let data = viewModel.policySectionDataArray[indexPath.section].data![indexPath.row]
         viewModel.realmService.updateClickData(data: data)
@@ -154,6 +173,7 @@ extension PolicySupportViewController: UITableViewDataSource, UITableViewDelegat
         let vc = PolicySupoortDetailViewController(policyid: data.policyID)
         transition(vc, transitionStyle: .push)
     }
+    
     
 }
 

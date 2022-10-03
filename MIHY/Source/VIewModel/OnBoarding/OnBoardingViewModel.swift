@@ -36,27 +36,28 @@ class OnBoardingViewModel {
         let myInfo = onBoardingData[.myInfo] as? [MyInfo.caseType: [String]]
         
         
+        
         var realmData : [RealmPolicySupport]
         if let data = realmService.PolicySupportData {
             realmData = data.makeArray()
         } else {
             realmData = []
         }
-//        let data = realmService.PolicySupportData?.makeArray()
         
-        var realmUser: RealmUser
+        let realmUser = RealmUser(nickName: nickName!,
+                                  birth: birth,
+                                  category: policy!.values.flatMap { $0 },
+                                  region: city,
+                                  employment: myInfo?[.employmentStatus],
+                                  Education: myInfo?[.education],
+                                  specialization: myInfo?[.specialization],
+                                  data:  realmData)                         // 수정하기 일 경우 데이터 넣기~!
         
-        realmUser = RealmUser(nickName: nickName!,
-                              birth: birth,
-                              category: policy!.values.flatMap { $0 },
-                              region: city,
-                              employment: myInfo?[.employmentStatus],
-                              Education: myInfo?[.education],
-                              specialization: myInfo?[.specialization],
-                              data: isModify ? realmData : [])                         // 수정하기 일 경우 데이터 넣기~!
-        
-        realmService.deleDataAll()
-        realmService.addData(data: realmUser)
+        if isModify {
+            realmService.modifyData(data: realmUser)
+        } else {
+            realmService.addData(data: realmUser)
+        }
     }
     
 }

@@ -430,8 +430,8 @@
 				0EB22C0028DD90A700E745E5 /* Tabbar */,
 				0EDE849D28D17CF2003B7191 /* OnBoarding */,
 				0EDE847028CDB1F0003B7191 /* PolicySupport */,
-				0EA180CF28E58F3200489C3A /* Setting */,
 				0EB22C4C28E17A8900E745E5 /* PolicySupportDetail */,
+				0EA180CF28E58F3200489C3A /* Setting */,
 				0EDE847428CDB9BD003B7191 /* SpaceRental */,
 			);
 			path = Present;

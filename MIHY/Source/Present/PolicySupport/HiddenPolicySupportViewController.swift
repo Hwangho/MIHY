@@ -109,13 +109,7 @@ extension HiddenPolicySupportViewController: CellDelegate {
             self.viewModel.realmService.updateHiddenData(data: data)
 
             // Deleting the row in the tableView
-            if self.tableView.numberOfRows(inSection: indexPath.section) > 1 {
-                self.tableView.deleteRows(at: [indexPath], with: .fade)
-            } else {
-                let indexSet = NSMutableIndexSet()
-                indexSet.add(indexPath.section)
-                self.tableView.deleteSections(indexSet as IndexSet, with: .fade)
-            }
+            self.tableView.deleteRows(at: [indexPath], with: .fade)
             self.fetchPolicyData()
         })})
     }

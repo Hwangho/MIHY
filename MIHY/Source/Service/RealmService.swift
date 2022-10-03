@@ -41,15 +41,6 @@ final class RealmService {
         }
     }
     
-    func deleteDatas<T: Sequence>(data: T) where T.Iterator.Element: ObjectBase  {
-        do {
-           try localRealm.write({
-                localRealm.delete(data)
-            })
-        } catch {
-            print("메모를 제거하는데 error가 생겼습니다.")
-        }
-    }
     
     func deleData(data: ObjectBase) {
         do {
@@ -71,17 +62,37 @@ final class RealmService {
         }
     }
     
+    func modifyData(data: RealmUser) {
+        do {
+           try localRealm.write({
+               guard let newUser = userData.first else {return}
+               newUser.nickName = data.nickName
+               newUser.birth = data.birth
+               newUser.category = data.category
+               newUser.region = data.region
+               newUser.employment = data.employment
+               newUser.Education = data.Education
+               newUser.specialization = data.specialization
+               newUser.data = data.data
+               localRealm.add(newUser, update: .modified)
+            })
+        } catch {
+            print("메모를 추가하는데 error가 생겼습니다.")
+        }
+    }
+    
     func updateHiddenData(data: RealmPolicySupport) {
+        
         do {
             try localRealm.write({
                 
                 data.isHidden = !data.isHidden
                 data.newPolicy = false // 숨기게 되면 새로운 정책에서 제거
                 
-                
-                if PolicySupportData.makeArray().contains { realmData in data.policyID != realmData.policyID } {
-                    localRealm.add(data)
-                }
+                if !PolicySupportData.makeArray().contains(where: { realmData in data.policyID == realmData.policyID }) {
+                    guard let User = userData.first else {return}
+                    User.data.append(data)
+                } 
                 
             })
         } catch {
@@ -94,7 +105,10 @@ final class RealmService {
         do {
            try localRealm.write({
                data.newPolicy = false
-               localRealm.add(data)
+               if !PolicySupportData.makeArray().contains(where: { realmData in data.policyID == realmData.policyID }) {
+                   guard let User = userData.first else {return}
+                   User.data.append(data)
+               }
             })
         } catch {
             print("신규 데이터 못 읽음")

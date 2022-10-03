@@ -18,19 +18,23 @@ class PolicySupportViewModel {
     
     let realmService = RealmService.shared
     
-//    var PolicydataArray: Observable<[PolicySupport]> = Observable([])
-    
     var PolicydataArray: [RealmPolicySupport] = []
     
     var policySectionDataArray: [SectionPolicySupport] = []
     
-        
+    var isPagenating = false
+    
+    
     init(service: PolicyRepositoryProtocol = PolicyRepository() ) {
         self.service = service
     }
     
     
-    func featch(handler: @escaping() ->() ) {
+    func featch(pageNation: Bool, page: Int, handler: @escaping() ->() ) {
+        if pageNation {
+            isPagenating = true
+        }
+        
         realmService.featchData()
         guard let UserData = realmService.userData.first else { return }
         
@@ -43,20 +47,25 @@ class PolicySupportViewModel {
         }
         let city = region == nil ? "" : region!.rawValue
         
-        
-        service.fetchPolicyData(policySupport: policySupport, city: city, page: 1) { [weak self] dataArray in
-            self?.PolicydataArray = []
+        service.fetchPolicyData(policySupport: policySupport, city: city, page: page) { [weak self] dataArray in
+            if page == 1 {
+                self?.PolicydataArray = []
+            }
+            
             dataArray.forEach { data in
                 self?.PolicydataArray.append(data)
             }
             
             self?.fetchSectionData {
+                if pageNation {
+                    self?.isPagenating = false
+                }
                 handler()
             }
         }
         
+
     }
-    
     
     func fetchSectionData(_ handler: @escaping()-> ()) {
         policySectionDataArray = []
@@ -67,14 +76,21 @@ class PolicySupportViewModel {
         
         var newData: [RealmPolicySupport] = []
         var oldData: [RealmPolicySupport] = []
-        
-    
+
         let _ = PolicydataArray.map {  data in
-            if realmData.makeArray().contains(where: { realmData in
-                (data.policyID == realmData.policyID && realmData.isHidden == false)}) {
-                oldData.append(data)
-            } else {
+            if realmData.makeArray().isEmpty {
                 newData.append(data)
+            }
+            else if !realmData.makeArray().contains(where: { realmData in           /// contain은 하나라도 포함이 되어 있으면 true를 반환하므로 같은 값이 있을경우의 반대로 작성!
+                data.policyID == realmData.policyID }) {
+                newData.append(data)
+            }
+            else {
+                realmData.makeArray().map { realmData in
+                    if data.policyID == realmData.policyID && realmData.isHidden == false {
+                        oldData.append(realmData)
+                    }
+                }
             }
         }
 
