@@ -119,6 +119,16 @@ final class RealmService {
 }
 
 
+extension RealmService {
+    
+    func fountRealmPath() {
+        guard let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+        print("❤️document path ==== \(path)❤️")
+    }
+}
+
+
+
 
 extension Results {
     func makeArray() -> [RealmPolicySupport] {

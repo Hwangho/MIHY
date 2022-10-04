@@ -9,6 +9,7 @@ import UIKit
 
 import SnapKit
 import RealmSwift
+import SkeletonView
 
 
 class PolicySupportViewController: BaseViewController {
@@ -34,13 +35,9 @@ class PolicySupportViewController: BaseViewController {
         super.setupAttributes()
         settingTableView()
         NavigationAttribute()
+        skeletonAttribute()     // Skeleton 화면 보여주면서 fetch 처리
         
-        guard let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
-            showAlertMessage(title: "Document 파일 통로를 못찾았습니다.")
-            return
-        }
-        print("❤️document path ==== \(path)❤️")
-        
+        viewModel.realmService.fountRealmPath()
     }
     
     override func setupLayout() {
@@ -50,10 +47,6 @@ class PolicySupportViewController: BaseViewController {
         }
     }
     
-    override func setData() {
-        fetchPolicyData()
-    }
-
     
     /// Custom Func
     func fetchPolicyData(pageNation: Bool = false, page: Int = 1) {
@@ -67,7 +60,6 @@ class PolicySupportViewController: BaseViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gearshape"), style: .plain, target: self, action: #selector(tapSettingButton))
     }
 
-    
     @objc
     func tapSettingButton() {
         let vc = SettingViewController()
@@ -83,6 +75,7 @@ extension PolicySupportViewController: UITableViewDataSource, UITableViewDelegat
         tableView.backgroundColor = .clear
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.rowHeight = UITableView.automaticDimension
         
         tableView.separatorStyle = .none
         tableView.register(PolicyTableViewViewCell.self, forCellReuseIdentifier: PolicyTableViewViewCell.reuseIdentifier)
@@ -173,8 +166,61 @@ extension PolicySupportViewController: UITableViewDataSource, UITableViewDelegat
         let vc = PolicySupoortDetailViewController(policyid: data.policyID)
         transition(vc, transitionStyle: .push)
     }
+}
+
+
+// MARK: - SkeletonView 화면 만들기
+extension PolicySupportViewController: SkeletonTableViewDataSource {
     
+    func skeletonAttribute() {
+        tableView.isSkeletonable = true
+        
+        let animation = SkeletonAnimationBuilder().makeSlidingAnimation(withDirection: .leftRight)
+        tableView.showAnimatedGradientSkeleton(usingGradient: .init(baseColor: .lightGray), animation: animation, transition: .crossDissolve(0.5))
+        
+        DispatchQueue.main.asyncAfter(deadline: .now()+1) {
+            self.viewModel.featch(pageNation: false, page: 1) {
+                self.tableView.stopSkeletonAnimation()
+                self.tableView.hideSkeleton(reloadDataAfter: true)
+                self.tableView.reloadData()
+            }
+        }
+    }
     
+    func numSections(in collectionSkeletonView: UITableView) -> Int {
+        return viewModel.policySectionDataArray.count
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let data = viewModel.policySectionDataArray[section]
+        switch data.cellType {
+        case .onlyHeader:
+            return 0
+        case .newPolicy, .oldPolicy:
+            return data.data!.count
+
+        }
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, skeletonCellForRowAt indexPath: IndexPath) -> UITableViewCell? {
+        let cell = tableView.dequeueReusableCell(withIdentifier: PolicyTableViewViewCell.reuseIdentifier, for: indexPath) as! PolicyTableViewViewCell
+        let type = viewModel.policySectionDataArray[indexPath.section].cellType
+        
+        switch type {
+        case .onlyHeader:
+            return cell
+        case .newPolicy, .oldPolicy:
+            let data = viewModel.policySectionDataArray[indexPath.section].data![indexPath.item]
+            cell.configure(policyData: data)
+            cell.indexPath = indexPath
+            cell.delegate = self
+            return cell
+        }
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return PolicyTableViewViewCell.reuseIdentifier
+    }
 }
 
 
@@ -209,11 +255,8 @@ extension PolicySupportViewController: CellDelegate {
 
 // MARK: - taphiddenButton
 extension PolicySupportViewController: TapActionDelegate {
-    
     func tapActionButton() {
         let vc = HiddenPolicySupportViewController()
         transition(vc, transitionStyle: .push)
     }
-    
-    
 }

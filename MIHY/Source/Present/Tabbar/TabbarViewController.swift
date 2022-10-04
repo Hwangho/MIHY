@@ -78,7 +78,7 @@ class TabbarViewController: UITabBarController {
         secondNavigationController.addChild(spaceRentalViewController)
         secondNavigationController.tabBarItem.image = UIImage(systemName: "map")
         
-        let viewControllers = [firstNavigationController, secondNavigationController]
+        let viewControllers = [firstNavigationController]
         self.setViewControllers(viewControllers, animated: true)
     }
 }

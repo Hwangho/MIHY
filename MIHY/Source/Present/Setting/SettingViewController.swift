@@ -13,14 +13,14 @@ class SettingViewController: BaseViewController {
     
     enum Setting: CaseIterable {
         case editeuser
-        case persona
-        case version
+//        case persona
+//        case version
         
         var title: String {
             switch self {
             case .editeuser: return "정보 수정하기"
-            case .persona: return "새로운 나"
-            case .version: return "Version"
+//            case .persona: return "새로운 나"
+//            case .version: return "Version"
             }
         }
     }
@@ -94,10 +94,10 @@ extension SettingViewController: UITableViewDataSource, UITableViewDelegate {
         switch type {
         case .editeuser:
             modifyAlert()
-        case .persona:
-            print("페르소나 만들기")
-        case .version:
-            print("버전 정보")
+//        case .persona:
+//            print("페르소나 만들기")
+//        case .version:
+//            print("버전 정보")
         }
         
     }

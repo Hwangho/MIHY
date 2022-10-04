@@ -76,6 +76,7 @@
 		0EDE849C28D067EA003B7191 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDE849B28D067E9003B7191 /* User.swift */; };
 		0EDE849F28D17DF2003B7191 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDE849E28D17DF2003B7191 /* OnBoardingViewController.swift */; };
 		0EDE84A428D1BE6F003B7191 /* OnBoardingTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDE84A328D1BE6F003B7191 /* OnBoardingTextFieldView.swift */; };
+		0EFFB99128EB2B1F009AED5D /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = 0EFFB99028EB2B1F009AED5D /* SkeletonView */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -175,6 +176,7 @@
 				0EDE848228CDBDC5003B7191 /* SWXMLHash in Frameworks */,
 				0EB22BFD28DD437F00E745E5 /* Realm in Frameworks */,
 				0EB22BFF28DD437F00E745E5 /* RealmSwift in Frameworks */,
+				0EFFB99128EB2B1F009AED5D /* SkeletonView in Frameworks */,
 				0EDE848828CDBFD1003B7191 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -612,6 +614,7 @@
 				0EDE849328CDFA37003B7191 /* SnapKit */,
 				0EB22BFC28DD437F00E745E5 /* Realm */,
 				0EB22BFE28DD437F00E745E5 /* RealmSwift */,
+				0EFFB99028EB2B1F009AED5D /* SkeletonView */,
 			);
 			productName = MIHY;
 			productReference = 0EDE841B28CDAE27003B7191 /* MIHY.app */;
@@ -690,6 +693,7 @@
 				0EDE848628CDBFD1003B7191 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				0EDE849228CDFA37003B7191 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				0EB22BFB28DD437F00E745E5 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				0EFFB98F28EB2B1F009AED5D /* XCRemoteSwiftPackageReference "SkeletonView" */,
 			);
 			productRefGroup = 0EDE841C28CDAE27003B7191 /* Products */;
 			projectDirPath = "";
@@ -959,7 +963,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 966AMBK56G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MIHY/Resource/Info.plist;
@@ -988,7 +992,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 966AMBK56G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MIHY/Resource/Info.plist;
@@ -1161,6 +1165,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		0EFFB98F28EB2B1F009AED5D /* XCRemoteSwiftPackageReference "SkeletonView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Juanpe/SkeletonView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1188,6 +1200,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0EDE849228CDFA37003B7191 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		0EFFB99028EB2B1F009AED5D /* SkeletonView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0EFFB98F28EB2B1F009AED5D /* XCRemoteSwiftPackageReference "SkeletonView" */;
+			productName = SkeletonView;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

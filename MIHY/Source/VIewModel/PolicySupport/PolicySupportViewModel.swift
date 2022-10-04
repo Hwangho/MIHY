@@ -20,7 +20,14 @@ class PolicySupportViewModel {
     
     var PolicydataArray: [RealmPolicySupport] = []
     
-    var policySectionDataArray: [SectionPolicySupport] = []
+    var policySectionDataArray: [SectionPolicySupport] = [SectionPolicySupport(cellType: .onlyHeader, data: nil),
+                                                          SectionPolicySupport(cellType: .newPolicy, data: [
+                                                            RealmPolicySupport(sample: true),
+                                                            RealmPolicySupport(sample: true)]),
+                                                          SectionPolicySupport(cellType: .oldPolicy, data: [
+                                                            RealmPolicySupport(sample: true),
+                                                            RealmPolicySupport(sample: true)] )
+                                                        ]
     
     var isPagenating = false
     

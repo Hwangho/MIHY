@@ -57,7 +57,7 @@ enum FontTextSize {
         case .policySectionTitle: return 23
         case .policyheaderTitlte: return 16
         case .policyheaderhidden: return 14
-        case .policyCellTitle: return 16
+        case .policyCellTitle: return 17
         case .policyCellContent: return 12
         case .cellContent: return 12
         case .changeMemoText: return 15

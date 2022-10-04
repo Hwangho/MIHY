@@ -34,6 +34,12 @@ class RealmPolicySupport: Object {
         self.title = title
         self.introduce = introduce
     }
+    
+    convenience init(sample: Bool) {
+        self.init()
+        self.title = "이거는 스켈래톤 스켈래톤"
+        self.introduce = "이거는 스켈래톤 뷰를 사용하기 위한 소개여 이거는 스켈래톤 뷰를 사용하기 위한 소개여 이거는 스켈래톤 뷰를 사용하기 위한 소개여"
+    }
 }
 
 

@@ -8,6 +8,7 @@
 import UIKit
 
 import SnapKit
+import SkeletonView
 
 
 protocol CellDelegate {
@@ -54,9 +55,11 @@ class PolicyTableViewViewCell: BaseTableViewCell {
     /// Life Cycle
     override func setupAttributes() {
         super.setupAttributes()
+        skeletonAttribute()
         
         titleLabel.font = Font.medium.scaledFont(size: .policyCellTitle)
         contentLabel.font = Font.light.scaledFont(size: .policyCellContent)
+        contentLabel.numberOfLines = 2
         
         roundView.layer.masksToBounds = true
         roundView.layer.cornerRadius = 20
@@ -89,9 +92,9 @@ class PolicyTableViewViewCell: BaseTableViewCell {
         
         contentLabel.snp.makeConstraints { make in
             make.leading.equalTo(titleLabel.snp.leading)
-            make.top.equalTo(titleLabel.snp.bottom).offset(10)
-            make.trailing.lessThanOrEqualToSuperview().inset(20)
-            make.bottom.equalToSuperview().inset(30)
+            make.top.equalTo(titleLabel.snp.bottom).offset(12)
+            make.trailing.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview().inset(25)
         }
         
         shadowView.addSubview(roundView)
@@ -139,6 +142,17 @@ class PolicyTableViewViewCell: BaseTableViewCell {
         self.contentLabel.text = policyData.introduce
     }
     
+    func skeletonAttribute() {
+        self.isSkeletonable = true
+        backView.isSkeletonable = true
+        shadowView.isSkeletonable = true
+        roundView.isSkeletonable = true
+        contentLabel.isSkeletonable = true
+        titleLabel.isSkeletonable = true
+        
+        contentLabel.linesCornerRadius = 5
+        titleLabel.linesCornerRadius = 5
+    }
 }
 
 
